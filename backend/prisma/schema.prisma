@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Competitor {
+  id          String              @id @default(uuid())
+  name        String              @unique
+  logoUrl     String?             @map("logo_url")
+  website     String?
+  description String?
+  industry    String?
+  createdAt   DateTime            @default(now()) @map("created_at")
+  updatedAt   DateTime            @updatedAt @map("updated_at")
+  features    CompetitorFeature[]
+
+  @@map("competitors")
+}
+
+model Feature {
+  id          String              @id @default(uuid())
+  name        String              @unique
+  category    String?
+  description String?
+  priority    String?
+  createdAt   DateTime            @default(now()) @map("created_at")
+  updatedAt   DateTime            @updatedAt @map("updated_at")
+  competitors CompetitorFeature[]
+
+  @@map("features")
+}
+
+model CompetitorFeature {
+  id                    String                        @id @default(uuid())
+  competitorId          String                        @map("competitor_id")
+  featureId             String                        @map("feature_id")
+  hasFeature            Boolean                       @default(false) @map("has_feature")
+  implementationQuality String?                       @map("implementation_quality")
+  notes                 String?
+  createdAt             DateTime                      @default(now()) @map("created_at")
+  updatedAt             DateTime                      @updatedAt @map("updated_at")
+  screenshots           CompetitorFeatureScreenshot[]
+  competitor            Competitor                    @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  feature               Feature                       @relation(fields: [featureId], references: [id], onDelete: Cascade)
+
+  @@unique([competitorId, featureId])
+  @@map("competitor_features")
+}
+
+model CompetitorFeatureScreenshot {
+  id                  String            @id @default(uuid())
+  competitorFeatureId String            @map("competitor_feature_id")
+  screenshotPath      String            @map("screenshot_path")
+  caption             String?
+  displayOrder        Int?              @map("display_order")
+  createdAt           DateTime          @default(now()) @map("created_at")
+  competitorFeature   CompetitorFeature @relation(fields: [competitorFeatureId], references: [id], onDelete: Cascade)
+
+  @@map("competitor_feature_screenshots")
+}
+
+model Upload {
+  id           String   @id @default(uuid())
+  filename     String
+  originalName String   @map("original_name")
+  fileType     String   @map("file_type")
+  fileSize     BigInt   @map("file_size")
+  storageUrl   String   @map("storage_url")
+  uploadedBy   String?  @map("uploaded_by")
+  metadata     Json?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("uploads")
+}
+
+model Report {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  reportType  String   @map("report_type")
+  config      Json?
+  createdBy   String?  @map("created_by")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("reports")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  name      String
+  role      String    @default("viewer")
+  avatarUrl String?   @map("avatar_url")
+  createdAt DateTime  @default(now()) @map("created_at")
+  lastLogin DateTime? @map("last_login")
+
+  @@map("users")
+}
+
+model BenchmarkArchive {
+  id               String   @id @default(uuid())
+  title            String
+  snapshotDate     DateTime @map("snapshot_date")
+  data             Json
+  competitorsCount Int?     @map("competitors_count")
+  featuresCount    Int?     @map("features_count")
+  createdBy        String?  @map("created_by")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@map("benchmark_archives")
+}

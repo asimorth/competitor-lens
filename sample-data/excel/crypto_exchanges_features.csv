@@ -1,0 +1,81 @@
+competitorName,featureName,category,hasFeature,quality,implementationQuality,notes,website,description,industry,featureDescription,priority
+Binance,Spot Trading,Trading,Yes,excellent,excellent,Çok kapsamlı spot trading özellikleri. 600+ coin desteği,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Kripto paraların anında alım satımı,high
+Binance,Futures Trading,Trading,Yes,excellent,excellent,USDT-M ve COIN-M futures desteği. 125x kaldıraç,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Vadeli işlem trading özellikleri,high
+Binance,Margin Trading,Trading,Yes,good,good,Cross ve isolated margin seçenekleri,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Kaldıraçlı trading imkanları,medium
+Binance,P2P Trading,Trading,Yes,excellent,excellent,Kapsamlı P2P marketplace. 100+ ödeme yöntemi,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Kullanıcılar arası direkt alım satım,medium
+Binance,Staking,Earn,Yes,excellent,excellent,Flexible ve locked staking seçenekleri,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Kripto para staking ve ödül kazanma,high
+Binance,Savings,Earn,Yes,good,good,Flexible savings ürünleri,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Kripto para tasarruf hesapları,medium
+Binance,NFT Marketplace,NFT,Yes,good,good,NFT alım satım platformu,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,NFT alım satım platformu,low
+Binance,Copy Trading,Social,No,none,none,Bu özellik mevcut değil,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Başarılı trader'ları kopyalama,low
+Binance,DeFi Integration,DeFi,Yes,good,good,BSC entegrasyonu ve DeFi ürünleri,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Merkezi olmayan finans entegrasyonu,medium
+Binance,Mobile App,Platform,Yes,excellent,excellent,iOS ve Android uygulamaları,https://binance.com,Dünyanın en büyük kripto para borsası,Cryptocurrency Exchange,Mobil uygulama desteği,high
+Coinbase,Spot Trading,Trading,Yes,good,good,Kullanıcı dostu arayüz. Başlangıç seviyesi için uygun,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Kripto paraların anında alım satımı,high
+Coinbase,Futures Trading,Trading,No,none,none,Bu özellik mevcut değil,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Vadeli işlem trading özellikleri,high
+Coinbase,Margin Trading,Trading,No,none,none,Bu özellik mevcut değil,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Kaldıraçlı trading imkanları,medium
+Coinbase,P2P Trading,Trading,No,none,none,Bu özellik mevcut değil,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Kullanıcılar arası direkt alım satım,medium
+Coinbase,Staking,Earn,Yes,excellent,excellent,Otomatik staking rewards,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Kripto para staking ve ödül kazanma,high
+Coinbase,Savings,Earn,Yes,basic,basic,Temel savings ürünleri,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Kripto para tasarruf hesapları,medium
+Coinbase,NFT Marketplace,NFT,Yes,basic,basic,Temel NFT özellikleri,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,NFT alım satım platformu,low
+Coinbase,Copy Trading,Social,No,none,none,Bu özellik mevcut değil,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Başarılı trader'ları kopyalama,low
+Coinbase,DeFi Integration,DeFi,Yes,basic,basic,Temel DeFi entegrasyonu,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Merkezi olmayan finans entegrasyonu,medium
+Coinbase,Mobile App,Platform,Yes,excellent,excellent,Çok kullanıcı dostu mobil app,https://coinbase.com,Kullanıcı dostu kripto para platformu,Cryptocurrency Exchange,Mobil uygulama desteği,high
+Kraken,Spot Trading,Trading,Yes,excellent,excellent,Profesyonel trading araçları. Güvenlik odaklı,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Kripto paraların anında alım satımı,high
+Kraken,Futures Trading,Trading,Yes,good,good,Futures trading desteği,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Vadeli işlem trading özellikleri,high
+Kraken,Margin Trading,Trading,Yes,excellent,excellent,Gelişmiş margin trading,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Kaldıraçlı trading imkanları,medium
+Kraken,P2P Trading,Trading,No,none,none,Bu özellik mevcut değil,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Kullanıcılar arası direkt alım satım,medium
+Kraken,Staking,Earn,Yes,good,good,On-chain staking desteği,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Kripto para staking ve ödül kazanma,high
+Kraken,Savings,Earn,No,none,none,Bu özellik mevcut değil,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Kripto para tasarruf hesapları,medium
+Kraken,NFT Marketplace,NFT,No,none,none,Bu özellik mevcut değil,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,NFT alım satım platformu,low
+Kraken,Copy Trading,Social,No,none,none,Bu özellik mevcut değil,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Başarılı trader'ları kopyalama,low
+Kraken,DeFi Integration,DeFi,No,none,none,Bu özellik mevcut değil,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Merkezi olmayan finans entegrasyonu,medium
+Kraken,Mobile App,Platform,Yes,good,good,Güvenli mobil uygulama,https://kraken.com,Güvenlik odaklı kripto borsa,Cryptocurrency Exchange,Mobil uygulama desteği,high
+KuCoin,Spot Trading,Trading,Yes,good,good,Geniş altcoin seçenekleri. Rekabetçi fee'ler,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Kripto paraların anında alım satımı,high
+KuCoin,Futures Trading,Trading,Yes,good,good,Futures trading desteği,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Vadeli işlem trading özellikleri,high
+KuCoin,Margin Trading,Trading,Yes,basic,basic,Temel margin trading,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Kaldıraçlı trading imkanları,medium
+KuCoin,P2P Trading,Trading,Yes,basic,basic,P2P trading mevcut,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Kullanıcılar arası direkt alım satım,medium
+KuCoin,Staking,Earn,Yes,good,good,Pool-X staking platformu,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Kripto para staking ve ödül kazanma,high
+KuCoin,Savings,Earn,Yes,basic,basic,Temel savings ürünleri,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Kripto para tasarruf hesapları,medium
+KuCoin,NFT Marketplace,NFT,No,none,none,Bu özellik mevcut değil,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,NFT alım satım platformu,low
+KuCoin,Copy Trading,Social,Yes,basic,basic,Temel copy trading,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Başarılı trader'ları kopyalama,low
+KuCoin,DeFi Integration,DeFi,Yes,basic,basic,Temel DeFi entegrasyonu,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Merkezi olmayan finans entegrasyonu,medium
+KuCoin,Mobile App,Platform,Yes,good,good,Kullanışlı mobil app,https://kucoin.com,Altcoin odaklı kripto borsa,Cryptocurrency Exchange,Mobil uygulama desteği,high
+Bybit,Spot Trading,Trading,Yes,basic,basic,Temel spot trading özellikleri. Derivatives odaklı platform,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Kripto paraların anında alım satımı,high
+Bybit,Futures Trading,Trading,Yes,excellent,excellent,Ana odak noktası futures trading,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Vadeli işlem trading özellikleri,high
+Bybit,Margin Trading,Trading,Yes,good,good,Margin trading desteği,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Kaldıraçlı trading imkanları,medium
+Bybit,P2P Trading,Trading,No,none,none,Bu özellik mevcut değil,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Kullanıcılar arası direkt alım satım,medium
+Bybit,Staking,Earn,Yes,basic,basic,Temel staking özellikleri,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Kripto para staking ve ödül kazanma,high
+Bybit,Savings,Earn,No,none,none,Bu özellik mevcut değil,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Kripto para tasarruf hesapları,medium
+Bybit,NFT Marketplace,NFT,No,none,none,Bu özellik mevcut değil,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,NFT alım satım platformu,low
+Bybit,Copy Trading,Social,Yes,good,good,Copy trading özellikleri,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Başarılı trader'ları kopyalama,low
+Bybit,DeFi Integration,DeFi,No,none,none,Bu özellik mevcut değil,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Merkezi olmayan finans entegrasyonu,medium
+Bybit,Mobile App,Platform,Yes,excellent,excellent,Derivatives odaklı mobil app,https://bybit.com,Derivatives trading platformu,Cryptocurrency Exchange,Mobil uygulama desteği,high
+OKX,Spot Trading,Trading,Yes,excellent,excellent,Kapsamlı trading özellikleri. Gelişmiş analiz araçları,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Kripto paraların anında alım satımı,high
+OKX,Futures Trading,Trading,Yes,excellent,excellent,Gelişmiş futures trading,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Vadeli işlem trading özellikleri,high
+OKX,Margin Trading,Trading,Yes,good,good,Margin trading desteği,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Kaldıraçlı trading imkanları,medium
+OKX,P2P Trading,Trading,Yes,good,good,P2P trading platformu,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Kullanıcılar arası direkt alım satım,medium
+OKX,Staking,Earn,Yes,excellent,excellent,Kapsamlı staking seçenekleri,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Kripto para staking ve ödül kazanma,high
+OKX,Savings,Earn,Yes,good,good,Savings ürünleri,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Kripto para tasarruf hesapları,medium
+OKX,NFT Marketplace,NFT,Yes,good,good,NFT marketplace,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,NFT alım satım platformu,low
+OKX,Copy Trading,Social,Yes,good,good,Copy trading özellikleri,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Başarılı trader'ları kopyalama,low
+OKX,DeFi Integration,DeFi,Yes,excellent,excellent,Güçlü DeFi entegrasyonu,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Merkezi olmayan finans entegrasyonu,medium
+OKX,Mobile App,Platform,Yes,excellent,excellent,Kapsamlı mobil uygulama,https://okx.com,Kapsamlı kripto ekosistemi,Cryptocurrency Exchange,Mobil uygulama desteği,high
+Huobi,Spot Trading,Trading,Yes,good,good,Spot trading özellikleri,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Kripto paraların anında alım satımı,high
+Huobi,Futures Trading,Trading,Yes,basic,basic,Temel futures özellikleri,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Vadeli işlem trading özellikleri,high
+Huobi,Margin Trading,Trading,Yes,basic,basic,Temel margin trading,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Kaldıraçlı trading imkanları,medium
+Huobi,P2P Trading,Trading,No,none,none,Bu özellik mevcut değil,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Kullanıcılar arası direkt alım satım,medium
+Huobi,Staking,Earn,Yes,basic,basic,Temel staking,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Kripto para staking ve ödül kazanma,high
+Huobi,Savings,Earn,No,none,none,Bu özellik mevcut değil,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Kripto para tasarruf hesapları,medium
+Huobi,NFT Marketplace,NFT,No,none,none,Bu özellik mevcut değil,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,NFT alım satım platformu,low
+Huobi,Copy Trading,Social,No,none,none,Bu özellik mevcut değil,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Başarılı trader'ları kopyalama,low
+Huobi,DeFi Integration,DeFi,No,none,none,Bu özellik mevcut değil,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Merkezi olmayan finans entegrasyonu,medium
+Huobi,Mobile App,Platform,Yes,good,good,Mobil uygulama,https://huobi.com,Global kripto borsa,Cryptocurrency Exchange,Mobil uygulama desteği,high
+Gate.io,Spot Trading,Trading,Yes,good,good,Spot trading özellikleri,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Kripto paraların anında alım satımı,high
+Gate.io,Futures Trading,Trading,Yes,basic,basic,Temel futures,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Vadeli işlem trading özellikleri,high
+Gate.io,Margin Trading,Trading,Yes,basic,basic,Temel margin trading,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Kaldıraçlı trading imkanları,medium
+Gate.io,P2P Trading,Trading,No,none,none,Bu özellik mevcut değil,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Kullanıcılar arası direkt alım satım,medium
+Gate.io,Staking,Earn,Yes,basic,basic,Temel staking,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Kripto para staking ve ödül kazanma,high
+Gate.io,Savings,Earn,No,none,none,Bu özellik mevcut değil,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Kripto para tasarruf hesapları,medium
+Gate.io,NFT Marketplace,NFT,No,none,none,Bu özellik mevcut değil,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,NFT alım satım platformu,low
+Gate.io,Copy Trading,Social,Yes,basic,basic,Temel copy trading,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Başarılı trader'ları kopyalama,low
+Gate.io,DeFi Integration,DeFi,No,none,none,Bu özellik mevcut değil,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Merkezi olmayan finans entegrasyonu,medium
+Gate.io,Mobile App,Platform,Yes,basic,basic,Temel mobil app,https://gate.io,Altcoin odaklı borsa,Cryptocurrency Exchange,Mobil uygulama desteği,high

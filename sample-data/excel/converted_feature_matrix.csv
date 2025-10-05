@@ -1,0 +1,875 @@
+competitorName,featureName,category,hasFeature,quality,implementationQuality,notes,website,description,industry,featureDescription,priority
+Binance Global,Web App,Platform,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Binance Global,Mobile App,Platform,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Binance Global,Desktop App,Platform,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Binance Global,Corporate Registration,Other,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Binance Global,Stocks & Commodity and Forex Trading,Trading,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Binance Global,Tokenized Stocks,Other,No,none,none,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Binance Global,Global Customers,Other,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Binance Global,Crypto as a Services,Other,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Binance Global,Own Stablecoin,Advanced,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Binance Global,Own Chain,Advanced,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Binance Global,Own Card,Advanced,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Binance Global,Sign up with Bank,Authentication,No,none,none,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Binance Global,Sign in with Bank,Authentication,No,none,none,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Binance Global,Sign in with Passkey,Authentication,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Binance Global,Sign in with Gmail,Authentication,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Binance Global,Sign in with Apple,Platform,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Binance Global,Sign in with Telegram,Authentication,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Binance Global,Sign in with Wallet,Authentication,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Binance Global,Login with QR,Authentication,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Binance Global,Public API,Services,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Binance Global,AI Sentimentals,Other,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Binance Global,Copy Trading,Trading,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Binance Global,Trade Bots for Users,Trading,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Binance Global,Auto-Invest (DCA),Trading,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Binance Global,Convert,Trading,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Binance Global,Convert Small Assets,Trading,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Binance Global,Price Alarm,Other,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Binance Global,Locked Staking,Earn,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Binance Global,Flexible Staking,Earn,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Binance Global,Loan Borrowing,Earn,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Binance Global,Referral,Social,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Binance Global,Affiliate (KOL Program),Social,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Binance Global,Bug Bounty,Other,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Binance Global,On-Ramp / Off-Ramp (3rd Party),Other,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Binance Global,Academy for Logged-in User,Services,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Binance Global,NFT / Marketplace,Services,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Binance Global,Fan Token,Other,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Binance Global,Gamification,Social,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Binance Global,Launchpool / Launchpad,Advanced,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Binance Global,Social Feed (Square),Social,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Binance Global,Pay (Payments),Services,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Binance Global,API Management,Services,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Binance Global,Dual Investment,Trading,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Binance Global,On-chain Earn,Earn,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Binance Global,VIP Loan,Earn,Yes,excellent,excellent,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Binance Global,TRY Nemalandırma,Other,No,none,none,Coverage Score: 88.4% - Global platform,https://binance.com,Binance Global - Global kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Coinbase,Web App,Platform,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Coinbase,Mobile App,Platform,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Coinbase,Desktop App,Platform,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Coinbase,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Coinbase,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Coinbase,Tokenized Stocks,Other,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Coinbase,Global Customers,Other,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Coinbase,Crypto as a Services,Other,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Coinbase,Own Stablecoin,Advanced,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Coinbase,Own Chain,Advanced,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Coinbase,Own Card,Advanced,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Coinbase,Sign up with Bank,Authentication,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Coinbase,Sign in with Bank,Authentication,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Coinbase,Sign in with Passkey,Authentication,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Coinbase,Sign in with Gmail,Authentication,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Coinbase,Sign in with Apple,Platform,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Coinbase,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Coinbase,Sign in with Wallet,Authentication,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Coinbase,Login with QR,Authentication,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Coinbase,Public API,Services,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Coinbase,AI Sentimentals,Other,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Coinbase,Copy Trading,Trading,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Coinbase,Trade Bots for Users,Trading,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Coinbase,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Coinbase,Convert,Trading,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Coinbase,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Coinbase,Price Alarm,Other,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Coinbase,Locked Staking,Earn,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Coinbase,Flexible Staking,Earn,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Coinbase,Loan Borrowing,Earn,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Coinbase,Referral,Social,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Coinbase,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Coinbase,Bug Bounty,Other,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Coinbase,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Coinbase,Academy for Logged-in User,Services,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Coinbase,NFT / Marketplace,Services,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Coinbase,Fan Token,Other,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Coinbase,Gamification,Social,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Coinbase,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Coinbase,Social Feed (Square),Social,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Coinbase,Pay (Payments),Services,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Coinbase,API Management,Services,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Coinbase,Dual Investment,Trading,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Coinbase,On-chain Earn,Earn,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Coinbase,VIP Loan,Earn,Yes,basic,basic,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Coinbase,TRY Nemalandırma,Other,No,none,none,Coverage Score: 20.9% - Global platform,https://coinbase.com,Coinbase - Global kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Revolut,Web App,Platform,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Revolut,Mobile App,Platform,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Revolut,Desktop App,Platform,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Revolut,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Revolut,Stocks & Commodity and Forex Trading,Trading,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Revolut,Tokenized Stocks,Other,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Revolut,Global Customers,Other,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Revolut,Crypto as a Services,Other,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Revolut,Own Stablecoin,Advanced,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Revolut,Own Chain,Advanced,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Revolut,Own Card,Advanced,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Revolut,Sign up with Bank,Authentication,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Revolut,Sign in with Bank,Authentication,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Revolut,Sign in with Passkey,Authentication,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Revolut,Sign in with Gmail,Authentication,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Revolut,Sign in with Apple,Platform,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Revolut,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Revolut,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Revolut,Login with QR,Authentication,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Revolut,Public API,Services,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Revolut,AI Sentimentals,Other,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Revolut,Copy Trading,Trading,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Revolut,Trade Bots for Users,Trading,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Revolut,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Revolut,Convert,Trading,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Revolut,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Revolut,Price Alarm,Other,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Revolut,Locked Staking,Earn,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Revolut,Flexible Staking,Earn,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Revolut,Loan Borrowing,Earn,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Revolut,Referral,Social,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Revolut,Affiliate (KOL Program),Social,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Revolut,Bug Bounty,Other,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Revolut,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Revolut,Academy for Logged-in User,Services,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Revolut,NFT / Marketplace,Services,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Revolut,Fan Token,Other,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Revolut,Gamification,Social,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Revolut,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Revolut,Social Feed (Square),Social,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Revolut,Pay (Payments),Services,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Revolut,API Management,Services,Yes,basic,basic,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Revolut,Dual Investment,Trading,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Revolut,On-chain Earn,Earn,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Revolut,VIP Loan,Earn,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Revolut,TRY Nemalandırma,Other,No,none,none,Coverage Score: 16.3% - Global platform,https://revolut.com,Revolut - Global kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Kraken,Web App,Platform,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Kraken,Mobile App,Platform,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Kraken,Desktop App,Platform,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Kraken,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Kraken,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Kraken,Tokenized Stocks,Other,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Kraken,Global Customers,Other,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Kraken,Crypto as a Services,Other,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Kraken,Own Stablecoin,Advanced,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Kraken,Own Chain,Advanced,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Kraken,Own Card,Advanced,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Kraken,Sign up with Bank,Authentication,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Kraken,Sign in with Bank,Authentication,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Kraken,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Kraken,Sign in with Gmail,Authentication,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Kraken,Sign in with Apple,Platform,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Kraken,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Kraken,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Kraken,Login with QR,Authentication,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Kraken,Public API,Services,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Kraken,AI Sentimentals,Other,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Kraken,Copy Trading,Trading,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Kraken,Trade Bots for Users,Trading,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Kraken,Auto-Invest (DCA),Trading,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Kraken,Convert,Trading,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Kraken,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Kraken,Price Alarm,Other,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Kraken,Locked Staking,Earn,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Kraken,Flexible Staking,Earn,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Kraken,Loan Borrowing,Earn,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Kraken,Referral,Social,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Kraken,Affiliate (KOL Program),Social,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Kraken,Bug Bounty,Other,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Kraken,On-Ramp / Off-Ramp (3rd Party),Other,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Kraken,Academy for Logged-in User,Services,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Kraken,NFT / Marketplace,Services,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Kraken,Fan Token,Other,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Kraken,Gamification,Social,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Kraken,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Kraken,Social Feed (Square),Social,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Kraken,Pay (Payments),Services,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Kraken,API Management,Services,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Kraken,Dual Investment,Trading,Yes,basic,basic,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Kraken,On-chain Earn,Earn,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Kraken,VIP Loan,Earn,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Kraken,TRY Nemalandırma,Other,No,none,none,Coverage Score: 27.9% - Global platform,https://kraken.com,Kraken - Global kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Stablex,Web App,Platform,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Stablex,Mobile App,Platform,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Stablex,Desktop App,Platform,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Stablex,Corporate Registration,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Stablex,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Stablex,Tokenized Stocks,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Stablex,Global Customers,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Stablex,Crypto as a Services,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Stablex,Own Stablecoin,Advanced,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Stablex,Own Chain,Advanced,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Stablex,Own Card,Advanced,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Stablex,Sign up with Bank,Authentication,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Stablex,Sign in with Bank,Authentication,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Stablex,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Stablex,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Stablex,Sign in with Apple,Platform,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Stablex,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Stablex,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Stablex,Login with QR,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Stablex,Public API,Services,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Stablex,AI Sentimentals,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Stablex,Copy Trading,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Stablex,Trade Bots for Users,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Stablex,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Stablex,Convert,Trading,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Stablex,Convert Small Assets,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Stablex,Price Alarm,Other,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Stablex,Locked Staking,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Stablex,Flexible Staking,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Stablex,Loan Borrowing,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Stablex,Referral,Social,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Stablex,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Stablex,Bug Bounty,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Stablex,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Stablex,Academy for Logged-in User,Services,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Stablex,NFT / Marketplace,Services,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Stablex,Fan Token,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Stablex,Gamification,Social,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Stablex,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Stablex,Social Feed (Square),Social,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Stablex,Pay (Payments),Services,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Stablex,API Management,Services,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Stablex,Dual Investment,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Stablex,On-chain Earn,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Stablex,VIP Loan,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Stablex,TRY Nemalandırma,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://stablex.com,Stablex - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+BinanceTR,Web App,Platform,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+BinanceTR,Mobile App,Platform,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+BinanceTR,Desktop App,Platform,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+BinanceTR,Corporate Registration,Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+BinanceTR,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+BinanceTR,Tokenized Stocks,Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+BinanceTR,Global Customers,Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+BinanceTR,Crypto as a Services,Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+BinanceTR,Own Stablecoin,Advanced,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+BinanceTR,Own Chain,Advanced,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+BinanceTR,Own Card,Advanced,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+BinanceTR,Sign up with Bank,Authentication,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+BinanceTR,Sign in with Bank,Authentication,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+BinanceTR,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+BinanceTR,Sign in with Gmail,Authentication,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+BinanceTR,Sign in with Apple,Platform,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+BinanceTR,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+BinanceTR,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+BinanceTR,Login with QR,Authentication,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+BinanceTR,Public API,Services,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+BinanceTR,AI Sentimentals,Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+BinanceTR,Copy Trading,Trading,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+BinanceTR,Trade Bots for Users,Trading,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+BinanceTR,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+BinanceTR,Convert,Trading,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+BinanceTR,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+BinanceTR,Price Alarm,Other,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+BinanceTR,Locked Staking,Earn,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+BinanceTR,Flexible Staking,Earn,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+BinanceTR,Loan Borrowing,Earn,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+BinanceTR,Referral,Social,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+BinanceTR,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+BinanceTR,Bug Bounty,Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+BinanceTR,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+BinanceTR,Academy for Logged-in User,Services,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+BinanceTR,NFT / Marketplace,Services,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+BinanceTR,Fan Token,Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+BinanceTR,Gamification,Social,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+BinanceTR,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+BinanceTR,Social Feed (Square),Social,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+BinanceTR,Pay (Payments),Services,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+BinanceTR,API Management,Services,Yes,basic,basic,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+BinanceTR,Dual Investment,Trading,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+BinanceTR,On-chain Earn,Earn,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+BinanceTR,VIP Loan,Earn,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+BinanceTR,TRY Nemalandırma,Other,No,none,none,Coverage Score: 18.6% - TR platform,https://binancetr.com,BinanceTR - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Paribu,Web App,Platform,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Paribu,Mobile App,Platform,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Paribu,Desktop App,Platform,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Paribu,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Paribu,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Paribu,Tokenized Stocks,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Paribu,Global Customers,Other,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Paribu,Crypto as a Services,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Paribu,Own Stablecoin,Advanced,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Paribu,Own Chain,Advanced,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Paribu,Own Card,Advanced,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Paribu,Sign up with Bank,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Paribu,Sign in with Bank,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Paribu,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Paribu,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Paribu,Sign in with Apple,Platform,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Paribu,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Paribu,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Paribu,Login with QR,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Paribu,Public API,Services,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Paribu,AI Sentimentals,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Paribu,Copy Trading,Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Paribu,Trade Bots for Users,Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Paribu,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Paribu,Convert,Trading,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Paribu,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Paribu,Price Alarm,Other,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Paribu,Locked Staking,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Paribu,Flexible Staking,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Paribu,Loan Borrowing,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Paribu,Referral,Social,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Paribu,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Paribu,Bug Bounty,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Paribu,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Paribu,Academy for Logged-in User,Services,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Paribu,NFT / Marketplace,Services,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Paribu,Fan Token,Other,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Paribu,Gamification,Social,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Paribu,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Paribu,Social Feed (Square),Social,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Paribu,Pay (Payments),Services,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Paribu,API Management,Services,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Paribu,Dual Investment,Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Paribu,On-chain Earn,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Paribu,VIP Loan,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Paribu,TRY Nemalandırma,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://paribu.com,Paribu - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+BTCTurk,Web App,Platform,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+BTCTurk,Mobile App,Platform,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+BTCTurk,Desktop App,Platform,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+BTCTurk,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+BTCTurk,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+BTCTurk,Tokenized Stocks,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+BTCTurk,Global Customers,Other,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+BTCTurk,Crypto as a Services,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+BTCTurk,Own Stablecoin,Advanced,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+BTCTurk,Own Chain,Advanced,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+BTCTurk,Own Card,Advanced,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+BTCTurk,Sign up with Bank,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+BTCTurk,Sign in with Bank,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+BTCTurk,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+BTCTurk,Sign in with Gmail,Authentication,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+BTCTurk,Sign in with Apple,Platform,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+BTCTurk,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+BTCTurk,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+BTCTurk,Login with QR,Authentication,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+BTCTurk,Public API,Services,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+BTCTurk,AI Sentimentals,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+BTCTurk,Copy Trading,Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+BTCTurk,Trade Bots for Users,Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+BTCTurk,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+BTCTurk,Convert,Trading,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+BTCTurk,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+BTCTurk,Price Alarm,Other,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+BTCTurk,Locked Staking,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+BTCTurk,Flexible Staking,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+BTCTurk,Loan Borrowing,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+BTCTurk,Referral,Social,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+BTCTurk,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+BTCTurk,Bug Bounty,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+BTCTurk,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+BTCTurk,Academy for Logged-in User,Services,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+BTCTurk,NFT / Marketplace,Services,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+BTCTurk,Fan Token,Other,Yes,basic,basic,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+BTCTurk,Gamification,Social,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+BTCTurk,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+BTCTurk,Social Feed (Square),Social,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+BTCTurk,Pay (Payments),Services,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+BTCTurk,API Management,Services,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+BTCTurk,Dual Investment,Trading,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+BTCTurk,On-chain Earn,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+BTCTurk,VIP Loan,Earn,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+BTCTurk,TRY Nemalandırma,Other,No,none,none,Coverage Score: 11.6% - TR platform,https://btcturk.com,BTCTurk - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Bitexen,Web App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Bitexen,Mobile App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Bitexen,Desktop App,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Bitexen,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Bitexen,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Bitexen,Tokenized Stocks,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Bitexen,Global Customers,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Bitexen,Crypto as a Services,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Bitexen,Own Stablecoin,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Bitexen,Own Chain,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Bitexen,Own Card,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Bitexen,Sign up with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Bitexen,Sign in with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Bitexen,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Bitexen,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Bitexen,Sign in with Apple,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Bitexen,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Bitexen,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Bitexen,Login with QR,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Bitexen,Public API,Services,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Bitexen,AI Sentimentals,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Bitexen,Copy Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Bitexen,Trade Bots for Users,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Bitexen,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Bitexen,Convert,Trading,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Bitexen,Convert Small Assets,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Bitexen,Price Alarm,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Bitexen,Locked Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Bitexen,Flexible Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Bitexen,Loan Borrowing,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Bitexen,Referral,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Bitexen,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Bitexen,Bug Bounty,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Bitexen,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Bitexen,Academy for Logged-in User,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Bitexen,NFT / Marketplace,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Bitexen,Fan Token,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Bitexen,Gamification,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Bitexen,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Bitexen,Social Feed (Square),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Bitexen,Pay (Payments),Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Bitexen,API Management,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Bitexen,Dual Investment,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Bitexen,On-chain Earn,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Bitexen,VIP Loan,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Bitexen,TRY Nemalandırma,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bitexen.com,Bitexen - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Icrypex,Web App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Icrypex,Mobile App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Icrypex,Desktop App,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Icrypex,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Icrypex,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Icrypex,Tokenized Stocks,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Icrypex,Global Customers,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Icrypex,Crypto as a Services,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Icrypex,Own Stablecoin,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Icrypex,Own Chain,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Icrypex,Own Card,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Icrypex,Sign up with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Icrypex,Sign in with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Icrypex,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Icrypex,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Icrypex,Sign in with Apple,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Icrypex,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Icrypex,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Icrypex,Login with QR,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Icrypex,Public API,Services,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Icrypex,AI Sentimentals,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Icrypex,Copy Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Icrypex,Trade Bots for Users,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Icrypex,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Icrypex,Convert,Trading,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Icrypex,Convert Small Assets,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Icrypex,Price Alarm,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Icrypex,Locked Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Icrypex,Flexible Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Icrypex,Loan Borrowing,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Icrypex,Referral,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Icrypex,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Icrypex,Bug Bounty,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Icrypex,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Icrypex,Academy for Logged-in User,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Icrypex,NFT / Marketplace,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Icrypex,Fan Token,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Icrypex,Gamification,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Icrypex,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Icrypex,Social Feed (Square),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Icrypex,Pay (Payments),Services,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Icrypex,API Management,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Icrypex,Dual Investment,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Icrypex,On-chain Earn,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Icrypex,VIP Loan,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Icrypex,TRY Nemalandırma,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://icrypex.com,Icrypex - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+CoinTR,Web App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+CoinTR,Mobile App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+CoinTR,Desktop App,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+CoinTR,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+CoinTR,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+CoinTR,Tokenized Stocks,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+CoinTR,Global Customers,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+CoinTR,Crypto as a Services,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+CoinTR,Own Stablecoin,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+CoinTR,Own Chain,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+CoinTR,Own Card,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+CoinTR,Sign up with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+CoinTR,Sign in with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+CoinTR,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+CoinTR,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+CoinTR,Sign in with Apple,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+CoinTR,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+CoinTR,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+CoinTR,Login with QR,Authentication,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+CoinTR,Public API,Services,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+CoinTR,AI Sentimentals,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+CoinTR,Copy Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+CoinTR,Trade Bots for Users,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+CoinTR,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+CoinTR,Convert,Trading,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+CoinTR,Convert Small Assets,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+CoinTR,Price Alarm,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+CoinTR,Locked Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+CoinTR,Flexible Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+CoinTR,Loan Borrowing,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+CoinTR,Referral,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+CoinTR,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+CoinTR,Bug Bounty,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+CoinTR,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+CoinTR,Academy for Logged-in User,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+CoinTR,NFT / Marketplace,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+CoinTR,Fan Token,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+CoinTR,Gamification,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+CoinTR,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+CoinTR,Social Feed (Square),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+CoinTR,Pay (Payments),Services,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+CoinTR,API Management,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+CoinTR,Dual Investment,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+CoinTR,On-chain Earn,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+CoinTR,VIP Loan,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+CoinTR,TRY Nemalandırma,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://cointr.com,CoinTR - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+KucoinTR,Web App,Platform,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+KucoinTR,Mobile App,Platform,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+KucoinTR,Desktop App,Platform,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+KucoinTR,Corporate Registration,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+KucoinTR,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+KucoinTR,Tokenized Stocks,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+KucoinTR,Global Customers,Other,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+KucoinTR,Crypto as a Services,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+KucoinTR,Own Stablecoin,Advanced,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+KucoinTR,Own Chain,Advanced,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+KucoinTR,Own Card,Advanced,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+KucoinTR,Sign up with Bank,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+KucoinTR,Sign in with Bank,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+KucoinTR,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+KucoinTR,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+KucoinTR,Sign in with Apple,Platform,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+KucoinTR,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+KucoinTR,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+KucoinTR,Login with QR,Authentication,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+KucoinTR,Public API,Services,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+KucoinTR,AI Sentimentals,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+KucoinTR,Copy Trading,Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+KucoinTR,Trade Bots for Users,Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+KucoinTR,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+KucoinTR,Convert,Trading,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+KucoinTR,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+KucoinTR,Price Alarm,Other,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+KucoinTR,Locked Staking,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+KucoinTR,Flexible Staking,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+KucoinTR,Loan Borrowing,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+KucoinTR,Referral,Social,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+KucoinTR,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+KucoinTR,Bug Bounty,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+KucoinTR,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+KucoinTR,Academy for Logged-in User,Services,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+KucoinTR,NFT / Marketplace,Services,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+KucoinTR,Fan Token,Other,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+KucoinTR,Gamification,Social,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+KucoinTR,Launchpool / Launchpad,Advanced,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+KucoinTR,Social Feed (Square),Social,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+KucoinTR,Pay (Payments),Services,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+KucoinTR,API Management,Services,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+KucoinTR,Dual Investment,Trading,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+KucoinTR,On-chain Earn,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+KucoinTR,VIP Loan,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+KucoinTR,TRY Nemalandırma,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://kucointr.com,KucoinTR - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+OKX TR,Web App,Platform,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+OKX TR,Mobile App,Platform,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+OKX TR,Desktop App,Platform,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+OKX TR,Corporate Registration,Other,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+OKX TR,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+OKX TR,Tokenized Stocks,Other,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+OKX TR,Global Customers,Other,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+OKX TR,Crypto as a Services,Other,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+OKX TR,Own Stablecoin,Advanced,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+OKX TR,Own Chain,Advanced,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+OKX TR,Own Card,Advanced,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+OKX TR,Sign up with Bank,Authentication,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+OKX TR,Sign in with Bank,Authentication,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+OKX TR,Sign in with Passkey,Authentication,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+OKX TR,Sign in with Gmail,Authentication,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+OKX TR,Sign in with Apple,Platform,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+OKX TR,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+OKX TR,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+OKX TR,Login with QR,Authentication,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+OKX TR,Public API,Services,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+OKX TR,AI Sentimentals,Other,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+OKX TR,Copy Trading,Trading,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+OKX TR,Trade Bots for Users,Trading,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+OKX TR,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+OKX TR,Convert,Trading,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+OKX TR,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+OKX TR,Price Alarm,Other,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+OKX TR,Locked Staking,Earn,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+OKX TR,Flexible Staking,Earn,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+OKX TR,Loan Borrowing,Earn,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+OKX TR,Referral,Social,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+OKX TR,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+OKX TR,Bug Bounty,Other,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+OKX TR,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+OKX TR,Academy for Logged-in User,Services,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+OKX TR,NFT / Marketplace,Services,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+OKX TR,Fan Token,Other,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+OKX TR,Gamification,Social,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+OKX TR,Launchpool / Launchpad,Advanced,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+OKX TR,Social Feed (Square),Social,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+OKX TR,Pay (Payments),Services,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+OKX TR,API Management,Services,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+OKX TR,Dual Investment,Trading,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+OKX TR,On-chain Earn,Earn,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+OKX TR,VIP Loan,Earn,No,none,none,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+OKX TR,TRY Nemalandırma,Other,Yes,basic,basic,Coverage Score: 23.3% - TR platform,https://okxtr.com,OKX TR - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+BiLira,Web App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+BiLira,Mobile App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+BiLira,Desktop App,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+BiLira,Corporate Registration,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+BiLira,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+BiLira,Tokenized Stocks,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+BiLira,Global Customers,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+BiLira,Crypto as a Services,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+BiLira,Own Stablecoin,Advanced,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+BiLira,Own Chain,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+BiLira,Own Card,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+BiLira,Sign up with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+BiLira,Sign in with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+BiLira,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+BiLira,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+BiLira,Sign in with Apple,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+BiLira,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+BiLira,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+BiLira,Login with QR,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+BiLira,Public API,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+BiLira,AI Sentimentals,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+BiLira,Copy Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+BiLira,Trade Bots for Users,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+BiLira,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+BiLira,Convert,Trading,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+BiLira,Convert Small Assets,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+BiLira,Price Alarm,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+BiLira,Locked Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+BiLira,Flexible Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+BiLira,Loan Borrowing,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+BiLira,Referral,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+BiLira,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+BiLira,Bug Bounty,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+BiLira,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+BiLira,Academy for Logged-in User,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+BiLira,NFT / Marketplace,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+BiLira,Fan Token,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+BiLira,Gamification,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+BiLira,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+BiLira,Social Feed (Square),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+BiLira,Pay (Payments),Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+BiLira,API Management,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+BiLira,Dual Investment,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+BiLira,On-chain Earn,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+BiLira,VIP Loan,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+BiLira,TRY Nemalandırma,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://bilira.com,BiLira - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Ortak App,Web App,Platform,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Ortak App,Mobile App,Platform,Yes,basic,basic,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Ortak App,Desktop App,Platform,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Ortak App,Corporate Registration,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Ortak App,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Ortak App,Tokenized Stocks,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Ortak App,Global Customers,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Ortak App,Crypto as a Services,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Ortak App,Own Stablecoin,Advanced,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Ortak App,Own Chain,Advanced,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Ortak App,Own Card,Advanced,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Ortak App,Sign up with Bank,Authentication,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Ortak App,Sign in with Bank,Authentication,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Ortak App,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Ortak App,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Ortak App,Sign in with Apple,Platform,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Ortak App,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Ortak App,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Ortak App,Login with QR,Authentication,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Ortak App,Public API,Services,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Ortak App,AI Sentimentals,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Ortak App,Copy Trading,Trading,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Ortak App,Trade Bots for Users,Trading,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Ortak App,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Ortak App,Convert,Trading,Yes,basic,basic,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Ortak App,Convert Small Assets,Trading,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Ortak App,Price Alarm,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Ortak App,Locked Staking,Earn,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Ortak App,Flexible Staking,Earn,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Ortak App,Loan Borrowing,Earn,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Ortak App,Referral,Social,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Ortak App,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Ortak App,Bug Bounty,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Ortak App,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Ortak App,Academy for Logged-in User,Services,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Ortak App,NFT / Marketplace,Services,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Ortak App,Fan Token,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Ortak App,Gamification,Social,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Ortak App,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Ortak App,Social Feed (Square),Social,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Ortak App,Pay (Payments),Services,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Ortak App,API Management,Services,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Ortak App,Dual Investment,Trading,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Ortak App,On-chain Earn,Earn,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Ortak App,VIP Loan,Earn,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Ortak App,TRY Nemalandırma,Other,No,none,none,Coverage Score: 4.7% - TR platform,https://ortakapp.com,Ortak App - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Garanti Kripto,Web App,Platform,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Garanti Kripto,Mobile App,Platform,Yes,basic,basic,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Garanti Kripto,Desktop App,Platform,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Garanti Kripto,Corporate Registration,Other,Yes,basic,basic,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Garanti Kripto,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Garanti Kripto,Tokenized Stocks,Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Garanti Kripto,Global Customers,Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Garanti Kripto,Crypto as a Services,Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Garanti Kripto,Own Stablecoin,Advanced,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Garanti Kripto,Own Chain,Advanced,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Garanti Kripto,Own Card,Advanced,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Garanti Kripto,Sign up with Bank,Authentication,Yes,basic,basic,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Garanti Kripto,Sign in with Bank,Authentication,Yes,basic,basic,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Garanti Kripto,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Garanti Kripto,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Garanti Kripto,Sign in with Apple,Platform,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Garanti Kripto,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Garanti Kripto,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Garanti Kripto,Login with QR,Authentication,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Garanti Kripto,Public API,Services,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Garanti Kripto,AI Sentimentals,Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Garanti Kripto,Copy Trading,Trading,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Garanti Kripto,Trade Bots for Users,Trading,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Garanti Kripto,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Garanti Kripto,Convert,Trading,Yes,basic,basic,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Garanti Kripto,Convert Small Assets,Trading,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Garanti Kripto,Price Alarm,Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Garanti Kripto,Locked Staking,Earn,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Garanti Kripto,Flexible Staking,Earn,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Garanti Kripto,Loan Borrowing,Earn,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Garanti Kripto,Referral,Social,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Garanti Kripto,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Garanti Kripto,Bug Bounty,Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Garanti Kripto,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Garanti Kripto,Academy for Logged-in User,Services,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Garanti Kripto,NFT / Marketplace,Services,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Garanti Kripto,Fan Token,Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Garanti Kripto,Gamification,Social,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Garanti Kripto,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Garanti Kripto,Social Feed (Square),Social,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Garanti Kripto,Pay (Payments),Services,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Garanti Kripto,API Management,Services,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Garanti Kripto,Dual Investment,Trading,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Garanti Kripto,On-chain Earn,Earn,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Garanti Kripto,VIP Loan,Earn,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Garanti Kripto,TRY Nemalandırma,Other,No,none,none,Coverage Score: 7.0% - TR platform,https://garantikripto.com,Garanti Kripto - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+GateTR,Web App,Platform,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+GateTR,Mobile App,Platform,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+GateTR,Desktop App,Platform,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+GateTR,Corporate Registration,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+GateTR,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+GateTR,Tokenized Stocks,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+GateTR,Global Customers,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+GateTR,Crypto as a Services,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+GateTR,Own Stablecoin,Advanced,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+GateTR,Own Chain,Advanced,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+GateTR,Own Card,Advanced,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+GateTR,Sign up with Bank,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+GateTR,Sign in with Bank,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+GateTR,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+GateTR,Sign in with Gmail,Authentication,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+GateTR,Sign in with Apple,Platform,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+GateTR,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+GateTR,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+GateTR,Login with QR,Authentication,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+GateTR,Public API,Services,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+GateTR,AI Sentimentals,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+GateTR,Copy Trading,Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+GateTR,Trade Bots for Users,Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+GateTR,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+GateTR,Convert,Trading,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+GateTR,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+GateTR,Price Alarm,Other,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+GateTR,Locked Staking,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+GateTR,Flexible Staking,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+GateTR,Loan Borrowing,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+GateTR,Referral,Social,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+GateTR,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+GateTR,Bug Bounty,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+GateTR,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+GateTR,Academy for Logged-in User,Services,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+GateTR,NFT / Marketplace,Services,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+GateTR,Fan Token,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+GateTR,Gamification,Social,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+GateTR,Launchpool / Launchpad,Advanced,Yes,basic,basic,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+GateTR,Social Feed (Square),Social,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+GateTR,Pay (Payments),Services,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+GateTR,API Management,Services,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+GateTR,Dual Investment,Trading,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+GateTR,On-chain Earn,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+GateTR,VIP Loan,Earn,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+GateTR,TRY Nemalandırma,Other,No,none,none,Coverage Score: 14.0% - TR platform,https://gatetr.com,GateTR - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+Midas Kripto,Web App,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+Midas Kripto,Mobile App,Platform,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+Midas Kripto,Desktop App,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+Midas Kripto,Corporate Registration,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+Midas Kripto,Stocks & Commodity and Forex Trading,Trading,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+Midas Kripto,Tokenized Stocks,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+Midas Kripto,Global Customers,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+Midas Kripto,Crypto as a Services,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+Midas Kripto,Own Stablecoin,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+Midas Kripto,Own Chain,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+Midas Kripto,Own Card,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+Midas Kripto,Sign up with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+Midas Kripto,Sign in with Bank,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+Midas Kripto,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+Midas Kripto,Sign in with Gmail,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+Midas Kripto,Sign in with Apple,Platform,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+Midas Kripto,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+Midas Kripto,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+Midas Kripto,Login with QR,Authentication,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+Midas Kripto,Public API,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+Midas Kripto,AI Sentimentals,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+Midas Kripto,Copy Trading,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+Midas Kripto,Trade Bots for Users,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+Midas Kripto,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+Midas Kripto,Convert,Trading,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+Midas Kripto,Convert Small Assets,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+Midas Kripto,Price Alarm,Other,Yes,basic,basic,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+Midas Kripto,Locked Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+Midas Kripto,Flexible Staking,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+Midas Kripto,Loan Borrowing,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+Midas Kripto,Referral,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+Midas Kripto,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+Midas Kripto,Bug Bounty,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+Midas Kripto,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+Midas Kripto,Academy for Logged-in User,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+Midas Kripto,NFT / Marketplace,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+Midas Kripto,Fan Token,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+Midas Kripto,Gamification,Social,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+Midas Kripto,Launchpool / Launchpad,Advanced,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+Midas Kripto,Social Feed (Square),Social,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+Midas Kripto,Pay (Payments),Services,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+Midas Kripto,API Management,Services,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+Midas Kripto,Dual Investment,Trading,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+Midas Kripto,On-chain Earn,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+Midas Kripto,VIP Loan,Earn,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+Midas Kripto,TRY Nemalandırma,Other,No,none,none,Coverage Score: 9.3% - TR platform,https://midaskripto.com,Midas Kripto - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low
+BybitTR,Web App,Platform,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Web App özelliği,high
+BybitTR,Mobile App,Platform,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Mobile App özelliği,high
+BybitTR,Desktop App,Platform,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Desktop App özelliği,low
+BybitTR,Corporate Registration,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Corporate Registration özelliği,low
+BybitTR,Stocks & Commodity and Forex Trading,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Stocks & Commodity and Forex Trading özelliği,low
+BybitTR,Tokenized Stocks,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Tokenized Stocks özelliği,low
+BybitTR,Global Customers,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Global Customers özelliği,low
+BybitTR,Crypto as a Services,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Crypto as a Services özelliği,low
+BybitTR,Own Stablecoin,Advanced,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Own Stablecoin özelliği,low
+BybitTR,Own Chain,Advanced,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Own Chain özelliği,low
+BybitTR,Own Card,Advanced,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Own Card özelliği,low
+BybitTR,Sign up with Bank,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Sign up with Bank özelliği,low
+BybitTR,Sign in with Bank,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Bank özelliği,low
+BybitTR,Sign in with Passkey,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Passkey özelliği,low
+BybitTR,Sign in with Gmail,Authentication,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Gmail özelliği,low
+BybitTR,Sign in with Apple,Platform,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Apple özelliği,low
+BybitTR,Sign in with Telegram,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Telegram özelliği,low
+BybitTR,Sign in with Wallet,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Sign in with Wallet özelliği,low
+BybitTR,Login with QR,Authentication,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Login with QR özelliği,low
+BybitTR,Public API,Services,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Public API özelliği,high
+BybitTR,AI Sentimentals,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,AI Sentimentals özelliği,low
+BybitTR,Copy Trading,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Copy Trading özelliği,medium
+BybitTR,Trade Bots for Users,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Trade Bots for Users özelliği,low
+BybitTR,Auto-Invest (DCA),Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Auto-Invest (DCA) özelliği,low
+BybitTR,Convert,Trading,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Convert özelliği,high
+BybitTR,Convert Small Assets,Trading,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Convert Small Assets özelliği,low
+BybitTR,Price Alarm,Other,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Price Alarm özelliği,low
+BybitTR,Locked Staking,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Locked Staking özelliği,low
+BybitTR,Flexible Staking,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Flexible Staking özelliği,low
+BybitTR,Loan Borrowing,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Loan Borrowing özelliği,low
+BybitTR,Referral,Social,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Referral özelliği,low
+BybitTR,Affiliate (KOL Program),Social,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Affiliate (KOL Program) özelliği,low
+BybitTR,Bug Bounty,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Bug Bounty özelliği,low
+BybitTR,On-Ramp / Off-Ramp (3rd Party),Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,On-Ramp / Off-Ramp (3rd Party) özelliği,low
+BybitTR,Academy for Logged-in User,Services,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Academy for Logged-in User özelliği,low
+BybitTR,NFT / Marketplace,Services,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,NFT / Marketplace özelliği,medium
+BybitTR,Fan Token,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Fan Token özelliği,low
+BybitTR,Gamification,Social,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Gamification özelliği,low
+BybitTR,Launchpool / Launchpad,Advanced,Yes,basic,basic,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Launchpool / Launchpad özelliği,low
+BybitTR,Social Feed (Square),Social,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Social Feed (Square) özelliği,low
+BybitTR,Pay (Payments),Services,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Pay (Payments) özelliği,medium
+BybitTR,API Management,Services,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,API Management özelliği,low
+BybitTR,Dual Investment,Trading,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,Dual Investment özelliği,low
+BybitTR,On-chain Earn,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,On-chain Earn özelliği,low
+BybitTR,VIP Loan,Earn,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,VIP Loan özelliği,low
+BybitTR,TRY Nemalandırma,Other,No,none,none,Coverage Score: 16.3% - TR platform,https://bybittr.com,BybitTR - TR kripto platformu,Cryptocurrency Exchange,TRY Nemalandırma özelliği,low

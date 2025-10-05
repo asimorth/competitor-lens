@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: competitorlens-db-prod
+    restart: always
+    environment:
+      POSTGRES_DB: competitor_lens
+      POSTGRES_USER: competitorlens_user
+      POSTGRES_PASSWORD: StablexProd2024!CompetitorLens
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"  # Different port to avoid conflict
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U competitorlens_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis for Queue
+  redis:
+    image: redis:7-alpine
+    container_name: competitorlens-redis-prod
+    restart: always
+    command: redis-server --appendonly yes --requirepass RedisStablexProd2024!
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6380:6379"  # Different port to avoid conflict
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "RedisStablexProd2024!", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
