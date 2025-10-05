@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: competitor-lens-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: DATABASE_URL
+        fromDatabase:
+          name: competitor-lens-db
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: REDIS_HOST
+        value: localhost
+      - key: REDIS_PORT
+        value: 6379
+
+databases:
+  - name: competitor-lens-db
+    databaseName: competitor_lens
+    user: postgres
+    plan: free
