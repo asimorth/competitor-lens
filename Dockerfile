@@ -1,4 +1,4 @@
-# Backend Dockerfile for Render deployment
+# Backend Dockerfile for Railway deployment
 FROM node:18-alpine
 
 WORKDIR /app
@@ -12,20 +12,17 @@ RUN npm ci --legacy-peer-deps
 
 COPY backend/ ./
 
-# Make start script executable
-RUN chmod +x scripts/start-production.sh
-
 # Copy uploads directory with screenshots
 COPY backend/uploads ./uploads
 
 # Generate Prisma client
 RUN npx prisma generate
 
-# Build TypeScript
-RUN npm run build || echo "Build skipped - running with tsx"
+# Build TypeScript (optional)
+RUN npm run build || true
 
-# Expose port
+# Expose port (Railway will override this)
 EXPOSE 3001
 
-# Run startup script
-CMD ["./scripts/start-production.sh"]
+# Start server directly with tsx
+CMD ["node", "./node_modules/.bin/tsx", "src/server.ts"]
