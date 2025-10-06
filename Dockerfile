@@ -8,7 +8,7 @@ RUN apk add --no-cache python3 make g++
 
 # Copy backend files
 COPY backend/package*.json ./
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 COPY backend/ ./
 
@@ -24,5 +24,5 @@ RUN npm run build || echo "Build skipped - running with tsx"
 # Expose port
 EXPOSE 3001
 
-# Start command - use tsx directly if build fails
-CMD ["npx", "tsx", "src/server.ts"]
+# Run migrations and import data on startup, then start server
+CMD sh -c "npx prisma migrate deploy && npm run import:excel && npm run import:screenshots:smart && npx tsx src/server.ts"

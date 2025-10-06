@@ -15,6 +15,8 @@
     "scanner": "tsx src/workers/screenshotScanner.ts",
     "screenshots:scan": "tsx src/scripts/autoScanScreenshots.ts",
     "screenshots:import": "npm run screenshots:scan",
+    "import:excel": "tsx src/scripts/importMatrixFromExcel.ts",
+    "import:screenshots:smart": "tsx src/scripts/importAllScreenshots.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
