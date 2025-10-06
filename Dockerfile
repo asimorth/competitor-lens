@@ -12,6 +12,9 @@ RUN npm ci --legacy-peer-deps
 
 COPY backend/ ./
 
+# Make start script executable
+RUN chmod +x scripts/start-production.sh
+
 # Copy uploads directory with screenshots
 COPY backend/uploads ./uploads
 
@@ -24,5 +27,5 @@ RUN npm run build || echo "Build skipped - running with tsx"
 # Expose port
 EXPOSE 3001
 
-# Run migrations and import data on startup, then start server
-CMD sh -c "npx prisma migrate deploy && npm run import:excel && npm run import:screenshots:smart && npx tsx src/server.ts"
+# Run startup script
+CMD ["./scripts/start-production.sh"]
