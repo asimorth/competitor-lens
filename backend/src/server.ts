@@ -31,27 +31,26 @@ app.use(helmet({
   contentSecurityPolicy: false, // Disable CSP for development
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
-// CORS configuration - Tüm Vercel URL'lerini kabul et
-app.use(cors({
-  origin: (origin, callback) => {
-    // Origin yoksa izin ver (server-to-server, Postman vb)
-    if (!origin) {
-      return callback(null, true);
-    }
-    
-    // Vercel URL'leri veya localhost'a izin ver
-    if (origin.endsWith('.vercel.app') || origin.includes('localhost')) {
-      return callback(null, true);
-    }
-    
-    // Diğerleri
-    return callback(null, false);
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  exposedHeaders: ['Content-Type', 'Content-Length']
-}));
+// CORS Middleware - Manuel header ekleme
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  
+  // Vercel veya localhost ise izin ver
+  if (origin && (origin.includes('.vercel.app') || origin.includes('localhost'))) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+    res.setHeader('Access-Control-Expose-Headers', 'Content-Type,Content-Length');
+  }
+  
+  // OPTIONS preflight request
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  
+  next();
+});
 
 // Rate limiting
 const limiter = rateLimit({

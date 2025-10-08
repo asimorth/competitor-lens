@@ -10,8 +10,10 @@ export function getImageUrl(path: string | undefined | null): string {
   // Ensure path starts with /
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   
-  // Get API URL from environment or use default
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+  // Get API URL - Production'da Railway kullan
+  const apiUrl = (typeof window !== 'undefined' && window.location.hostname !== 'localhost')
+    ? 'https://competitor-lens-production.up.railway.app'
+    : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001');
   
   return `${apiUrl}${normalizedPath}`;
 }
