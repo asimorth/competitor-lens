@@ -32,9 +32,25 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? process.env.ALLOWED_ORIGINS?.split(',') || ['https://your-frontend-domain.com'] 
-    : ['http://localhost:3000', 'http://localhost:3002'],
+  origin: (origin, callback) => {
+    // Development ortamı - her şeye izin ver
+    if (process.env.NODE_ENV !== 'production') {
+      return callback(null, true);
+    }
+    
+    // Origin yoksa (Postman, curl gibi) izin ver
+    if (!origin) {
+      return callback(null, true);
+    }
+    
+    // Production - Vercel domain'lerini kabul et
+    if (origin.includes('vercel.app') || origin.includes('localhost')) {
+      return callback(null, true);
+    }
+    
+    // Diğer origin'leri reddet
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
   exposedHeaders: ['Content-Type', 'Content-Length']
 }));
