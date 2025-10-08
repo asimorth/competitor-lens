@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { api } from '@/lib/api';
+import { getImageUrl } from '@/lib/imageUrl';
 
 interface FeatureDetailPageProps {
   params: Promise<{
@@ -50,8 +51,7 @@ export default function FeatureDetailPage({ params }: FeatureDetailPageProps) {
             const exchange = exchanges.find(e => e.id === comp.competitorId);
             const screenshotUrl = screenshot.screenshotPath || screenshot.url;
             // URL helper function - tutarlı format için
-            const normalizedUrl = screenshotUrl?.startsWith('/') ? screenshotUrl : `/${screenshotUrl}`;
-            const fullUrl = `http://localhost:3001${normalizedUrl}`;
+            const fullUrl = getImageUrl(screenshotUrl);
             
             screenshots.push({
               url: screenshotUrl, // Yeni model: screenshotPath, Eski model: url

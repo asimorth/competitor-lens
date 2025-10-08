@@ -3,6 +3,7 @@
 import { useState, use, useEffect } from 'react';
 import { api } from '@/lib/api';
 import { cn } from '@/lib/utils';
+import { getImageUrl } from '@/lib/imageUrl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -53,18 +54,18 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
         setSelectedImage(null);
       } else if (e.key === 'ArrowLeft') {
         const currentFeature = Object.entries(screenshotsByFeature).find(([_, screenshots]: [string, any]) => 
-          screenshots.some((s: any) => `http://localhost:3001${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}` === selectedImage)
+          screenshots.some((s: any) => getImageUrl(s.screenshotPath) === selectedImage)
         );
-        const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => `http://localhost:3001${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}`) : [];
+        const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => getImageUrl(s.screenshotPath)) : [];
         if (selectedImageIndex > 0) {
           setSelectedImageIndex(selectedImageIndex - 1);
           setSelectedImage(allImages[selectedImageIndex - 1]);
         }
       } else if (e.key === 'ArrowRight') {
         const currentFeature = Object.entries(screenshotsByFeature).find(([_, screenshots]: [string, any]) => 
-          screenshots.some((s: any) => `http://localhost:3001${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}` === selectedImage)
+          screenshots.some((s: any) => getImageUrl(s.screenshotPath) === selectedImage)
         );
-        const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => `http://localhost:3001${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}`) : [];
+        const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => getImageUrl(s.screenshotPath)) : [];
         if (selectedImageIndex < allImages.length - 1) {
           setSelectedImageIndex(selectedImageIndex + 1);
           setSelectedImage(allImages[selectedImageIndex + 1]);
@@ -359,15 +360,15 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
                         key={screenshot.id || index}
                         className="group relative cursor-pointer transform transition-all duration-200 hover:scale-105"
                         onClick={() => {
-                          const allImages = featureScreenshots.map((s: any) => `http://localhost:3001${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}`);
-                          const currentIndex = allImages.indexOf(`http://localhost:3001${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`);
+                          const allImages = featureScreenshots.map((s: any) => `${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}`);
+                          const currentIndex = allImages.indexOf(`${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`);
                           setSelectedImageIndex(currentIndex);
-                          setSelectedImage(`http://localhost:3001${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`);
+                          setSelectedImage(`${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`);
                         }}
                       >
                         <div className="aspect-[4/3] relative overflow-hidden rounded-lg sm:rounded-xl bg-gray-100 shadow-md group-hover:shadow-xl">
                           <img
-                            src={`http://localhost:3001${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`}
+                            src={`${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`}
                             alt={screenshot.caption || `${featureName} - ${index + 1}`}
                             className="object-cover w-full h-full"
                             loading="lazy"
@@ -504,9 +505,9 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
         {/* Image Modal */}
         {selectedImage && (() => {
           const currentFeature = Object.entries(screenshotsByFeature).find(([_, screenshots]: [string, any]) => 
-            screenshots.some((s: any) => `http://localhost:3001${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}` === selectedImage)
+            screenshots.some((s: any) => `${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}` === selectedImage)
           );
-          const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => `http://localhost:3001${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}`) : [];
+          const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => `${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}`) : [];
           const currentFeatureName = currentFeature ? currentFeature[0] : '';
           const canGoPrev = selectedImageIndex > 0;
           const canGoNext = selectedImageIndex < allImages.length - 1;

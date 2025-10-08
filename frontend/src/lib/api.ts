@@ -1,5 +1,6 @@
-// API Base URL - Direkt production URL (değiştirilmez)
-const API_BASE_URL = 'https://competitor-lens-production.up.railway.app';
+import { getApiUrl } from './config';
+
+const API_BASE_URL = getApiUrl();
 
 export const api = {
   // Competitors
