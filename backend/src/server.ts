@@ -31,27 +31,25 @@ app.use(helmet({
   contentSecurityPolicy: false, // Disable CSP for development
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
+// CORS configuration - Tüm Vercel URL'lerini kabul et
 app.use(cors({
   origin: (origin, callback) => {
-    // Development ortamı - her şeye izin ver
-    if (process.env.NODE_ENV !== 'production') {
-      return callback(null, true);
-    }
-    
-    // Origin yoksa (Postman, curl gibi) izin ver
+    // Origin yoksa izin ver (server-to-server, Postman vb)
     if (!origin) {
       return callback(null, true);
     }
     
-    // Production - Vercel domain'lerini kabul et
-    if (origin.includes('vercel.app') || origin.includes('localhost')) {
+    // Vercel URL'leri veya localhost'a izin ver
+    if (origin.endsWith('.vercel.app') || origin.includes('localhost')) {
       return callback(null, true);
     }
     
-    // Diğer origin'leri reddet
-    callback(new Error('Not allowed by CORS'));
+    // Diğerleri
+    return callback(null, false);
   },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   exposedHeaders: ['Content-Type', 'Content-Length']
 }));
 
