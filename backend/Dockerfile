@@ -10,6 +10,9 @@ COPY prisma ./prisma/
 # Install dependencies
 RUN npm ci
 
+# Generate Prisma Client
+RUN npx prisma generate --no-engine
+
 # Copy source code
 COPY . .
 
@@ -49,6 +52,9 @@ COPY prisma ./prisma/
 RUN npm ci --production && \
     npm cache clean --force
 
+# Generate Prisma Client for production
+RUN npx prisma generate --no-engine
+
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
 
@@ -63,11 +69,11 @@ COPY --chown=nodejs:nodejs uploads ./uploads
 USER nodejs
 
 # Expose port
-EXPOSE 3002
+EXPOSE 3001
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3002/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"
+  CMD node -e "require('http').get('http://localhost:3001/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"
 
 # Start application
 CMD ["node", "dist/server.js"]

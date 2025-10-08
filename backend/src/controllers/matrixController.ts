@@ -1,9 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { PrismaClient } from '@prisma/client';
 import { createError } from '../middleware/errorHandler';
 import { ExcelService } from '../services/excelService';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/db';
 const excelService = new ExcelService();
 
 export const matrixController = {
@@ -28,7 +26,8 @@ export const matrixController = {
       const matrix = await prisma.competitorFeature.findMany({
         include: {
           competitor: true,
-          feature: true
+          feature: true,
+          screenshots: true
         }
       });
 
@@ -232,7 +231,8 @@ export const matrixController = {
       const matrix = await prisma.competitorFeature.findMany({
         include: {
           competitor: true,
-          feature: true
+          feature: true,
+          screenshots: true
         }
       });
 

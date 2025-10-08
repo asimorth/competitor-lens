@@ -216,7 +216,7 @@ export const featureDescriptions: Record<string, {
     userBenefit: "DeFi getirilerine kolay erişim. CEX güvenliği ile DeFi yields.",
     competitiveAdvantage: "CeFi ve DeFi hybrid approach. Future trend."
   },
-  "NFT / Marketplace": {
+  "NFT / Marketplace Extended": {
     description: "NFT mint, buy, sell, trade platformu. Collection showcase. Launchpad for NFT projects.",
     businessValue: "Ecosystem diversification. 2021-22'de hot ama şimdi durgun.",
     technicalComplexity: "Orta-Yüksek - NFT smart contracts, IPFS, marketplace mechanics.",

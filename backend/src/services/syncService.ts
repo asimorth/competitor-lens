@@ -1,11 +1,9 @@
-import { PrismaClient } from '@prisma/client';
 import { S3Client, PutObjectCommand, GetObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
 import path from 'path';
 import fs from 'fs/promises';
 import crypto from 'crypto';
 import PQueue from 'p-queue';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/db';
 
 interface SyncConfig {
   bucketName: string;

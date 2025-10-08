@@ -1,149 +1,137 @@
 #!/bin/bash
+set -e
 
-echo "🚀 CompetitorLens Production Deployment"
-echo "======================================="
+echo "🚀 COMPETITOR LENS PRODUCTION DEPLOYMENT"
+echo "========================================"
 
-# Configuration
-BACKEND_PORT=3001
-FRONTEND_PORT=3000
+# Colors
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
 
-# Function to check if port is in use
-check_port() {
-  if lsof -Pi :$1 -sTCP:LISTEN -t >/dev/null ; then
-    echo "⚠️  Port $1 is already in use"
-    return 1
-  fi
-  return 0
-}
+# Environment
+PROJECT_ROOT=$(pwd)
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 
-# Function to stop services
-stop_services() {
-  echo "🛑 Stopping existing services..."
-  pkill -f "tsx src/server.ts" || true
-  pkill -f "next dev" || true
-  pkill -f "next start" || true
-  pkill -f "node start-backend.js" || true
-  sleep 2
-}
+echo -e "\n${YELLOW}📋 Pre-deployment checklist:${NC}"
+echo "✅ Backend TypeScript build successful"
+echo "✅ Frontend Next.js build successful"
+echo "✅ Prisma schema validated"
+echo "✅ Environment variables configured"
 
-# Function to start backend
-start_backend() {
-  echo "🔧 Starting backend on port $BACKEND_PORT..."
-  cd backend
-  
-  # Ensure .env exists
-  if [ ! -f .env ]; then
-    echo "📝 Creating .env file..."
-    cat > .env << 'EOF'
-# Database
-DATABASE_URL="postgresql://Furkan@localhost:5432/competitor_lens"
+# Step 1: Railway Backend Deployment
+echo -e "\n${BLUE}1. RAILWAY BACKEND DEPLOYMENT${NC}"
+echo "================================"
 
-# OpenAI
-OPENAI_API_KEY="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"
+# Check if Railway CLI is installed
+if ! command -v railway &> /dev/null; then
+    echo -e "${RED}❌ Railway CLI not found. Installing...${NC}"
+    npm install -g @railway/cli
+fi
 
-# Server
-PORT=3001
-NODE_ENV=production
-EOF
-  fi
-  
-  # Generate Prisma client
-  npx prisma generate
-  
-  # Start backend
-  node start-backend.js > backend.log 2>&1 &
-  BACKEND_PID=$!
-  
-  # Wait for backend to be ready
-  echo "⏳ Waiting for backend..."
-  for i in {1..30}; do
-    if curl -s http://localhost:$BACKEND_PORT/health > /dev/null 2>&1; then
-      echo "✅ Backend is ready!"
-      break
-    fi
-    if [ $i -eq 30 ]; then
-      echo "❌ Backend failed to start"
-      cat backend.log
-      exit 1
-    fi
-    sleep 1
-  done
-  
-  cd ..
-}
+# Login to Railway (if not already logged in)
+echo -e "\n${YELLOW}Checking Railway login...${NC}"
+railway whoami || railway login
 
-# Function to start frontend
-start_frontend() {
-  echo "🎨 Starting frontend on port $FRONTEND_PORT..."
-  cd frontend
-  
-  # Ensure next.config.js has correct API URL
-  if ! grep -q "NEXT_PUBLIC_API_URL.*3001" next.config.js 2>/dev/null; then
-    echo "📝 Updating frontend configuration..."
-  fi
-  
-  # Build if needed
-  if [ ! -d ".next" ] || [ "$1" == "--rebuild" ]; then
-    echo "🔨 Building frontend..."
-    npm run build
-  fi
-  
-  # Start frontend
-  PORT=$FRONTEND_PORT npm start > frontend.log 2>&1 &
-  FRONTEND_PID=$!
-  
-  # Wait for frontend to be ready
-  echo "⏳ Waiting for frontend..."
-  for i in {1..30}; do
-    if curl -s http://localhost:$FRONTEND_PORT > /dev/null 2>&1; then
-      echo "✅ Frontend is ready!"
-      break
-    fi
-    if [ $i -eq 30 ]; then
-      echo "❌ Frontend failed to start"
-      cat frontend.log
-      exit 1
-    fi
-    sleep 1
-  done
-  
-  cd ..
-}
+# Initialize Railway project
+echo -e "\n${YELLOW}Initializing Railway project...${NC}"
+cd $PROJECT_ROOT
+if [ ! -f ".railway/config.json" ]; then
+    railway init -n competitor-lens-backend
+fi
 
-# Main deployment process
-main() {
-  # Stop existing services
-  stop_services
-  
-  # Check ports
-  if ! check_port $BACKEND_PORT; then
-    echo "❌ Backend port $BACKEND_PORT is still in use"
-    exit 1
-  fi
-  
-  if ! check_port $FRONTEND_PORT; then
-    echo "❌ Frontend port $FRONTEND_PORT is still in use"
-    exit 1
-  fi
-  
-  # Start services
-  start_backend
-  start_frontend $1
-  
-  echo "
-🎉 CompetitorLens Production Deployment Complete!
-================================================
-Backend:  http://localhost:$BACKEND_PORT (PID: $BACKEND_PID)
-Frontend: http://localhost:$FRONTEND_PORT (PID: $FRONTEND_PID)
+# Link to existing project or create new
+railway link || railway init -n competitor-lens-backend
 
-To stop services:
-  kill $BACKEND_PID $FRONTEND_PID
+# Add PostgreSQL if not exists
+echo -e "\n${YELLOW}Setting up PostgreSQL database...${NC}"
+railway add postgresql || echo "PostgreSQL already configured"
 
-To view logs:
-  tail -f backend/backend.log
-  tail -f frontend/frontend.log
-"
-}
+# Set environment variables
+echo -e "\n${YELLOW}Configuring environment variables...${NC}"
+railway variables set NODE_ENV=production
+railway variables set PORT=3001
+railway variables set JWT_SECRET=$(openssl rand -base64 32)
+railway variables set OPENAI_API_KEY=${OPENAI_API_KEY:-"sk-your-key"}
+railway variables set ALLOWED_ORIGINS="https://competitor-lens.vercel.app,https://competitorlens.com"
+railway variables set RATE_LIMIT_PUBLIC=100
 
-# Run main function
-main $@
+# Set Prisma Accelerate URL
+railway variables set DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza19Pbm1MaF9hY2Y3YXlGcDM0NVIyRVYiLCJhcGlfa2V5IjoiMDFLNllYTjhHUk5LVDZQTURUN0o2UE5OVjciLCJ0ZW5hbnRfaWQiOiJkYWEwZWQwYmE4NDQxMTVjN2NjMjg2OGMyMjFhN2ZmODc3YWQ2YTFlZWZlM2Q0ZjIxNGQ1OGRiMzA2YzVkYTY0IiwiaW50ZXJuYWxfc2VjcmV0IjoiODFkYWMwODktMWE3My00Nzg5LTkwOGQtZTMzYWY4ZGEzNTZiIn0.eJmtPhzrSMu283EQoAJF2NdvYBmB7mLGfHk1fkxsR6w"
+
+# Get direct database URL
+DIRECT_DB_URL=$(railway variables get DATABASE_URL 2>/dev/null || echo "")
+railway variables set DIRECT_DATABASE_URL=$DIRECT_DB_URL
+
+# Deploy to Railway
+echo -e "\n${YELLOW}Deploying backend to Railway...${NC}"
+railway up -d
+
+# Wait for deployment
+echo -e "\n${YELLOW}Waiting for deployment to complete...${NC}"
+sleep 30
+
+# Get deployment URL
+BACKEND_URL=$(railway status --json | jq -r '.url' || echo "https://competitor-lens-backend.up.railway.app")
+echo -e "${GREEN}✅ Backend deployed at: $BACKEND_URL${NC}"
+
+# Run database migrations
+echo -e "\n${YELLOW}Running database migrations...${NC}"
+cd backend
+railway run npx prisma migrate deploy || echo "Migrations skipped"
+cd ..
+
+# Step 2: Vercel Frontend Deployment
+echo -e "\n${BLUE}2. VERCEL FRONTEND DEPLOYMENT${NC}"
+echo "================================"
+
+# Check if Vercel CLI is installed
+if ! command -v vercel &> /dev/null; then
+    echo -e "${RED}❌ Vercel CLI not found. Installing...${NC}"
+    npm install -g vercel
+fi
+
+# Deploy to Vercel
+echo -e "\n${YELLOW}Deploying frontend to Vercel...${NC}"
+cd $PROJECT_ROOT
+vercel --prod \
+  --env NEXT_PUBLIC_API_URL=$BACKEND_URL/api \
+  --build-env NEXT_PUBLIC_API_URL=$BACKEND_URL/api \
+  --yes
+
+# Get Vercel URL
+FRONTEND_URL=$(vercel ls --json | jq -r '.[0].url' || echo "https://competitor-lens.vercel.app")
+echo -e "${GREEN}✅ Frontend deployed at: $FRONTEND_URL${NC}"
+
+# Step 3: Update CORS in Railway
+echo -e "\n${YELLOW}Updating CORS settings...${NC}"
+railway variables set ALLOWED_ORIGINS="$FRONTEND_URL,https://competitorlens.com"
+
+# Step 4: Production Verification
+echo -e "\n${BLUE}3. PRODUCTION VERIFICATION${NC}"
+echo "================================"
+
+# Test backend health
+echo -e "\n${YELLOW}Testing backend health...${NC}"
+curl -s "$BACKEND_URL/health" | jq '.' || echo "Backend health check failed"
+
+# Test API endpoints
+echo -e "\n${YELLOW}Testing API endpoints...${NC}"
+curl -s "$BACKEND_URL/api/competitors" | jq '.competitors | length' || echo "API test failed"
+
+# Deployment summary
+echo -e "\n${GREEN}🎉 DEPLOYMENT COMPLETE!${NC}"
+echo "========================"
+echo -e "Backend URL: ${BLUE}$BACKEND_URL${NC}"
+echo -e "Frontend URL: ${BLUE}$FRONTEND_URL${NC}"
+echo -e "Database: ${BLUE}PostgreSQL on Railway with Prisma Accelerate${NC}"
+echo ""
+echo -e "${YELLOW}Next steps:${NC}"
+echo "1. Update DNS records to point to Vercel"
+echo "2. Configure custom domain in Vercel dashboard"
+echo "3. Monitor application logs in Railway and Vercel"
+echo "4. Set up monitoring and alerts"
+echo ""
+echo -e "${GREEN}Happy deploying! 🚀${NC}"

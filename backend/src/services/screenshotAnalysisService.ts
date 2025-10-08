@@ -1,12 +1,10 @@
-import { PrismaClient } from '@prisma/client';
 import Tesseract from 'tesseract.js';
 import OpenAI from 'openai';
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs/promises';
 import crypto from 'crypto';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/db';
 const openai = process.env.OPENAI_API_KEY ? new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 }) : null;

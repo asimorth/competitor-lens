@@ -46,7 +46,7 @@ services:
     container_name: competitorlens-backend
     environment:
       NODE_ENV: ${NODE_ENV:-production}
-      DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@postgres:5432/competitor_lens
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5432/competitor_lens}
       REDIS_HOST: redis
       REDIS_PORT: 6379
       JWT_SECRET: ${JWT_SECRET}
@@ -85,7 +85,7 @@ services:
     container_name: competitorlens-workers
     environment:
       NODE_ENV: ${NODE_ENV:-production}
-      DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@postgres:5432/competitor_lens
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5432/competitor_lens}
       REDIS_HOST: redis
       REDIS_PORT: 6379
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}

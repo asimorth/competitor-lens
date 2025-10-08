@@ -1,7 +1,5 @@
 import * as XLSX from 'xlsx';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/db';
 
 export class ExcelService {
   async parseAndImport(filePath: string) {

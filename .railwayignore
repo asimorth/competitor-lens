@@ -1,0 +1,16 @@
+node_modules/
+frontend/
+*.log
+.DS_Store
+uploads/
+dist/
+coverage/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.md
+.gitignore
+.git/
+.vscode/
+.idea/

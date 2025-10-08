@@ -2,18 +2,24 @@ import { Queue, Worker, Job } from 'bullmq';
 import Redis from 'ioredis';
 import { ScreenshotAnalysisService } from './screenshotAnalysisService';
 import { SyncService } from './syncService';
-import { PrismaClient } from '@prisma/client';
 import path from 'path';
 import fs from 'fs/promises';
+import { prisma } from '../lib/db';
 
-const prisma = new PrismaClient();
-
-// Redis connection
-const connection = new Redis({
-  host: process.env.REDIS_HOST || 'localhost',
-  port: parseInt(process.env.REDIS_PORT || '6379'),
-  maxRetriesPerRequest: null
-});
+// Redis connection (optional)
+let connection: Redis | null = null;
+try {
+  connection = new Redis({
+    host: process.env.REDIS_HOST || 'localhost',
+    port: parseInt(process.env.REDIS_PORT || '6379'),
+    maxRetriesPerRequest: null,
+    lazyConnect: true,
+    retryStrategy: () => null // Don't retry if connection fails
+  });
+} catch (error) {
+  console.warn('Redis connection failed, queue features will be disabled');
+  connection = null;
+}
 
 // Queue names
 export const QUEUES = {
@@ -52,14 +58,21 @@ export class QueueService {
     this.analysisService = new ScreenshotAnalysisService();
     this.syncService = new SyncService();
     
-    this.initializeQueues();
-    this.initializeWorkers();
+    // Only initialize if Redis is available
+    if (connection) {
+      this.initializeQueues();
+      this.initializeWorkers();
+    } else {
+      console.warn('QueueService initialized without Redis - queue features disabled');
+    }
   }
 
   /**
    * Queue'ları başlat
    */
   private initializeQueues() {
+    if (!connection) return;
+    
     // Screenshot Analysis Queue
     this.queues.set(
       QUEUES.SCREENSHOT_ANALYSIS,
@@ -83,6 +96,8 @@ export class QueueService {
    * Worker'ları başlat
    */
   private initializeWorkers() {
+    if (!connection) return;
+    
     // Screenshot Analysis Worker
     const analysisWorker = new Worker<ScreenshotAnalysisJob>(
       QUEUES.SCREENSHOT_ANALYSIS,
@@ -478,6 +493,8 @@ export class QueueService {
     }
 
     // Redis bağlantısını kapat
-    connection.disconnect();
+    if (connection) {
+      connection.disconnect();
+    }
   }
 }

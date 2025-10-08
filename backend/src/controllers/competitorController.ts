@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { PrismaClient } from '@prisma/client';
 import { createError } from '../middleware/errorHandler';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/db';
 
 export const competitorController = {
   // GET /api/competitors
