@@ -1,10 +1,11 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-console.log('API_BASE_URL:', API_BASE_URL);
+// API Base URL - Direkt production URL (değiştirilmez)
+const API_BASE_URL = 'https://competitor-lens-production.up.railway.app';
 
 export const api = {
   // Competitors
   competitors: {
     getAll: async () => {
+      console.log('API_BASE_URL:', API_BASE_URL);
       try {
         const res = await fetch(`${API_BASE_URL}/api/competitors`);
         if (!res.ok) {
