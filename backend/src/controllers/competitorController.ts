@@ -10,7 +10,12 @@ export const competitorController = {
         include: {
           features: {
             include: {
-              feature: true
+              feature: true,
+              screenshots: {
+                orderBy: {
+                  displayOrder: 'asc'
+                }
+              }
             }
           }
         },
