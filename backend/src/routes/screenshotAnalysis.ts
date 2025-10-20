@@ -364,4 +364,78 @@ router.get('/:id/analysis', async (req, res) => {
   }
 });
 
+/**
+ * GET /api/screenshots/competitor/:competitorId
+ * Belirli bir competitor'ın tüm screenshot'larını getir
+ */
+router.get('/competitor/:competitorId', async (req, res) => {
+  try {
+    const { competitorId } = req.params;
+    
+    const screenshots = await prisma.screenshot.findMany({
+      where: { competitorId },
+      include: {
+        feature: true,
+        competitor: true,
+        analyses: {
+          orderBy: { analyzedAt: 'desc' },
+          take: 1
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+    
+    res.json({
+      success: true,
+      data: screenshots,
+      count: screenshots.length
+    });
+    
+  } catch (error) {
+    console.error('Get competitor screenshots error:', error);
+    res.status(500).json({
+      error: 'Failed to get competitor screenshots'
+    });
+  }
+});
+
+/**
+ * GET /api/screenshots/feature/:featureId
+ * Belirli bir feature'ın tüm screenshot'larını getir
+ */
+router.get('/feature/:featureId', async (req, res) => {
+  try {
+    const { featureId } = req.params;
+    
+    const screenshots = await prisma.screenshot.findMany({
+      where: { featureId },
+      include: {
+        feature: true,
+        competitor: true,
+        analyses: {
+          orderBy: { analyzedAt: 'desc' },
+          take: 1
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+    
+    res.json({
+      success: true,
+      data: screenshots,
+      count: screenshots.length
+    });
+    
+  } catch (error) {
+    console.error('Get feature screenshots error:', error);
+    res.status(500).json({
+      error: 'Failed to get feature screenshots'
+    });
+  }
+});
+
 export default router;
