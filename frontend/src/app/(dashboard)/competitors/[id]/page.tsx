@@ -83,20 +83,35 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
       if (result.success && result.data) {
         setCompetitor(result.data);
         
-        // Screenshot'ları feature'lardan topla
-        const allScreenshots: any[] = [];
-        result.data.features?.forEach((feature: any) => {
-          if (feature.screenshots && feature.screenshots.length > 0) {
-            feature.screenshots.forEach((screenshot: any) => {
-              allScreenshots.push({
-                ...screenshot,
-                featureName: feature.feature.name,
-                featureCategory: feature.feature.category
-              });
-            });
+        // Screenshot'ları ayrı API call ile çek
+        try {
+          const screenshotsResult = await api.screenshots.getByCompetitor(id);
+          if (screenshotsResult.success && screenshotsResult.data) {
+            const allScreenshots = screenshotsResult.data.map((screenshot: any) => ({
+              ...screenshot,
+              featureName: screenshot.feature?.name || 'Genel',
+              featureCategory: screenshot.feature?.category || 'Genel',
+              screenshotPath: screenshot.filePath
+            }));
+            setScreenshots(allScreenshots);
           }
-        });
-        setScreenshots(allScreenshots);
+        } catch (screenshotError) {
+          console.error('Error fetching screenshots:', screenshotError);
+          // Fallback: feature'lardan screenshot'ları topla
+          const allScreenshots: any[] = [];
+          result.data.features?.forEach((feature: any) => {
+            if (feature.screenshots && feature.screenshots.length > 0) {
+              feature.screenshots.forEach((screenshot: any) => {
+                allScreenshots.push({
+                  ...screenshot,
+                  featureName: feature.feature.name,
+                  featureCategory: feature.feature.category
+                });
+              });
+            }
+          });
+          setScreenshots(allScreenshots);
+        }
       }
     } catch (error) {
       console.error('Error fetching competitor:', error);

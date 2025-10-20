@@ -165,5 +165,33 @@ export const api = {
       const res = await fetch(`${API_BASE_URL}/api/analytics/trends?period=${period}`);
       return res.json();
     }
+  },
+
+  // Screenshots
+  screenshots: {
+    getByCompetitor: async (competitorId: string) => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/screenshots/competitor/${competitorId}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      } catch (error) {
+        console.error('Screenshots API error:', error);
+        return { success: false, data: [] };
+      }
+    },
+    getByFeature: async (featureId: string) => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/screenshots/feature/${featureId}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      } catch (error) {
+        console.error('Screenshots API error:', error);
+        return { success: false, data: [] };
+      }
+    }
   }
 };
