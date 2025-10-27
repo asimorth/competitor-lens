@@ -83,25 +83,27 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </div>
 
-      {/* Sidebar */}
+      {/* Sidebar - Modern Design */}
       <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-gray-200 lg:translate-x-0 transition-transform duration-300",
+        "fixed inset-y-0 left-0 z-50 w-72 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-r border-gray-200 dark:border-gray-700 lg:translate-x-0 transition-transform duration-300 shadow-xl",
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="px-6 py-5 border-b border-gray-200">
-            <Link href="/" className="flex items-center space-x-3">
-              <StablexLogo className="h-10" />
+          {/* Logo - Modern Gradient Header */}
+          <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                <StablexLogo className="h-8" showText={false} />
+              </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">CompetitorLens</h1>
-                <p className="text-xs text-gray-500">Rakip Analiz Platformu</p>
+                <h1 className="text-xl font-bold text-white group-hover:text-blue-100 transition-colors">CompetitorLens</h1>
+                <p className="text-xs text-blue-100">Rakip Analiz Platformu</p>
               </div>
             </Link>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+          {/* Navigation - Modern Style */}
+          <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
             {navigation.map((item) => {
               const isActive = pathname.startsWith(item.href);
               return (
@@ -110,26 +112,36 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   href={item.href}
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
-                    "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 group",
+                    "flex items-center px-4 py-3.5 text-sm font-medium rounded-xl transition-all duration-200 group relative overflow-hidden",
                     isActive
-                      ? "bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 shadow-sm"
+                      ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/30 scale-105"
                       : item.highlight 
-                        ? "text-blue-700 bg-blue-50/50 hover:bg-blue-100/50"
-                        : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                        ? "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 border border-blue-200 dark:border-blue-800"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:from-gray-800 dark:hover:to-gray-700 hover:shadow-sm"
                   )}
                 >
-                  <item.icon className={cn(
-                    "mr-3 h-5 w-5 flex-shrink-0 transition-colors",
-                    isActive ? "text-blue-600" : "text-gray-400 group-hover:text-gray-600"
-                  )} />
-                  <div className="flex-1">
+                  {isActive && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 animate-pulse" />
+                  )}
+                  <div className={cn(
+                    "mr-3 h-10 w-10 flex-shrink-0 rounded-lg flex items-center justify-center transition-all relative z-10",
+                    isActive 
+                      ? "bg-white/20 backdrop-blur-sm shadow-inner" 
+                      : "bg-gray-100 dark:bg-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-600"
+                  )}>
+                    <item.icon className={cn(
+                      "h-5 w-5 transition-all group-hover:scale-110",
+                      isActive ? "text-white" : "text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200"
+                    )} />
+                  </div>
+                  <div className="flex-1 relative z-10">
                     <div className="flex items-center justify-between">
-                      <span>{item.name}</span>
-                      {isActive && <ChevronRight className="h-4 w-4 text-blue-400" />}
+                      <span className="font-semibold">{item.name}</span>
+                      {isActive && <ChevronRight className="h-4 w-4 text-white/80 animate-pulse" />}
                     </div>
                     <p className={cn(
                       "text-xs mt-0.5 transition-all",
-                      isActive ? "text-blue-600" : "text-gray-500"
+                      isActive ? "text-white/90" : "text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300"
                     )}>
                       {item.description}
                     </p>
@@ -139,16 +151,30 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             })}
           </nav>
 
-          {/* Footer */}
-          <div className="p-4 border-t border-gray-200">
+          {/* Footer - Modern Gradient */}
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
             <div className="space-y-3">
-              <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
-                <p className="text-xs font-medium text-gray-700">Platform Versiyon</p>
-                <p className="text-sm font-bold text-gray-900 mt-0.5">v2.0.0</p>
-                <p className="text-xs text-gray-500 mt-2">© 2024 Stablex</p>
+              <div className="px-4 py-3 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 rounded-xl shadow-lg relative overflow-hidden">
+                <div className="absolute inset-0 bg-grid-white/10 [mask-image:radial-gradient(white,transparent_70%)]"></div>
+                <div className="relative z-10">
+                  <p className="text-xs font-medium text-blue-100">Platform Versiyon</p>
+                  <p className="text-lg font-bold text-white mt-0.5 flex items-center gap-2">
+                    v2.0.0
+                    <span className="px-2 py-0.5 bg-white/20 backdrop-blur-sm rounded-full text-[10px] font-medium">STABLE</span>
+                  </p>
+                  <div className="flex items-center justify-between mt-3">
+                    <p className="text-xs text-blue-100">© 2025 Stablex</p>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-lg shadow-green-400/50"></div>
+                      <span className="text-xs text-white font-medium">Online</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="flex justify-center">
-                <StablexLogo variant="compact" showText={false} />
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+                  <StablexLogo variant="compact" showText={false} className="h-6" />
+                </div>
               </div>
             </div>
           </div>
