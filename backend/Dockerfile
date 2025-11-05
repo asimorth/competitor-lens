@@ -38,8 +38,9 @@ RUN npx tsc || \
 RUN mkdir -p dist uploads/screenshots logs && \
     chmod -R 755 . || echo "Directories created"
 
-# 8. Copy uploads if they exist
-COPY backend/uploads ./uploads || echo "No uploads to copy"
+# 8. Copy uploads if they exist (optional)
+# Note: COPY doesn't support || operator, will fail if not exists
+COPY backend/uploads ./uploads
 
 # 9. Final check - ensure we can start
 RUN test -f start-railway.js || \
@@ -54,8 +55,5 @@ EXPOSE 3001
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
   CMD node -e "require('http').get('http://localhost:3001/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))" || exit 1
 
-# Multiple start options - Railway will try in order
-CMD node start-railway.js || \
-    node dist/server.js || \
-    npx tsx src/server.ts || \
-    echo "ERROR: Could not start server"
+# Start the application
+CMD ["node", "start-railway.js"]
