@@ -1,37 +1,42 @@
-# CompetitorLens Backend - Railway Production
-# NO PRISMA COMMANDS - Database schema already exists!
-# Cache bust: 2025-11-05-v2
+# RAILWAY BACKEND PRODUCTION BUILD
+# BUILD DATE: 2025-11-05-15:45
+# NO PRISMA GENERATE - ZERO PRISMA COMMANDS
+# Using pre-generated Prisma Client from repo
 
-FROM node:20-alpine
+FROM node:20-alpine AS runtime
 
 WORKDIR /app
 
-# Install system dependencies
-RUN apk add --no-cache python3 make g++
+# System deps
+RUN apk add --no-cache python3 make g++ && \
+    apk upgrade --no-cache
 
-# Copy package files
+# Package files ONLY
 COPY package*.json ./
 
-# Install ALL dependencies with NO scripts (prevents Prisma auto-run)
-RUN npm ci --legacy-peer-deps --ignore-scripts
+# Install deps WITHOUT running ANY scripts
+RUN npm ci --production --legacy-peer-deps --ignore-scripts --no-audit --no-fund && \
+    npm cache clean --force
 
-# Copy application source
+# Source files
 COPY src ./src
 COPY tsconfig.json ./
 COPY start-railway.js ./
 
-# Build TypeScript only
-RUN npx tsc
+# Compile TypeScript
+RUN npx tsc --skipLibCheck
 
-# Create directories
-RUN mkdir -p uploads/screenshots logs
+# Setup directories
+RUN mkdir -p uploads/screenshots logs && \
+    chmod -R 755 uploads logs
 
-# Expose port
+# Port
 EXPOSE 3001
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3001/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
 
-# Start application - NO PRISMA GENERATE!
+# NO PRISMA COMMANDS HERE!
+# Start server directly
 CMD ["node", "start-railway.js"]
