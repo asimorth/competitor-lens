@@ -1,73 +1,36 @@
-# Build stage
-FROM node:20-alpine AS builder
+# CompetitorLens Backend - Railway Production
+# NO PRISMA COMMANDS - Database schema already exists!
+
+FROM node:20-alpine
 
 WORKDIR /app
+
+# Install system dependencies
+RUN apk add --no-cache python3 make g++
 
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies - NO SCRIPTS
+# Install ALL dependencies with NO scripts (prevents Prisma auto-run)
 RUN npm ci --legacy-peer-deps --ignore-scripts
 
-# Copy source code (includes prisma/schema.prisma)
-COPY . .
+# Copy application source
+COPY src ./src
+COPY tsconfig.json ./
+COPY start-railway.js ./
 
-# Build TypeScript
-RUN npm run build
+# Build TypeScript only
+RUN npx tsc
 
-# Production stage
-FROM node:20-alpine AS production
-
-# Install system dependencies for image processing
-RUN apk add --no-cache \
-    python3 \
-    make \
-    g++ \
-    cairo-dev \
-    jpeg-dev \
-    pango-dev \
-    giflib-dev \
-    pixman-dev \
-    pangomm-dev \
-    libjpeg-turbo-dev \
-    freetype-dev \
-    # Security updates
-    && apk upgrade
-
-# Create app user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
-
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install production dependencies only - NO SCRIPTS, NO PRISMA
-RUN npm ci --production --ignore-scripts && \
-    npm cache clean --force
-
-# NO Prisma generate - Prisma Client from node_modules
-
-# Copy built application from builder
-COPY --from=builder /app/dist ./dist
-
-# Create necessary directories
-RUN mkdir -p uploads/screenshots logs && \
-    chown -R nodejs:nodejs /app
-
-# Copy uploads with proper permissions (will be overridden by volume mount)
-COPY --chown=nodejs:nodejs uploads ./uploads
-
-# Switch to nodejs user
-USER nodejs
+# Create directories
+RUN mkdir -p uploads/screenshots logs
 
 # Expose port
 EXPOSE 3001
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3001/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"
+  CMD node -e "require('http').get('http://localhost:3001/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
 
-# Start application
-CMD ["node", "dist/server.js"]
+# Start application - NO PRISMA GENERATE!
+CMD ["node", "start-railway.js"]
