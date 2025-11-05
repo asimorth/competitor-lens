@@ -25,6 +25,7 @@ import {
 import Link from 'next/link';
 import { api } from '@/lib/api';
 import { getImageUrl } from '@/lib/imageUrl';
+import { getScreenshotUrl } from '@/lib/screenshot-utils';
 
 interface FeatureDetailPageProps {
   params: Promise<{
@@ -40,32 +41,55 @@ export default function FeatureDetailPage({ params }: FeatureDetailPageProps) {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Screenshot'ları topla - feature.competitors'dan gelecek
+  // Screenshot'ları topla - YENİ: Screenshot API + eski CompetitorFeatureScreenshot'ları birleştir
   const allScreenshots = useMemo(() => {
     const screenshots: any[] = [];
+    
+    // YENİ MODEL: feature.screenshots (Screenshot table - S3 CDN URLs var!)
+    if (feature?.screenshots && Array.isArray(feature.screenshots)) {
+      feature.screenshots.forEach((screenshot: any) => {
+        const fullUrl = getScreenshotUrl(screenshot); // S3 URL desteği!
+        
+        screenshots.push({
+          url: screenshot.cdnUrl || screenshot.filePath, // S3 URL öncelikli
+          fullUrl: fullUrl,
+          caption: screenshot.fileName || 'Screenshot',
+          exchangeName: screenshot.competitor?.name || 'Unknown',
+          exchangeId: screenshot.competitorId,
+          isNew: true // Yeni model identifier
+        });
+      });
+    }
+    
+    // ESKİ MODEL: feature.competitors (CompetitorFeatureScreenshot - backward compatibility)
     if (feature?.competitors) {
       feature.competitors.forEach((comp: any) => {
         if (comp.hasFeature && comp.screenshots && Array.isArray(comp.screenshots)) {
           comp.screenshots.forEach((screenshot: any) => {
-            // Exchange bilgisini bul
             const exchange = exchanges.find(e => e.id === comp.competitorId);
             const screenshotUrl = screenshot.screenshotPath || screenshot.url;
-            // URL helper function - tutarlı format için
             const fullUrl = getImageUrl(screenshotUrl);
             
             screenshots.push({
-              url: screenshotUrl, // Yeni model: screenshotPath, Eski model: url
-              fullUrl: fullUrl, // Tam URL'i önceden hesapla
-              caption: screenshot.caption,
+              url: screenshotUrl,
+              fullUrl: fullUrl,
+              caption: screenshot.caption || 'Screenshot',
               exchangeName: comp.competitor?.name || exchange?.name || 'Unknown',
-              exchangeId: comp.competitorId
+              exchangeId: comp.competitorId,
+              isNew: false // Eski model identifier
             });
           });
         }
       });
     }
-    return screenshots;
-  }, [feature?.competitors, exchanges]);
+    
+    // Duplicates'i kaldır (aynı screenshot her iki modelde de olabilir)
+    const uniqueScreenshots = screenshots.filter((screenshot, index, self) =>
+      index === self.findIndex(s => s.fullUrl === screenshot.fullUrl)
+    );
+    
+    return uniqueScreenshots;
+  }, [feature?.screenshots, feature?.competitors, exchanges]);
 
   useEffect(() => {
     loadFeatureDetail();
