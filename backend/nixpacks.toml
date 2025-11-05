@@ -1,14 +1,2 @@
-# Nixpacks Configuration for Railway
-# Prisma Client pre-generated, committed to repo
-
-[phases.setup]
-nixPkgs = ["nodejs-20_x"]
-
-[phases.install]
-cmds = ["npm ci --legacy-peer-deps --ignore-scripts --omit=optional"]
-
-[phases.build]
-cmds = ["npm run build:railway"]
-
-[start]
-cmd = "node start-railway.js"
+# Nixpacks - DISABLED
+# Using Dockerfile instead to avoid all Nixpacks automation
