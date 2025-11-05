@@ -5,15 +5,11 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
-COPY prisma ./prisma/
 
-# Install dependencies
-RUN npm ci
+# Install dependencies - NO SCRIPTS
+RUN npm ci --legacy-peer-deps --ignore-scripts
 
-# NO Prisma generate - causes migration checks
-# Prisma Client will be in node_modules from npm ci
-
-# Copy source code
+# Copy source code (includes prisma/schema.prisma)
 COPY . .
 
 # Build TypeScript
