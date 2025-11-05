@@ -16,8 +16,8 @@ dist/
 .env.local
 .env.*.local
 
-# Uploads (should be volume mounted or use CDN)
-uploads/
+# Uploads - DEPLOY TO RAILWAY for immediate access
+# uploads/  ← Commented out - we want uploads/ on Railway!
 
 # IDE
 .vscode/
