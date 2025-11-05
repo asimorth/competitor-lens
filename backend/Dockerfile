@@ -10,8 +10,8 @@ COPY prisma ./prisma/
 # Install dependencies
 RUN npm ci
 
-# Generate Prisma Client
-RUN npx prisma generate --no-engine
+# NO Prisma generate - causes migration checks
+# Prisma Client will be in node_modules from npm ci
 
 # Copy source code
 COPY . .
@@ -46,14 +46,12 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
-COPY prisma ./prisma/
 
-# Install production dependencies only
-RUN npm ci --production && \
+# Install production dependencies only - NO SCRIPTS, NO PRISMA
+RUN npm ci --production --ignore-scripts && \
     npm cache clean --force
 
-# Generate Prisma Client for production
-RUN npx prisma generate --no-engine
+# NO Prisma generate - Prisma Client from node_modules
 
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
