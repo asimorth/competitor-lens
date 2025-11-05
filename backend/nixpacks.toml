@@ -1,23 +1,17 @@
 # Nixpacks Configuration for Railway
-# NO MIGRATIONS - Production database already has schema
+# SINGLE SOURCE OF TRUTH - No migrations, only generate client
 
 [phases.setup]
-nixPkgs = ["nodejs-20_x", "openssl"]
+nixPkgs = ["nodejs-20_x"]
 
 [phases.install]
-cmds = [
-  "npm ci --legacy-peer-deps"
-]
+cmds = ["npm ci --legacy-peer-deps"]
 
 [phases.build]
 cmds = [
-  "npx prisma generate --no-engine",
+  "npx prisma generate",
   "npm run build"
 ]
 
 [start]
 cmd = "node start-railway.js"
-
-# Disable automatic Prisma migrations
-[env]
-PRISMA_SKIP_POSTINSTALL_GENERATE = "true"
