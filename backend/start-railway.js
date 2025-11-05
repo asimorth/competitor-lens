@@ -55,6 +55,16 @@ dirs.forEach(dir => {
   }
 });
 
+// Generate Prisma Client at runtime (after deps are installed)
+console.log('\n🔧 Generating Prisma Client...');
+const { execSync } = require('child_process');
+try {
+  execSync('npx prisma generate', { stdio: 'inherit' });
+  console.log('✅ Prisma Client generated');
+} catch (error) {
+  console.error('⚠️  Prisma generate failed, but continuing...');
+}
+
 console.log('\n✅ All checks passed! Starting server...\n');
 console.log('='.repeat(50));
 
