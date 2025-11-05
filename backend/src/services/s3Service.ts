@@ -56,8 +56,8 @@ export class S3Service {
         Key: s3Key,
         Body: fileContent,
         ContentType: contentType,
-        // Public read access
-        ACL: 'public-read',
+        // No ACL - use bucket policy instead (modern S3 buckets)
+        // ACL: 'public-read', // Removed - causes AccessControlListNotSupported error
         // Cache for 1 year
         CacheControl: 'public, max-age=31536000',
         Metadata: {
@@ -86,7 +86,7 @@ export class S3Service {
         Key: s3Key,
         Body: buffer,
         ContentType: contentType,
-        ACL: 'public-read',
+        // No ACL - use bucket policy for public access
         CacheControl: 'public, max-age=31536000'
       });
 
