@@ -51,3 +51,9 @@ Matrix/
 # Backup files
 *.bak
 *.backup
+
+# CRITICAL: Ignore migrations folder
+# Production database already has schema
+# Running migrations causes P3005 error
+prisma/migrations/
+*.sql

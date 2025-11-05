@@ -77,63 +77,49 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-4 md:space-y-6">
-      {/* Simplified Mobile Header with Gradient */}
-      <div className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 p-4 md:p-8 shadow-lg">
-        <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,rgba(255,255,255,0.6))]"></div>
+    <div className="space-y-3 md:space-y-6">
+      {/* Ultra Compact Mobile Header */}
+      <div className="relative overflow-hidden rounded-lg md:rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 p-3 md:p-8 shadow-md">
         <div className="relative z-10">
-          {/* Mobile: Compact Header */}
-          <div className="md:hidden">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <Activity className="h-5 w-5 text-white" />
-                </div>
-                <h1 className="text-xl font-bold text-white">Dashboard</h1>
+          {/* Mobile: Minimal */}
+          <div className="md:hidden flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
+                <Activity className="h-4 w-4 text-white" />
               </div>
-              <Button 
-                size="sm" 
-                onClick={loadDashboardData}
-                className="bg-white/10 hover:bg-white/20 text-white border-white/20 h-8 px-3"
-              >
-                <RefreshCw className="h-3.5 w-3.5" />
-              </Button>
+              <div>
+                <h1 className="text-base font-bold text-white">Dashboard</h1>
+                <p className="text-blue-100 text-xs">{stats.totalCompetitors} borsa</p>
+              </div>
             </div>
-            <p className="text-blue-100 text-sm">
-              {stats.totalCompetitors} borsa · {stats.totalFeatures} özellik
-            </p>
+            <Button 
+              size="sm" 
+              onClick={loadDashboardData}
+              className="bg-white/10 text-white border-white/20 h-7 w-7 p-0"
+            >
+              <RefreshCw className="h-3.5 w-3.5" />
+            </Button>
           </div>
 
-          {/* Desktop: Full Header */}
+          {/* Desktop */}
           <div className="hidden md:flex md:items-center md:justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
                 <Activity className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-white">Monitoring Dashboard</h1>
-                <p className="text-blue-100 mt-1">
-                  {stats.totalCompetitors} kripto borsasının gerçek zamanlı monitoring'i
-                </p>
+                <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+                <p className="text-blue-100 mt-1">{stats.totalCompetitors} borsa · {stats.totalFeatures} özellik</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <Button 
-                variant="secondary" 
-                size="sm" 
-                onClick={loadDashboardData}
-                className="bg-white/10 hover:bg-white/20 text-white border-white/20 backdrop-blur-sm"
-              >
-                <RefreshCw className="h-4 w-4 mr-2" />
-                Yenile
-              </Button>
-              <Button asChild size="sm" className="bg-white text-blue-600 hover:bg-blue-50">
-                <Link href="/matrix">
-                  <Eye className="h-4 w-4 mr-2" />
-                  Matrix
-                </Link>
-              </Button>
-            </div>
+            <Button 
+              size="sm" 
+              onClick={loadDashboardData}
+              className="bg-white/10 hover:bg-white/20 text-white border-white/20"
+            >
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Yenile
+            </Button>
           </div>
         </div>
       </div>

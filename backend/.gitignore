@@ -3,3 +3,27 @@ node_modules
 .env
 
 /generated/prisma
+
+# Migrations - production database already has schema
+# No need to run migrations on Railway
+prisma/migrations/
+*.db
+*.db-journal
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Uploads
+uploads/
