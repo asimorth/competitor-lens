@@ -1,6 +1,8 @@
 node_modules
 # Keep environment variables out of version control
 .env
+.env.*
+!.env.example
 
 /generated/prisma
 
@@ -9,6 +11,10 @@ node_modules
 prisma/migrations/
 *.db
 *.db-journal
+
+# Prisma config - causes auto-migration
+prisma.config.ts
+prisma.config.js
 
 # Build outputs
 dist/

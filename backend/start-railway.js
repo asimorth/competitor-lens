@@ -55,14 +55,23 @@ dirs.forEach(dir => {
   }
 });
 
-// Generate Prisma Client at runtime (after deps are installed)
+// Generate Prisma Client at runtime - SKIP MIGRATIONS!
 console.log('\n🔧 Generating Prisma Client...');
 const { execSync } = require('child_process');
 try {
-  execSync('npx prisma generate', { stdio: 'inherit' });
-  console.log('✅ Prisma Client generated');
+  // Force skip migrations with explicit flag
+  execSync('npx prisma generate --skip-migrations', { 
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      PRISMA_SKIP_MIGRATIONS: 'true',
+      PRISMA_SKIP_POSTINSTALL: 'true'
+    }
+  });
+  console.log('✅ Prisma Client generated (no migrations)');
 } catch (error) {
-  console.error('⚠️  Prisma generate failed, but continuing...');
+  console.error('⚠️  Prisma generate failed:', error.message);
+  console.error('Continuing without Prisma Client...');
 }
 
 console.log('\n✅ All checks passed! Starting server...\n');
