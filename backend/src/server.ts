@@ -14,6 +14,7 @@ import analyticsRoutes from './routes/analytics';
 import reportRoutes from './routes/reports';
 // V2 Routes
 import screenshotAnalysisRoutes from './routes/screenshotAnalysis';
+import screenshotRoutes from './routes/screenshots';
 import onboardingRoutes from './routes/onboarding';
 import syncRoutes from './routes/sync';
 import publicRoutes from './routes/public';
@@ -103,7 +104,8 @@ app.use('/api/analytics', analyticsRoutes);
 app.use('/api/reports', reportRoutes);
 
 // V2 API Routes
-app.use('/api/screenshots', screenshotAnalysisRoutes);
+app.use('/api/screenshots', screenshotRoutes); // Main screenshot CRUD
+app.use('/api/screenshots', screenshotAnalysisRoutes); // Analysis endpoints
 app.use('/api/competitors', onboardingRoutes); // Nested under competitors
 app.use('/api/sync', syncRoutes);
 app.use('/api/public', publicRoutes);

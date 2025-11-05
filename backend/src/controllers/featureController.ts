@@ -54,6 +54,20 @@ export const featureController = {
                 }
               }
             }
+          },
+          screenshots: {
+            include: {
+              competitor: {
+                select: {
+                  id: true,
+                  name: true,
+                  logoUrl: true
+                }
+              }
+            },
+            orderBy: {
+              createdAt: 'desc'
+            }
           }
         }
       });
@@ -62,9 +76,33 @@ export const featureController = {
         throw createError('Feature not found', 404);
       }
 
+      // Screenshot sayılarını ve implementasyon istatistiklerini hesapla
+      const implementingCompetitors = feature.competitors.filter(c => c.hasFeature);
+      const screenshotStats = {
+        total: feature.screenshots.length,
+        byCompetitor: feature.screenshots.reduce((acc: any, s: any) => {
+          const compId = s.competitorId;
+          acc[compId] = (acc[compId] || 0) + 1;
+          return acc;
+        }, {})
+      };
+
+      const implementationStats = {
+        total: feature.competitors.length,
+        implemented: implementingCompetitors.length,
+        notImplemented: feature.competitors.length - implementingCompetitors.length,
+        coverage: feature.competitors.length > 0 
+          ? Math.round((implementingCompetitors.length / feature.competitors.length) * 100)
+          : 0
+      };
+
       res.json({
         success: true,
-        data: feature
+        data: {
+          ...feature,
+          screenshotStats,
+          implementationStats
+        }
       });
     } catch (error) {
       next(error);

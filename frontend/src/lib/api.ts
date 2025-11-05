@@ -169,6 +169,39 @@ export const api = {
 
   // Screenshots
   screenshots: {
+    getAll: async (filters?: { featureId?: string; competitorId?: string; isOnboarding?: boolean }) => {
+      try {
+        const params = new URLSearchParams();
+        if (filters?.featureId) params.append('featureId', filters.featureId);
+        if (filters?.competitorId) params.append('competitorId', filters.competitorId);
+        if (filters?.isOnboarding !== undefined) params.append('isOnboarding', String(filters.isOnboarding));
+        
+        const url = params.toString() 
+          ? `${API_BASE_URL}/api/screenshots?${params}`
+          : `${API_BASE_URL}/api/screenshots`;
+        
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      } catch (error) {
+        console.error('Screenshots API error:', error);
+        return { success: false, data: [] };
+      }
+    },
+    getById: async (id: string) => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/screenshots/${id}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      } catch (error) {
+        console.error('Screenshot detail API error:', error);
+        return { success: false, data: null };
+      }
+    },
     getByCompetitor: async (competitorId: string) => {
       try {
         const res = await fetch(`${API_BASE_URL}/api/screenshots/competitor/${competitorId}`);
@@ -191,6 +224,36 @@ export const api = {
       } catch (error) {
         console.error('Screenshots API error:', error);
         return { success: false, data: [] };
+      }
+    },
+    updateFeature: async (id: string, featureId: string | null) => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/screenshots/${id}/feature`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ featureId })
+        });
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      } catch (error) {
+        console.error('Update screenshot feature error:', error);
+        return { success: false, message: 'Failed to update screenshot feature' };
+      }
+    },
+    delete: async (id: string) => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/screenshots/${id}`, {
+          method: 'DELETE'
+        });
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      } catch (error) {
+        console.error('Delete screenshot error:', error);
+        return { success: false, message: 'Failed to delete screenshot' };
       }
     }
   }

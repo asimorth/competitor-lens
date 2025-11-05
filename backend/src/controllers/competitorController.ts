@@ -51,6 +51,26 @@ export const competitorController = {
                 }
               }
             }
+          },
+          screenshots: {
+            include: {
+              feature: {
+                select: {
+                  id: true,
+                  name: true,
+                  category: true
+                }
+              }
+            },
+            orderBy: [
+              { isOnboarding: 'desc' },
+              { createdAt: 'desc' }
+            ]
+          },
+          onboardingScreenshots: {
+            orderBy: {
+              displayOrder: 'asc'
+            }
           }
         }
       });
@@ -59,9 +79,20 @@ export const competitorController = {
         throw createError('Competitor not found', 404);
       }
 
+      // Screenshot sayılarını hesapla
+      const screenshotStats = {
+        total: competitor.screenshots.length,
+        byFeature: competitor.screenshots.filter(s => s.featureId !== null).length,
+        onboarding: competitor.screenshots.filter(s => s.isOnboarding).length,
+        uncategorized: competitor.screenshots.filter(s => s.featureId === null && !s.isOnboarding).length
+      };
+
       res.json({
         success: true,
-        data: competitor
+        data: {
+          ...competitor,
+          screenshotStats
+        }
       });
     } catch (error) {
       next(error);
