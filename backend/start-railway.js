@@ -58,6 +58,11 @@ dirs.forEach(dir => {
 console.log('\n✅ All checks passed! Starting server...\n');
 console.log('='.repeat(50));
 
+// Important: In production, we use existing database
+// NO migration - database schema already exists
+console.log('ℹ️  Note: Using existing database schema (no migrations run)');
+console.log('');
+
 // Start the server
 try {
   require('./dist/server.js');

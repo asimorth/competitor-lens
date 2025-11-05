@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "node start-railway.js",
     "start:server": "node dist/server.js",
-    "postinstall": "npx prisma generate || true",
+    "postinstall": "echo 'Skipping postinstall - prisma generate runs in build phase'",
     "start:prod": "./start.sh",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
@@ -27,9 +27,6 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "prisma": {
-    "schema": "prisma/schema.prisma"
-  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.901.0",
     "@prisma/client": "^6.16.3",
