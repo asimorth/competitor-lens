@@ -6,12 +6,11 @@ generator client {
 }
 
 // Database connection
-// LOCAL: Use postgresql://localhost:5432/competitor_lens_dev
-// PRODUCTION: Use Prisma Accelerate connection (prisma+postgres://)
+// LOCAL: Use same URL for both (standard PostgreSQL)
+// PRODUCTION: DATABASE_URL = Prisma Accelerate, DIRECT_DATABASE_URL = Direct connection
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Competitor {
