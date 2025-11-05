@@ -1,5 +1,6 @@
 # CompetitorLens Backend - Railway Production
 # NO PRISMA COMMANDS - Database schema already exists!
+# Cache bust: 2025-11-05-v2
 
 FROM node:20-alpine
 
