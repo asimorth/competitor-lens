@@ -4,7 +4,7 @@ node_modules
 .env.*
 !.env.example
 
-/generated/prisma
+# /generated/prisma  ← COMMENTED - We commit Prisma Client to avoid runtime generation!
 
 # Migrations - production database already has schema
 # No need to run migrations on Railway

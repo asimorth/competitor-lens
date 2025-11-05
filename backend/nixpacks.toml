@@ -1,14 +1,14 @@
 # Nixpacks Configuration for Railway
-# NO PRISMA COMMANDS - Database already has schema!
+# Prisma Client pre-generated, committed to repo
 
 [phases.setup]
 nixPkgs = ["nodejs-20_x"]
 
 [phases.install]
-cmds = ["npm ci --legacy-peer-deps --ignore-scripts"]
+cmds = ["npm ci --legacy-peer-deps --ignore-scripts --omit=optional"]
 
 [phases.build]
-cmds = ["npm run build"]
+cmds = ["npm run build:railway"]
 
 [start]
 cmd = "node start-railway.js"

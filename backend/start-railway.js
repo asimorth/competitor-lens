@@ -55,24 +55,10 @@ dirs.forEach(dir => {
   }
 });
 
-// Generate Prisma Client at runtime - SKIP MIGRATIONS!
-console.log('\n🔧 Generating Prisma Client...');
-const { execSync } = require('child_process');
-try {
-  // Force skip migrations with explicit flag
-  execSync('npx prisma generate --skip-migrations', { 
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      PRISMA_SKIP_MIGRATIONS: 'true',
-      PRISMA_SKIP_POSTINSTALL: 'true'
-    }
-  });
-  console.log('✅ Prisma Client generated (no migrations)');
-} catch (error) {
-  console.error('⚠️  Prisma generate failed:', error.message);
-  console.error('Continuing without Prisma Client...');
-}
+// Skip Prisma Client generation - Already in node_modules from build
+// Railway DATABASE_URL will be used by @prisma/client automatically
+console.log('\n📦 Using pre-generated Prisma Client from node_modules');
+console.log('ℹ️  Skipping runtime generation to avoid migration triggers');
 
 console.log('\n✅ All checks passed! Starting server...\n');
 console.log('='.repeat(50));
