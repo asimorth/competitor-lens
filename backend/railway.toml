@@ -1,6 +1,9 @@
+# Railway Configuration
+# CRITICAL: No database migrations in production!
+
 [build]
 builder = "NIXPACKS"
-buildCommand = "npm install && npx prisma generate && npm run build"
+buildCommand = "npm ci --legacy-peer-deps && npx prisma generate --no-engine && npm run build"
 
 [deploy]
 startCommand = "node start-railway.js"
@@ -12,4 +15,7 @@ numReplicas = 1
 
 [env]
 NODE_ENV = "production"
+# Disable all Prisma automation
+PRISMA_SKIP_POSTINSTALL_GENERATE = "true"
+PRISMA_SKIP_MIGRATIONS = "true"
 

@@ -1,10 +1,17 @@
+// Prisma Schema - Supports both local and production
+
 generator client {
   provider = "prisma-client-js"
+  // No previewFeatures needed for basic operations
 }
 
+// Database connection
+// LOCAL: Use postgresql://localhost:5432/competitor_lens_dev
+// PRODUCTION: Use Prisma Accelerate connection (prisma+postgres://)
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
 }
 
 model Competitor {
