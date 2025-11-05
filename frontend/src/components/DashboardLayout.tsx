@@ -65,21 +65,23 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center space-x-3">
+      {/* Mobile Header - Clean & Minimal */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 safe-area-top">
+        <div className="flex items-center justify-between px-3 py-2.5">
+          <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="lg:hidden"
+              className="h-9 w-9"
             >
               {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
-            <StablexLogo className="h-8" showText={false} />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center">
+              <StablexLogo className="h-5" showText={false} />
+            </div>
           </div>
-          <span className="text-sm font-medium text-gray-900 truncate max-w-[150px]">{currentPage}</span>
+          <span className="text-sm font-semibold text-gray-900 dark:text-white truncate max-w-[120px]">{currentPage}</span>
         </div>
       </div>
 
@@ -189,15 +191,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         />
       )}
 
-      {/* Main Content */}
+      {/* Main Content - Mobile Optimized Spacing */}
       <div className="lg:pl-72">
         <main className={cn(
-          "min-h-screen",
-          "pt-16 lg:pt-0", // Mobile için header yüksekliği kadar padding
-          "px-4 py-6 lg:px-8"
+          "min-h-screen pb-20 lg:pb-6", // Extra bottom padding for mobile nav
+          "pt-14 lg:pt-0", // Compact mobile header
+          "px-3 py-4 md:px-4 md:py-6 lg:px-8"
         )}>
           <div className="max-w-7xl mx-auto">
-            {/* Breadcrumb for desktop */}
+            {/* Breadcrumb for desktop only */}
             <div className="hidden lg:flex items-center space-x-2 text-sm text-gray-600 mb-6">
               <Link href="/dashboard" className="hover:text-gray-900">
                 Dashboard
