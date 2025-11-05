@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * Railway Production Startup Script
- * Handles environment validation and graceful startup
+ * Railway Production Startup Script - FLEXIBLE VERSION
+ * Works with compiled JS or source TS files
  */
 
 const path = require('path');
 const fs = require('fs');
+const { spawn } = require('child_process');
 
 console.log('🚀 CompetitorLens Backend - Railway Startup');
 console.log('='.repeat(50));
@@ -19,22 +20,6 @@ if (missingEnvVars.length > 0) {
   console.error('❌ Missing required environment variables:');
   missingEnvVars.forEach(varName => console.error(`   - ${varName}`));
   console.error('\nPlease set these in Railway dashboard: Settings → Variables');
-  process.exit(1);
-}
-
-// Check if dist directory exists
-const distPath = path.join(__dirname, 'dist');
-if (!fs.existsSync(distPath)) {
-  console.error('❌ dist/ directory not found!');
-  console.error('Build may have failed. Check Railway build logs.');
-  process.exit(1);
-}
-
-// Check if server.js exists
-const serverPath = path.join(distPath, 'server.js');
-if (!fs.existsSync(serverPath)) {
-  console.error('❌ dist/server.js not found!');
-  console.error('TypeScript compilation may have failed.');
   process.exit(1);
 }
 
@@ -55,25 +40,80 @@ dirs.forEach(dir => {
   }
 });
 
-// Skip Prisma Client generation - Already in node_modules from build
-// Railway DATABASE_URL will be used by @prisma/client automatically
 console.log('\n📦 Using pre-generated Prisma Client from node_modules');
 console.log('ℹ️  Skipping runtime generation to avoid migration triggers');
 
 console.log('\n✅ All checks passed! Starting server...\n');
 console.log('='.repeat(50));
 
-// Important: In production, we use existing database
-// NO migration - database schema already exists
-console.log('ℹ️  Note: Using existing database schema (no migrations run)');
-console.log('');
+// Check what files we have
+const distServerPath = path.join(__dirname, 'dist', 'server.js');
+const srcServerPath = path.join(__dirname, 'src', 'server.ts');
+const hasDistServer = fs.existsSync(distServerPath);
+const hasSrcServer = fs.existsSync(srcServerPath);
 
-// Start the server
-try {
-  require('./dist/server.js');
-} catch (error) {
-  console.error('\n❌ Failed to start server:');
-  console.error(error);
+console.log(`📂 File check:`);
+console.log(`   dist/server.js: ${hasDistServer ? '✅ Found' : '❌ Not found'}`);
+console.log(`   src/server.ts: ${hasSrcServer ? '✅ Found' : '❌ Not found'}`);
+
+// Start the server with appropriate method
+let serverProcess;
+
+if (hasDistServer) {
+  console.log('\n🏃 Starting from compiled JavaScript (dist/server.js)...');
+  require(distServerPath);
+} else if (hasSrcServer) {
+  console.log('\n🏃 Starting from TypeScript source (src/server.ts)...');
+  console.log('   Using tsx to run TypeScript directly');
+  
+  // Check if tsx is available
+  const tsxPath = path.join(__dirname, 'node_modules', '.bin', 'tsx');
+  if (fs.existsSync(tsxPath)) {
+    serverProcess = spawn(tsxPath, ['src/server.ts'], {
+      cwd: __dirname,
+      stdio: 'inherit',
+      env: process.env
+    });
+  } else {
+    // Fallback to npx tsx
+    console.log('   tsx not found in node_modules, using npx...');
+    serverProcess = spawn('npx', ['tsx', 'src/server.ts'], {
+      cwd: __dirname,
+      stdio: 'inherit',
+      env: process.env
+    });
+  }
+  
+  serverProcess.on('error', (err) => {
+    console.error('❌ Failed to start server:', err);
+    process.exit(1);
+  });
+  
+  serverProcess.on('exit', (code) => {
+    if (code !== 0) {
+      console.error(`❌ Server exited with code ${code}`);
+      process.exit(code);
+    }
+  });
+} else {
+  console.error('❌ No server file found! Neither dist/server.js nor src/server.ts exists.');
+  console.error('   Please check the build process.');
   process.exit(1);
 }
 
+// Handle process termination
+process.on('SIGTERM', () => {
+  console.log('📥 SIGTERM signal received');
+  if (serverProcess) {
+    serverProcess.kill('SIGTERM');
+  }
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  console.log('📥 SIGINT signal received');
+  if (serverProcess) {
+    serverProcess.kill('SIGINT');
+  }
+  process.exit(0);
+});
