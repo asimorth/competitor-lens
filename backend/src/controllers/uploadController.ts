@@ -4,9 +4,12 @@ import { createError } from '../middleware/errorHandler';
 import { ExcelService } from '../services/excelService';
 import path from 'path';
 import fs from 'fs';
+import { getS3Service } from '../services/s3Service';
 
 const prisma = new PrismaClient();
 const excelService = new ExcelService();
+
+// ... imports
 
 export const uploadController = {
   // POST /api/uploads/file
@@ -16,13 +19,30 @@ export const uploadController = {
         throw createError('No file uploaded', 400);
       }
 
+      let storageUrl = `/uploads/${req.file.filename}`;
+      const s3Service = getS3Service();
+
+      // Upload to S3 if configured
+      if (process.env.S3_BUCKET) {
+        try {
+          const s3Key = `uploads/${req.file.filename}`;
+          storageUrl = await s3Service.uploadFile(req.file.path, s3Key, req.file.mimetype);
+
+          // Delete local file after S3 upload
+          fs.unlink(req.file.path, () => { });
+        } catch (error) {
+          console.error('S3 upload failed, falling back to local:', error);
+          // Keep local file as fallback
+        }
+      }
+
       const upload = await prisma.upload.create({
         data: {
           filename: req.file.filename,
           originalName: req.file.originalname,
           fileType: req.file.mimetype.includes('image') ? 'image' : 'pdf',
           fileSize: BigInt(req.file.size),
-          storageUrl: `/uploads/${req.file.filename}`,
+          storageUrl: storageUrl,
           uploadedBy: req.body.userId || null,
           metadata: {
             mimetype: req.file.mimetype,
@@ -39,8 +59,8 @@ export const uploadController = {
       });
     } catch (error) {
       // Clean up file if database save fails
-      if (req.file) {
-        fs.unlink(req.file.path, () => {});
+      if (req.file && fs.existsSync(req.file.path)) {
+        fs.unlink(req.file.path, () => { });
       }
       next(error);
     }
@@ -53,6 +73,20 @@ export const uploadController = {
         throw createError('No Excel file uploaded', 400);
       }
 
+      let storageUrl = `/uploads/${req.file.filename}`;
+      const s3Service = getS3Service();
+
+      // Upload to S3 if configured
+      if (process.env.S3_BUCKET) {
+        try {
+          const s3Key = `uploads/${req.file.filename}`;
+          storageUrl = await s3Service.uploadFile(req.file.path, s3Key, req.file.mimetype);
+          // Note: We don't delete the local file yet because excelService needs it
+        } catch (error) {
+          console.error('S3 upload failed, falling back to local:', error);
+        }
+      }
+
       // Save upload record
       const upload = await prisma.upload.create({
         data: {
@@ -60,7 +94,7 @@ export const uploadController = {
           originalName: req.file.originalname,
           fileType: 'excel',
           fileSize: BigInt(req.file.size),
-          storageUrl: `/uploads/${req.file.filename}`,
+          storageUrl: storageUrl,
           uploadedBy: req.body.userId || null,
           metadata: {
             mimetype: req.file.mimetype,
@@ -73,6 +107,11 @@ export const uploadController = {
       // Parse and import Excel data
       const importResult = await excelService.parseAndImport(req.file.path);
 
+      // Now we can delete the local file if S3 was used
+      if (process.env.S3_BUCKET) {
+        fs.unlink(req.file.path, () => { });
+      }
+
       res.status(201).json({
         success: true,
         data: {
@@ -83,8 +122,8 @@ export const uploadController = {
       });
     } catch (error) {
       // Clean up file if processing fails
-      if (req.file) {
-        fs.unlink(req.file.path, () => {});
+      if (req.file && fs.existsSync(req.file.path)) {
+        fs.unlink(req.file.path, () => { });
       }
       next(error);
     }
@@ -94,7 +133,7 @@ export const uploadController = {
   getFile: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      
+
       const upload = await prisma.upload.findUnique({
         where: { id }
       });
@@ -116,7 +155,7 @@ export const uploadController = {
   getAll: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { fileType, limit = '50' } = req.query;
-      
+
       const uploads = await prisma.upload.findMany({
         where: fileType ? { fileType: fileType as string } : undefined,
         orderBy: { createdAt: 'desc' },
@@ -137,7 +176,7 @@ export const uploadController = {
   deleteFile: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      
+
       const upload = await prisma.upload.findUnique({
         where: { id }
       });

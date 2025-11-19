@@ -23,7 +23,7 @@ export function configureSecurity(app: Express) {
 
   // CORS configuration
   const corsOptions = {
-    origin: (origin: string | undefined, callback: Function) => {
+    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
       const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
         'http://localhost:3000',
         'http://localhost:3001'

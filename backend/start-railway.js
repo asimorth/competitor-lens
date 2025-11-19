@@ -29,6 +29,8 @@ console.log(`   NODE_ENV: ${process.env.NODE_ENV || 'not set'}`);
 console.log(`   PORT: ${process.env.PORT || '3001'}`);
 console.log(`   DATABASE_URL: ${process.env.DATABASE_URL ? '✅ Set' : '❌ Not set'}`);
 console.log(`   DIRECT_DATABASE_URL: ${process.env.DIRECT_DATABASE_URL ? '✅ Set' : '⚠️  Not set (optional)'}`);
+console.log(`   S3_BUCKET: ${process.env.S3_BUCKET ? '✅ Set' : '⚠️  Not set (Files will be stored locally)'}`);
+console.log(`   CDN_URL: ${process.env.CDN_URL ? '✅ Set' : '⚠️  Not set (S3 URLs will be direct)'}`);
 
 // Create necessary directories
 const dirs = ['uploads', 'uploads/screenshots', 'logs'];
@@ -65,7 +67,7 @@ if (hasDistServer) {
 } else if (hasSrcServer) {
   console.log('\n🏃 Starting from TypeScript source (src/server.ts)...');
   console.log('   Using tsx to run TypeScript directly');
-  
+
   // Check if tsx is available
   const tsxPath = path.join(__dirname, 'node_modules', '.bin', 'tsx');
   if (fs.existsSync(tsxPath)) {
@@ -83,12 +85,12 @@ if (hasDistServer) {
       env: process.env
     });
   }
-  
+
   serverProcess.on('error', (err) => {
     console.error('❌ Failed to start server:', err);
     process.exit(1);
   });
-  
+
   serverProcess.on('exit', (code) => {
     if (code !== 0) {
       console.error(`❌ Server exited with code ${code}`);

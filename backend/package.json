@@ -6,24 +6,18 @@
   "scripts": {
     "dev": "nodemon --exec tsx src/server.ts",
     "build": "npx prisma generate && tsc",
-    "build:railway": "tsc",
-    "start": "node start-railway.js",
-    "start:server": "node dist/server.js",
-    "postinstall": "",
-    "start:prod": "./start.sh",
+    "start": "node dist/server.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "worker": "tsx src/workers/fileProcessor.ts",
-    "workers:v2": "tsx src/workers/index.ts",
-    "scanner": "tsx src/workers/screenshotScanner.ts",
-    "screenshots:scan": "tsx src/scripts/autoScanScreenshots.ts",
-    "screenshots:import": "npm run screenshots:scan",
-    "screenshots:validate": "tsx src/scripts/validateScreenshotData.ts",
-    "import:excel": "tsx src/scripts/importMatrixFromExcel.ts",
-    "import:screenshots:smart": "tsx src/scripts/importAllScreenshots.ts",
-    "migrate:s3": "tsx src/scripts/migrateToS3.ts",
-    "test:s3": "tsx src/scripts/testS3Upload.ts",
+    "worker": "tsx src/workers/index.ts",
+    "script:scan-screenshots": "tsx src/scripts/autoScanScreenshots.ts",
+    "script:validate-screenshots": "tsx src/scripts/validateScreenshotData.ts",
+    "script:import-excel": "tsx src/scripts/importMatrixFromExcel.ts",
+    "script:import-screenshots": "tsx src/scripts/importAllScreenshots.ts",
+    "script:migrate-s3": "tsx src/scripts/migrateToS3.ts",
+    "script:test-s3": "tsx src/scripts/testS3Upload.ts",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -62,6 +56,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
@@ -72,8 +67,10 @@
     "@typescript-eslint/parser": "^8.45.0",
     "eslint": "^9.36.0",
     "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
     "prisma": "^6.16.3",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.47.0"
   }
 }

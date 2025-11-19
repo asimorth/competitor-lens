@@ -4,6 +4,7 @@ import { z } from 'zod';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs/promises';
+import { getS3Service } from '../services/s3Service';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -15,18 +16,18 @@ const storage = multer.diskStorage({
     const competitor = await prisma.competitor.findUnique({
       where: { id: competitorId }
     });
-    
+
     if (!competitor) {
       return cb(new Error('Competitor not found'), '');
     }
-    
+
     const uploadPath = path.join(
       process.cwd(),
       'uploads/screenshots',
       competitor.name,
       'onboarding'
     );
-    
+
     // Dizini oluştur
     await fs.mkdir(uploadPath, { recursive: true });
     cb(null, uploadPath);
@@ -44,7 +45,7 @@ const upload = multer({
     const allowedTypes = /jpeg|jpg|png|webp/;
     const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
-    
+
     if (mimetype && extname) {
       return cb(null, true);
     } else {
@@ -83,7 +84,7 @@ const reorderSchema = z.object({
 router.get('/:competitorId/onboarding', async (req, res) => {
   try {
     const { competitorId } = req.params;
-    
+
     const competitor = await prisma.competitor.findUnique({
       where: { id: competitorId },
       include: {
@@ -96,11 +97,11 @@ router.get('/:competitorId/onboarding', async (req, res) => {
         }
       }
     });
-    
+
     if (!competitor) {
       return res.status(404).json({ error: 'Competitor not found' });
     }
-    
+
     res.json({
       competitor: {
         id: competitor.id,
@@ -109,7 +110,7 @@ router.get('/:competitorId/onboarding', async (req, res) => {
       onboardingScreenshots: competitor.onboardingScreenshots,
       totalSteps: competitor.onboardingScreenshots.length
     });
-    
+
   } catch (error) {
     console.error('Get onboarding error:', error);
     res.status(500).json({
@@ -122,28 +123,28 @@ router.get('/:competitorId/onboarding', async (req, res) => {
  * POST /api/competitors/:competitorId/onboarding
  * Onboarding screenshot yükle
  */
-router.post('/:competitorId/onboarding', 
-  upload.single('screenshot'), 
+router.post('/:competitorId/onboarding',
+  upload.single('screenshot'),
   async (req, res) => {
     try {
       const { competitorId } = req.params;
       const data = createOnboardingSchema.parse(req.body);
-      
+
       if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded' });
       }
-      
+
       // Competitor'ı kontrol et
       const competitor = await prisma.competitor.findUnique({
         where: { id: competitorId }
       });
-      
+
       if (!competitor) {
         // Yüklenen dosyayı sil
         await fs.unlink(req.file.path);
         return res.status(404).json({ error: 'Competitor not found' });
       }
-      
+
       // Display order belirle
       let displayOrder = data.displayOrder;
       if (displayOrder === undefined) {
@@ -153,7 +154,24 @@ router.post('/:competitorId/onboarding',
         });
         displayOrder = lastScreenshot ? lastScreenshot.displayOrder + 1 : 0;
       }
-      
+
+      // S3 Upload logic
+      let cdnUrl: string | null = null;
+      const s3Service = getS3Service();
+
+      if (process.env.S3_BUCKET) {
+        try {
+          const s3Key = s3Service.generateS3Key(competitor.name, 'onboarding', req.file.originalname);
+          cdnUrl = await s3Service.uploadFile(req.file.path, s3Key, req.file.mimetype);
+
+          // Delete local file after S3 upload (optional, maybe keep for backup?)
+          // await fs.unlink(req.file.path); 
+        } catch (error) {
+          console.error('S3 upload failed:', error);
+          // Continue with local file
+        }
+      }
+
       // Onboarding screenshot kaydı oluştur
       const onboardingScreenshot = await prisma.onboardingScreenshot.create({
         data: {
@@ -161,10 +179,11 @@ router.post('/:competitorId/onboarding',
           screenshotPath: req.file.path,
           stepNumber: data.stepNumber,
           stepDescription: data.stepDescription,
-          displayOrder
+          displayOrder,
+          cdnUrl: cdnUrl // Add CDN URL
         }
       });
-      
+
       // Ana screenshot tablosuna da ekle (analiz için)
       await prisma.screenshot.create({
         data: {
@@ -174,25 +193,28 @@ router.post('/:competitorId/onboarding',
           fileSize: req.file.size,
           mimeType: req.file.mimetype,
           isOnboarding: true,
-          uploadSource: 'manual'
+          uploadSource: 'manual',
+          cdnUrl: cdnUrl // Add CDN URL
         }
       });
-      
+
       res.status(201).json({
         success: true,
         onboardingScreenshot
       });
-      
+
     } catch (error) {
       console.error('Upload onboarding error:', error);
-      
+
       // Hata durumunda dosyayı temizle
       if (req.file) {
         try {
           await fs.unlink(req.file.path);
-        } catch {}
+        } catch {
+          // Ignore unlink error
+        }
       }
-      
+
       res.status(500).json({
         error: 'Failed to upload onboarding screenshot',
         message: error instanceof Error ? error.message : 'Unknown error'
@@ -209,25 +231,25 @@ router.put('/onboarding/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const data = updateOnboardingSchema.parse(req.body);
-    
+
     const screenshot = await prisma.onboardingScreenshot.findUnique({
       where: { id }
     });
-    
+
     if (!screenshot) {
       return res.status(404).json({ error: 'Onboarding screenshot not found' });
     }
-    
+
     const updated = await prisma.onboardingScreenshot.update({
       where: { id },
       data
     });
-    
+
     res.json({
       success: true,
       onboardingScreenshot: updated
     });
-    
+
   } catch (error) {
     console.error('Update onboarding error:', error);
     res.status(500).json({
@@ -243,39 +265,39 @@ router.put('/onboarding/:id', async (req, res) => {
 router.delete('/onboarding/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     const screenshot = await prisma.onboardingScreenshot.findUnique({
       where: { id }
     });
-    
+
     if (!screenshot) {
       return res.status(404).json({ error: 'Onboarding screenshot not found' });
     }
-    
+
     // Veritabanından sil
     await prisma.onboardingScreenshot.delete({
       where: { id }
     });
-    
+
     // Dosyayı sil
     try {
       await fs.unlink(screenshot.screenshotPath);
     } catch (error) {
       console.error('Failed to delete file:', error);
     }
-    
+
     // Ana screenshot tablosundan da sil
     await prisma.screenshot.deleteMany({
       where: {
         filePath: screenshot.screenshotPath
       }
     });
-    
+
     res.json({
       success: true,
       message: 'Onboarding screenshot deleted'
     });
-    
+
   } catch (error) {
     console.error('Delete onboarding error:', error);
     res.status(500).json({
@@ -292,16 +314,16 @@ router.put('/:competitorId/onboarding/reorder', async (req, res) => {
   try {
     const { competitorId } = req.params;
     const { screenshots } = reorderSchema.parse(req.body);
-    
+
     // Competitor'ı kontrol et
     const competitor = await prisma.competitor.findUnique({
       where: { id: competitorId }
     });
-    
+
     if (!competitor) {
       return res.status(404).json({ error: 'Competitor not found' });
     }
-    
+
     // Transaction ile güncelle
     await prisma.$transaction(
       screenshots.map(({ id, displayOrder }) =>
@@ -311,12 +333,12 @@ router.put('/:competitorId/onboarding/reorder', async (req, res) => {
         })
       )
     );
-    
+
     res.json({
       success: true,
       message: 'Onboarding screenshots reordered'
     });
-    
+
   } catch (error) {
     console.error('Reorder error:', error);
     res.status(500).json({
@@ -345,12 +367,12 @@ router.get('/onboarding/stats', async (req, res) => {
         name: 'asc'
       }
     });
-    
+
     const totalScreenshots = await prisma.onboardingScreenshot.count();
     const competitorsWithOnboarding = stats.filter(
       c => c._count.onboardingScreenshots > 0
     ).length;
-    
+
     res.json({
       totalScreenshots,
       competitorsWithOnboarding,
@@ -361,7 +383,7 @@ router.get('/onboarding/stats', async (req, res) => {
         screenshotCount: c._count.onboardingScreenshots
       }))
     });
-    
+
   } catch (error) {
     console.error('Stats error:', error);
     res.status(500).json({
