@@ -68,12 +68,36 @@ export const matrixController = {
         }))
       }));
 
+      // Calculate screenshot statistics
+      const screenshotsV2 = await prisma.screenshot.findMany({
+        where: { isOnboarding: false }
+      });
+      
+      const screenshotsV1 = await prisma.competitorFeatureScreenshot.count();
+      
+      const orphanScreenshots = screenshotsV2.filter(s => !s.featureId).length;
+      
+      const totalScreenshots = screenshotsV2.length + screenshotsV1;
+      const withFeature = screenshotsV2.filter(s => s.featureId).length + screenshotsV1;
+
       res.json({
         success: true,
         data: {
           competitors: competitorsWithFeatures,
           features,
           matrix: matrixData
+        },
+        meta: {
+          screenshotStats: {
+            total: totalScreenshots,
+            withFeature: withFeature,
+            orphan: orphanScreenshots,
+            missingFiles: 0 // Bu değer sync script tarafından güncellenecek
+          },
+          syncStatus: {
+            lastSync: new Date().toISOString(),
+            status: 'synced' as const
+          }
         }
       });
     } catch (error) {

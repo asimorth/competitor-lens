@@ -4,6 +4,7 @@ import { useState, use, useEffect } from 'react';
 import { api } from '@/lib/api';
 import { cn } from '@/lib/utils';
 import { getImageUrl } from '@/lib/imageUrl';
+import { getScreenshotUrl } from '@/lib/screenshot-utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -22,7 +23,8 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Eye
+  Eye,
+  AlertCircle
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -54,18 +56,18 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
         setSelectedImage(null);
       } else if (e.key === 'ArrowLeft') {
         const currentFeature = Object.entries(screenshotsByFeature).find(([_, screenshots]: [string, any]) => 
-          screenshots.some((s: any) => getImageUrl(s.screenshotPath) === selectedImage)
+          screenshots.some((s: any) => getScreenshotUrl(s) === selectedImage)
         );
-        const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => getImageUrl(s.screenshotPath)) : [];
+        const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => getScreenshotUrl(s)) : [];
         if (selectedImageIndex > 0) {
           setSelectedImageIndex(selectedImageIndex - 1);
           setSelectedImage(allImages[selectedImageIndex - 1]);
         }
       } else if (e.key === 'ArrowRight') {
         const currentFeature = Object.entries(screenshotsByFeature).find(([_, screenshots]: [string, any]) => 
-          screenshots.some((s: any) => getImageUrl(s.screenshotPath) === selectedImage)
+          screenshots.some((s: any) => getScreenshotUrl(s) === selectedImage)
         );
-        const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => getImageUrl(s.screenshotPath)) : [];
+        const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => getScreenshotUrl(s)) : [];
         if (selectedImageIndex < allImages.length - 1) {
           setSelectedImageIndex(selectedImageIndex + 1);
           setSelectedImage(allImages[selectedImageIndex + 1]);
@@ -83,35 +85,53 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
       if (result.success && result.data) {
         setCompetitor(result.data);
         
-        // Screenshot'ları ayrı API call ile çek
-        try {
-          const screenshotsResult = await api.screenshots.getByCompetitor(id);
-          if (screenshotsResult.success && screenshotsResult.data) {
-            const allScreenshots = screenshotsResult.data.map((screenshot: any) => ({
+        // Yeni model: competitor.screenshots'ı kullan
+        const allScreenshots: any[] = [];
+        
+        // 1. Yeni Screenshot tablosundan gelen veriler
+        if (result.data.screenshots && Array.isArray(result.data.screenshots)) {
+          result.data.screenshots.forEach((screenshot: any) => {
+            allScreenshots.push({
               ...screenshot,
               featureName: screenshot.feature?.name || 'Genel',
-              featureCategory: screenshot.feature?.category || 'Genel',
-              screenshotPath: screenshot.filePath
-            }));
-            setScreenshots(allScreenshots);
-          }
-        } catch (screenshotError) {
-          console.error('Error fetching screenshots:', screenshotError);
-          // Fallback: feature'lardan screenshot'ları topla
-          const allScreenshots: any[] = [];
-          result.data.features?.forEach((feature: any) => {
-            if (feature.screenshots && feature.screenshots.length > 0) {
-              feature.screenshots.forEach((screenshot: any) => {
+              featureCategory: screenshot.feature?.category || 'Diğer',
+              screenshotPath: screenshot.cdnUrl || screenshot.filePath,
+              isNew: true // Yeni model identifier
+            });
+          });
+        }
+        
+        // 2. Onboarding screenshots
+        if (result.data.onboardingScreenshots && Array.isArray(result.data.onboardingScreenshots)) {
+          result.data.onboardingScreenshots.forEach((screenshot: any) => {
+            allScreenshots.push({
+              ...screenshot,
+              featureName: 'Onboarding',
+              featureCategory: 'Onboarding',
+              screenshotPath: screenshot.screenshotPath,
+              isOnboarding: true
+            });
+          });
+        }
+        
+        // 3. Eski model (geriye dönük uyumluluk)
+        if (result.data.features) {
+          result.data.features.forEach((cf: any) => {
+            if (cf.screenshots && Array.isArray(cf.screenshots)) {
+              cf.screenshots.forEach((screenshot: any) => {
                 allScreenshots.push({
                   ...screenshot,
-                  featureName: feature.feature.name,
-                  featureCategory: feature.feature.category
+                  featureName: cf.feature?.name || 'Genel',
+                  featureCategory: cf.feature?.category || 'Diğer',
+                  screenshotPath: screenshot.screenshotPath || screenshot.url,
+                  isOld: true // Eski model identifier
                 });
               });
             }
           });
-          setScreenshots(allScreenshots);
         }
+        
+        setScreenshots(allScreenshots);
       }
     } catch (error) {
       console.error('Error fetching competitor:', error);
@@ -157,13 +177,16 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
 
   // Group screenshots by feature
   const screenshotsByFeature = screenshots.reduce((acc: any, screenshot: any) => {
-    const featureName = screenshot.featureName || 'Other';
+    const featureName = screenshot.featureName || 'Feature Atanmamış';
     if (!acc[featureName]) {
       acc[featureName] = [];
     }
     acc[featureName].push(screenshot);
     return acc;
   }, {});
+  
+  // Separate orphan screenshots
+  const orphanScreenshots = screenshots.filter(s => !s.featureName || s.featureName === 'Genel' || s.featureName === 'Feature Atanmamış');
 
   // Group features by category
   const categorizedFeatures = features.reduce((acc: any, feature: any) => {
@@ -333,8 +356,31 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
                 <Camera className="h-3 w-3 mr-1" />
                 {screenshots.length} toplam
               </Badge>
+              {orphanScreenshots.length > 0 && (
+                <Badge variant="secondary" className="text-xs sm:text-sm bg-orange-100 text-orange-700">
+                  ⚠️ {orphanScreenshots.length} feature'sız
+                </Badge>
+              )}
             </div>
           </div>
+          
+          {/* Orphan Screenshots Warning */}
+          {orphanScreenshots.length > 0 && (
+            <Card className="border-orange-300 bg-orange-50">
+              <CardContent className="p-4">
+                <div className="flex items-start space-x-3">
+                  <AlertCircle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-orange-900">Feature'sız Screenshot'lar</h4>
+                    <p className="text-sm text-orange-800 mt-1">
+                      {orphanScreenshots.length} screenshot henüz bir feature'a atanmamış. 
+                      Bu görseller aşağıda "Feature Atanmamış" bölümünde görünür.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {screenshots.length === 0 ? (
             <Card>
@@ -375,16 +421,17 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
                         key={screenshot.id || index}
                         className="group relative cursor-pointer transform transition-all duration-200 hover:scale-105"
                         onClick={() => {
-                          const allImages = featureScreenshots.map((s: any) => `${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}`);
-                          const currentIndex = allImages.indexOf(`${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`);
+                          const allImages = featureScreenshots.map((s: any) => getScreenshotUrl(s));
+                          const currentImageUrl = getScreenshotUrl(screenshot);
+                          const currentIndex = allImages.indexOf(currentImageUrl);
                           setSelectedImageIndex(currentIndex);
-                          setSelectedImage(`${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`);
+                          setSelectedImage(currentImageUrl);
                         }}
                       >
                         <div className="aspect-[4/3] relative overflow-hidden rounded-lg sm:rounded-xl bg-gray-100 shadow-md group-hover:shadow-xl">
                           <img
-                            src={`${screenshot.screenshotPath.startsWith('/') ? screenshot.screenshotPath : '/' + screenshot.screenshotPath}`}
-                            alt={screenshot.caption || `${featureName} - ${index + 1}`}
+                            src={getScreenshotUrl(screenshot)}
+                            alt={screenshot.caption || screenshot.fileName || `${featureName} - ${index + 1}`}
                             className="object-cover w-full h-full"
                             loading="lazy"
                             onError={(e) => {
@@ -520,9 +567,9 @@ export default function ExchangeDetailPage({ params }: ExchangeDetailPageProps) 
         {/* Image Modal */}
         {selectedImage && (() => {
           const currentFeature = Object.entries(screenshotsByFeature).find(([_, screenshots]: [string, any]) => 
-            screenshots.some((s: any) => `${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}` === selectedImage)
+            screenshots.some((s: any) => getScreenshotUrl(s) === selectedImage)
           );
-          const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => `${s.screenshotPath.startsWith('/') ? s.screenshotPath : '/' + s.screenshotPath}`) : [];
+          const allImages = currentFeature ? (currentFeature[1] as any[]).map((s: any) => getScreenshotUrl(s)) : [];
           const currentFeatureName = currentFeature ? currentFeature[0] : '';
           const canGoPrev = selectedImageIndex > 0;
           const canGoNext = selectedImageIndex < allImages.length - 1;

@@ -94,6 +94,18 @@ const getFeaturePriority = (featureName: string): string => {
   return 'medium';
 };
 
+// Smart feature detection - supports multiple formats
+const checkHasFeature = (value: any): boolean => {
+  if (!value) return false;
+  
+  const valueStr = value.toString().trim().toLowerCase();
+  
+  // Supported "yes" formats
+  const yesValues = ['var', 'yes', 'true', 'x', '✓', '✔', 'v', '1'];
+  
+  return yesValues.includes(valueStr);
+};
+
 async function importMatrixData() {
   console.log('🚀 Starting Matrix Data Import from Excel...\n');
   
@@ -146,6 +158,15 @@ async function importMatrixData() {
     // 2. Competitor'ları ve ilişkileri oluştur
     console.log('\n👥 Processing Competitors...');
     
+    // Validation tracking
+    const validationReport = {
+      totalProcessed: 0,
+      totalFeatures: 0,
+      totalYes: 0,
+      totalNo: 0,
+      invalidValues: [] as any[]
+    };
+    
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
       const competitorName = row[competitorNameIndex];
@@ -155,6 +176,7 @@ async function importMatrixData() {
       if (!competitorName) continue;
       
       console.log(`\n   Processing: ${competitorName} (${region})`);
+      validationReport.totalProcessed++;
       
       // Competitor oluştur/güncelle
       const competitor = await prisma.competitor.upsert({
@@ -175,7 +197,28 @@ async function importMatrixData() {
       // Feature ilişkilerini oluştur
       for (let j = 0; j < features.length; j++) {
         const featureName = features[j];
-        const hasFeature = row[j + 2] === 'Var';
+        const cellValue = row[j + 2];
+        const hasFeature = checkHasFeature(cellValue);
+        
+        validationReport.totalFeatures++;
+        if (hasFeature) {
+          validationReport.totalYes++;
+        } else {
+          validationReport.totalNo++;
+        }
+        
+        // Track unusual values for manual review
+        if (cellValue && cellValue !== 'Var' && cellValue !== 'Yok' && cellValue !== '') {
+          const cellStr = cellValue.toString().trim();
+          if (cellStr && cellStr !== 'Var' && cellStr !== 'Yok') {
+            validationReport.invalidValues.push({
+              competitor: competitorName,
+              feature: featureName,
+              value: cellValue,
+              interpreted: hasFeature ? 'YES' : 'NO'
+            });
+          }
+        }
         
         const feature = await prisma.feature.findUnique({
           where: { name: featureName }
@@ -206,6 +249,23 @@ async function importMatrixData() {
       }
       
       console.log(`   ✅ ${competitorName} processed with ${features.length} features`);
+    }
+    
+    // Validation Report
+    console.log('\n📋 Validation Report:');
+    console.log(`   - Total Competitors Processed: ${validationReport.totalProcessed}`);
+    console.log(`   - Total Feature Cells: ${validationReport.totalFeatures}`);
+    console.log(`   - Features with "Yes" (Var): ${validationReport.totalYes}`);
+    console.log(`   - Features with "No" (Yok): ${validationReport.totalNo}`);
+    
+    if (validationReport.invalidValues.length > 0) {
+      console.log(`\n⚠️  Non-standard values found (${validationReport.invalidValues.length} cells):`);
+      validationReport.invalidValues.slice(0, 10).forEach(item => {
+        console.log(`   - ${item.competitor} / ${item.feature}: "${item.value}" → ${item.interpreted}`);
+      });
+      if (validationReport.invalidValues.length > 10) {
+        console.log(`   ... and ${validationReport.invalidValues.length - 10} more`);
+      }
     }
     
     // 3. İstatistikleri göster

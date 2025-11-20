@@ -84,14 +84,35 @@ export const competitorController = {
         total: competitor.screenshots.length,
         byFeature: competitor.screenshots.filter(s => s.featureId !== null).length,
         onboarding: competitor.screenshots.filter(s => s.isOnboarding).length,
+        orphan: competitor.screenshots.filter(s => s.featureId === null && !s.isOnboarding).length,
         uncategorized: competitor.screenshots.filter(s => s.featureId === null && !s.isOnboarding).length
       };
+      
+      // Feature'larla screenshot ilişkisini kontrol et
+      const featuresWithScreenshots = competitor.features.filter(f => 
+        f.screenshots.length > 0 || 
+        competitor.screenshots.some(s => s.featureId === f.featureId)
+      ).length;
+      
+      const featuresWithoutScreenshots = competitor.features.filter(f => 
+        f.hasFeature && 
+        f.screenshots.length === 0 && 
+        !competitor.screenshots.some(s => s.featureId === f.featureId)
+      ).length;
 
       res.json({
         success: true,
         data: {
           ...competitor,
           screenshotStats
+        },
+        meta: {
+          featureStats: {
+            total: competitor.features.length,
+            withScreenshots: featuresWithScreenshots,
+            withoutScreenshots: featuresWithoutScreenshots,
+            hasFeature: competitor.features.filter(f => f.hasFeature).length
+          }
         }
       });
     } catch (error) {

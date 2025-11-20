@@ -42,6 +42,7 @@ export default function MatrixPage() {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
   const [fullScreen, setFullScreen] = useState(false);
   const [showOnlyTR, setShowOnlyTR] = useState(false);
+  const [screenshotFilter, setScreenshotFilter] = useState<'all' | 'with' | 'without'>('all');
 
   useEffect(() => {
     fetchMatrixData();
@@ -87,7 +88,8 @@ export default function MatrixPage() {
     );
   }
 
-  const { competitors = [], features = [] } = matrixData;
+  const { competitors = [], features = [], meta } = matrixData;
+  const screenshotStats = meta?.screenshotStats || { total: 0, withFeature: 0, orphan: 0, missingFiles: 0 };
   
   // TR borsalarını filtrele
   const trCompetitorNames = ['BTCTurk', 'BinanceTR', 'OKX TR', 'Garanti Kripto'];
@@ -113,7 +115,19 @@ export default function MatrixPage() {
       const matchesAvailability = !showOnlyAvailable || displayCompetitors.some((c: any) => 
         (c.features || []).some((f: any) => f.featureId === feature.id && f.hasFeature)
       );
-      return matchesSearch && matchesCategory && matchesAvailability;
+      
+      // Screenshot filter
+      const totalScreenshots = displayCompetitors.reduce((sum: number, c: any) => {
+        const cf = (c.features || []).find((f: any) => f.featureId === feature.id);
+        return sum + (cf?.screenshots?.length || 0);
+      }, 0);
+      
+      const matchesScreenshotFilter = 
+        screenshotFilter === 'all' ||
+        (screenshotFilter === 'with' && totalScreenshots > 0) ||
+        (screenshotFilter === 'without' && totalScreenshots === 0);
+      
+      return matchesSearch && matchesCategory && matchesAvailability && matchesScreenshotFilter;
     });
     
     if (filtered.length > 0) {
@@ -238,6 +252,24 @@ export default function MatrixPage() {
         </Button>
       </div>
 
+      {/* Orphan Screenshot Warning */}
+      {screenshotStats.orphan > 0 && (
+        <Card className="border-orange-300 bg-orange-50">
+          <CardContent className="p-4">
+            <div className="flex items-start space-x-3">
+              <AlertCircle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
+              <div className="flex-1">
+                <h3 className="font-semibold text-orange-900">Feature'sız Screenshot'lar Bulundu</h3>
+                <p className="text-sm text-orange-800 mt-1">
+                  {screenshotStats.orphan} screenshot henüz bir feature'a atanmamış. 
+                  Bu screenshot'lar competitor detay sayfalarında görünebilir ama matrix'te gösterilmez.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Filters */}
       <Card>
         <CardContent className="p-3 sm:p-4">
@@ -292,6 +324,38 @@ export default function MatrixPage() {
                   onClick={() => setViewMode(viewMode === 'compact' ? 'detailed' : 'compact')}
                 >
                   {viewMode === 'compact' ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                </Button>
+              </div>
+            </div>
+            
+            {/* Screenshot Filter */}
+            <div className="flex items-center gap-2 pt-2 border-t">
+              <Camera className="h-4 w-4 text-gray-500" />
+              <span className="text-sm text-gray-600">Screenshot:</span>
+              <div className="flex gap-2">
+                <Button
+                  variant={screenshotFilter === 'all' ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setScreenshotFilter('all')}
+                  className="text-xs"
+                >
+                  Tümü
+                </Button>
+                <Button
+                  variant={screenshotFilter === 'with' ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setScreenshotFilter('with')}
+                  className="text-xs"
+                >
+                  📸 Var
+                </Button>
+                <Button
+                  variant={screenshotFilter === 'without' ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setScreenshotFilter('without')}
+                  className="text-xs"
+                >
+                  Yok
                 </Button>
               </div>
             </div>
@@ -436,7 +500,19 @@ export default function MatrixPage() {
                     </div>
                   </td>
                 </tr>
-                {expandedCategories.has(category) && categoryFeatures.map((feature: any) => (
+                {expandedCategories.has(category) && categoryFeatures.map((feature: any) => {
+                  // Calculate total screenshots for this feature
+                  const totalScreenshots = displayCompetitors.reduce((sum: number, c: any) => {
+                    const cf = (c.features || []).find((f: any) => f.featureId === feature.id);
+                    return sum + (cf?.screenshots?.length || 0);
+                  }, 0);
+                  
+                  // Check if feature has implementations
+                  const hasImplementations = displayCompetitors.some((c: any) =>
+                    (c.features || []).some((f: any) => f.featureId === feature.id && f.hasFeature)
+                  );
+                  
+                  return (
                   <tr key={feature.id} className="border-b hover:bg-gray-50 transition-colors">
                     <td className="sticky left-0 z-10 bg-white p-4 border-r">
                       <div className="flex items-center space-x-3">
@@ -448,7 +524,19 @@ export default function MatrixPage() {
                           'bg-gray-400'
                         )} />
                         <div className="min-w-0 flex-1">
-                          <div className="font-medium text-gray-900 truncate">{feature.name}</div>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-medium text-gray-900 truncate">{feature.name}</span>
+                            {totalScreenshots > 0 ? (
+                              <Badge variant="secondary" className="text-xs flex items-center space-x-1">
+                                <Camera className="h-3 w-3" />
+                                <span>{totalScreenshots}</span>
+                              </Badge>
+                            ) : hasImplementations ? (
+                              <Badge variant="outline" className="text-xs text-orange-600 border-orange-300">
+                                ⚠️ Screenshot Yok
+                              </Badge>
+                            ) : null}
+                          </div>
                           {viewMode === 'detailed' && feature.description && (
                             <div className="text-sm text-gray-500 mt-1 line-clamp-2">{feature.description}</div>
                           )}
@@ -509,7 +597,8 @@ export default function MatrixPage() {
                       </div>
                     </td>
                   </tr>
-                ))}
+                  );
+                })}
               </React.Fragment>
             ))}
           </tbody>
