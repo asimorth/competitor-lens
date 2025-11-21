@@ -21,6 +21,7 @@ model Competitor {
   website               String?
   description           String?
   industry              String?
+  region                String?                   // TR, Global, EU, US, etc.
   features              CompetitorFeature[]
   onboardingScreenshots OnboardingScreenshot[]
   screenshots           Screenshot[]
