@@ -2,12 +2,12 @@
 nixPkgs = ["nodejs_20"]
 
 [phases.install]
-cmds = ["npm ci"]
+cmds = ["npm install --omit=dev --legacy-peer-deps"]
 
 [phases.build]
 cmds = [
   "npx prisma generate",
-  "npm run build"
+  "npx tsc"
 ]
 
 [start]
