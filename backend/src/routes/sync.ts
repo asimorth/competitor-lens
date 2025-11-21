@@ -3,6 +3,9 @@ import { z } from 'zod';
 import { SyncService } from '../services/syncService';
 import { QueueService } from '../services/queueService';
 import { PrismaClient } from '@prisma/client';
+import * as XLSX from 'xlsx';
+import * as path from 'path';
+import * as fs from 'fs';
 
 const router = Router();
 const syncService = new SyncService();
@@ -366,6 +369,143 @@ router.delete('/cache', async (req, res) => {
     console.error('Clear cache error:', error);
     res.status(500).json({
       error: 'Failed to clear sync cache'
+    });
+  }
+});
+
+/**
+ * POST /api/sync/matrix
+ * Matrix Excel dosyasını veritabanına senkronize et
+ */
+router.post('/matrix', async (req, res) => {
+  try {
+    const MATRIX_FILE = path.join(process.cwd(), 'Matrix/feature_matrix_FINAL_v3.xlsx');
+
+    if (!fs.existsSync(MATRIX_FILE)) {
+      return res.status(404).json({ error: 'Matrix file not found' });
+    }
+
+    // TR Exchange names
+    const TR_EXCHANGES = new Set([
+      'BinanceTR', 'Binance TR', 'Paribu', 'BTCTurk', 'BTC Turk',
+      'Bitexen', 'Icrypex', 'CoinTR', 'Coin TR', 'KucoinTR', 'Kucoin TR',
+      'OKX TR', 'BiLira', 'Ortak App', 'Garanti Kripto', 'GateTR', 'Gate TR',
+      'Midas Kripto', 'BybitTR', 'Bybit TR', 'Kuantist'
+    ]);
+
+    function getRegion(competitorName: string): string {
+      if (TR_EXCHANGES.has(competitorName)) return 'TR';
+      if (competitorName.toLowerCase().includes('tr') || competitorName.toLowerCase().includes('turk')) return 'TR';
+      return 'Global';
+    }
+
+    // Read Excel
+    const workbook = XLSX.readFile(MATRIX_FILE);
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1');
+
+    // Extract competitors
+    const competitorNames: string[] = [];
+    for (let row = 1; row <= range.e.r; row++) {
+      const cellAddress = XLSX.utils.encode_cell({ r: row, c: 0 });
+      const cell = worksheet[cellAddress];
+      if (cell && cell.v) competitorNames.push(String(cell.v).trim());
+    }
+
+    // Extract features
+    const featureNames: string[] = [];
+    for (let col = 1; col <= range.e.c; col++) {
+      const cellAddress = XLSX.utils.encode_cell({ r: 0, c: col });
+      const cell = worksheet[cellAddress];
+      if (cell && cell.v) featureNames.push(String(cell.v).trim());
+    }
+
+    // Sync competitors
+    const competitorMap = new Map<string, string>();
+    for (const name of competitorNames) {
+      const region = getRegion(name);
+      let competitor = await prisma.competitor.findUnique({ where: { name } });
+
+      if (!competitor) {
+        competitor = await prisma.competitor.create({ data: { name, region } });
+      } else if (!competitor.region) {
+        await prisma.competitor.update({ where: { id: competitor.id }, data: { region } });
+      }
+      competitorMap.set(name, competitor.id);
+    }
+
+    // Sync features
+    const featureMap = new Map<string, string>();
+    for (const name of featureNames) {
+      let feature = await prisma.feature.findUnique({ where: { name } });
+      if (!feature) {
+        feature = await prisma.feature.create({ data: { name } });
+      }
+      featureMap.set(name, feature.id);
+    }
+
+    // Sync matrix
+    let created = 0;
+    let updated = 0;
+
+    for (let row = 1; row <= range.e.r; row++) {
+      const competitorName = String(worksheet[XLSX.utils.encode_cell({ r: row, c: 0 })]?.v || '').trim();
+      const competitorId = competitorMap.get(competitorName);
+      if (!competitorId) continue;
+
+      for (let col = 1; col <= range.e.c; col++) {
+        const featureName = String(worksheet[XLSX.utils.encode_cell({ r: 0, c: col })]?.v || '').trim();
+        const featureId = featureMap.get(featureName);
+        if (!featureId) continue;
+
+        const cellValue = String(worksheet[XLSX.utils.encode_cell({ r: row, c: col })]?.v || '').trim().toLowerCase();
+        let hasFeature = false;
+        let quality = 'none';
+
+        if (['1', 'yes', 'true'].includes(cellValue)) {
+          hasFeature = true;
+          quality = 'basic';
+        } else if (['excellent', 'good', 'basic'].includes(cellValue)) {
+          hasFeature = true;
+          quality = cellValue;
+        }
+
+        const existing = await prisma.competitorFeature.findUnique({
+          where: { competitorId_featureId: { competitorId, featureId } }
+        });
+
+        if (!existing) {
+          await prisma.competitorFeature.create({
+            data: { competitorId, featureId, hasFeature, implementationQuality: quality }
+          });
+          created++;
+        } else {
+          await prisma.competitorFeature.update({
+            where: { id: existing.id },
+            data: { hasFeature, implementationQuality: quality }
+          });
+          updated++;
+        }
+      }
+    }
+
+    res.json({
+      success: true,
+      message: 'Matrix sync complete',
+      stats: {
+        competitors: competitorNames.length,
+        features: featureNames.length,
+        relationsCreated: created,
+        relationsUpdated: updated
+      }
+    });
+
+  } catch (error) {
+    console.error('Matrix sync error:', error);
+    res.status(500).json({
+      error: 'Failed to sync matrix',
+      message: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 });

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec tsx src/server.ts",
     "build": "npx prisma generate && tsc",
-    "start": "node start-railway.js",
+    "start": "npx prisma db push --accept-data-loss && node start-railway.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
