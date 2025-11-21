@@ -41,9 +41,10 @@ export default function StablexVsTRPage() {
         api.matrix.get()
       ]);
 
-      // TR borsalarını filtrele (dynamic - region field kullan)
+      // TR borsalarını filtrele (name-based detection)
+      const trNames = ['BTCTurk', 'BinanceTR', 'OKX TR', 'Garanti Kripto', 'Paribu', 'Bitexen', 'GateTR', 'Bilira', 'Kuantist', 'BTC Türk', 'BTC Turk'];
       const trCompetitors = competitorsRes.data?.filter((c: any) => 
-        c.region === 'TR' || ['BTCTurk', 'BinanceTR', 'OKX TR', 'Garanti Kripto'].includes(c.name)
+        trNames.includes(c.name)
       ) || [];
 
       // Stablex'i mock olarak ekle (şimdilik)

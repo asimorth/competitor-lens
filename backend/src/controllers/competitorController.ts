@@ -44,9 +44,10 @@ export const competitorController = {
         }
       });
 
-      // Group competitors by region for summary
+      // Group competitors by name-based region detection (smart fallback)
+      const trNames = ['BTCTurk', 'BinanceTR', 'OKX TR', 'Garanti Kripto', 'Paribu', 'Bitexen', 'GateTR', 'Bilira', 'Kuantist', 'BTC Türk', 'BTC Turk'];
       const byRegion = competitors.reduce((acc, c) => {
-        const reg = c.region || 'Unknown';
+        const reg = trNames.includes(c.name) ? 'TR' : 'Global';
         if (!acc[reg]) acc[reg] = [];
         acc[reg].push(c);
         return acc;
