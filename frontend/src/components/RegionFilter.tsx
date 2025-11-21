@@ -9,7 +9,7 @@ interface RegionFilterProps {
 }
 
 export default function RegionFilter({ currentRegion, onChange, regions }: RegionFilterProps) {
-    const defaultRegions = [
+    const defaultRegions: { label: string; value: string | null; count?: number }[] = [
         { label: 'All Exchanges', value: null },
         { label: 'Turkey (TR)', value: 'TR' },
         { label: 'Global', value: 'Global' }
