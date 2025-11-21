@@ -140,8 +140,12 @@ export default function FeatureDetailPage({ params }: FeatureDetailPageProps) {
       const featureData = featureRes.data;
       const implementingExchanges = competitorsRes.data || [];
 
-      // Coverage hesapla
-      const totalExchanges = 19; // Bilinen toplam borsa sayısı
+      // Tüm borsaları çek (dynamic count)
+      const allCompetitorsRes = await api.competitors.getAll();
+      const allCompetitors = allCompetitorsRes.data || [];
+      
+      // Coverage hesapla (dynamic)
+      const totalExchanges = allCompetitors.length;
       const implementedBy = implementingExchanges.length;
       const coverage = Math.round((implementedBy / totalExchanges) * 100);
 
@@ -151,10 +155,6 @@ export default function FeatureDetailPage({ params }: FeatureDetailPageProps) {
         totalExchanges,
         coverage
       });
-
-      // Tüm borsaları çek ve bu feature için durumlarını belirle
-      const allCompetitorsRes = await api.competitors.getAll();
-      const allCompetitors = allCompetitorsRes.data || [];
 
       const enrichedExchanges = allCompetitors.map((comp: any) => {
         const featureRelation = comp.features?.find((f: any) => f.featureId === id);

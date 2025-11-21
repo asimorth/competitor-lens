@@ -31,14 +31,18 @@ export default function FeaturesPage() {
   const loadFeatures = async () => {
     setLoading(true);
     try {
-      const res = await api.features.getAll();
-      const allFeatures = res.data || [];
+      const [featuresRes, competitorsRes] = await Promise.all([
+        api.features.getAll(),
+        api.competitors.getAll()
+      ]);
+      
+      const allFeatures = featuresRes.data || [];
+      const totalExchanges = competitorsRes.count || competitorsRes.data?.length || 0;
       
       // Her feature için istatistikleri hesapla
       const enrichedFeatures = allFeatures.map((feature: any) => {
-        const totalExchanges = 19; // Bilinen borsa sayısı
         const implementedBy = feature.competitors?.filter((c: any) => c.hasFeature).length || 0;
-        const coverage = Math.round((implementedBy / totalExchanges) * 100);
+        const coverage = totalExchanges > 0 ? Math.round((implementedBy / totalExchanges) * 100) : 0;
         const screenshotCount = feature.competitors?.reduce((sum: number, c: any) => {
           return sum + (c.screenshots ? (Array.isArray(c.screenshots) ? c.screenshots.length : 0) : 0);
         }, 0) || 0;
