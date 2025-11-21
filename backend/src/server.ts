@@ -35,7 +35,7 @@ app.use(helmet({
 // CORS Middleware - Manuel header ekleme
 app.use((req, res, next) => {
   const origin = req.headers.origin;
-  
+
   // Vercel veya localhost ise izin ver
   if (origin && (origin.includes('.vercel.app') || origin.includes('localhost'))) {
     res.setHeader('Access-Control-Allow-Origin', origin);
@@ -44,12 +44,12 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
     res.setHeader('Access-Control-Expose-Headers', 'Content-Type,Content-Length');
   }
-  
+
   // OPTIONS preflight request
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
   }
-  
+
   next();
 });
 
@@ -77,11 +77,21 @@ app.use('/uploads', express.static(path.join(process.cwd(), 'uploads'), {
 
 // Health check
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'ok', 
+  res.json({
+    status: 'ok',
     timestamp: new Date().toISOString(),
     message: 'CompetitorLens Backend API is running!',
-    environment: process.env.NODE_ENV 
+    environment: process.env.NODE_ENV
+  });
+});
+
+// Debug endpoint
+app.get('/debug/env', (req, res) => {
+  res.json({
+    DIRECT_DATABASE_URL_SET: !!process.env.DIRECT_DATABASE_URL,
+    DATABASE_URL_SET: !!process.env.DATABASE_URL,
+    NODE_ENV: process.env.NODE_ENV,
+    PORT: process.env.PORT
   });
 });
 
@@ -115,9 +125,9 @@ app.use(errorHandler);
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).json({ 
+  res.status(404).json({
     error: 'Route not found',
-    path: req.originalUrl 
+    path: req.originalUrl
   });
 });
 
