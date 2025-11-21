@@ -62,32 +62,64 @@ async function main() {
         console.log(`\n📂 Processing ${competitorName}...`);
         const competitorDir = path.join(SCREENSHOTS_DIR, competitorName);
 
-        // Scan files
-        const files = fs.readdirSync(competitorDir, { withFileTypes: true });
+        // Scan files and directories
+        const items = fs.readdirSync(competitorDir, { withFileTypes: true });
 
-        for (const file of files) {
-            const filePath = path.join(competitorDir, file.name);
+        for (const item of items) {
+            const itemPath = path.join(competitorDir, item.name);
 
-            if (file.isDirectory() && file.name === 'onboarding') {
-                // Handle Onboarding
-                const onboardingFiles = fs.readdirSync(filePath);
-                for (const onbFile of onboardingFiles) {
-                    if (!isImage(onbFile)) continue;
+            if (item.isDirectory()) {
+                if (item.name.toLowerCase() === 'onboarding') {
+                    // Handle Onboarding
+                    const onboardingFiles = fs.readdirSync(itemPath);
+                    for (const onbFile of onboardingFiles) {
+                        if (!isImage(onbFile)) continue;
+                        console.log(`   ⬆️  Uploading Onboarding: ${onbFile}`);
+                        try {
+                            await uploadOnboarding(competitorId, path.join(itemPath, onbFile));
+                            successCount++;
+                        } catch (err) {
+                            console.error(`   ❌ Failed: ${err}`);
+                            failCount++;
+                        }
+                    }
+                } else {
+                    // Handle Feature Subdirectory (e.g. "AI Tool")
+                    const featureName = item.name;
+                    console.log(`   📂 Found Feature Folder: "${featureName}"`);
 
-                    console.log(`   ⬆️  Uploading Onboarding: ${onbFile}`);
-                    try {
-                        await uploadOnboarding(competitorId, path.join(filePath, onbFile));
-                        successCount++;
-                    } catch (err) {
-                        console.error(`   ❌ Failed: ${err}`);
-                        failCount++;
+                    // Try to find feature ID (simple name match)
+                    // We need to fetch features first or search via API? 
+                    // For now, we'll upload with featureName in metadata or try to match if we had feature list.
+                    // Better: The API /api/screenshots accepts featureId. 
+                    // Let's try to find the feature in the competitor's feature list (which we can fetch).
+
+                    // Note: To do this properly, we should have fetched competitor details with features.
+                    // But for now, let's just upload them as competitor screenshots. 
+                    // Ideally, we would lookup the feature ID.
+
+                    const featureFiles = fs.readdirSync(itemPath);
+                    for (const fFile of featureFiles) {
+                        if (!isImage(fFile)) continue;
+                        console.log(`   ⬆️  Uploading Feature [${featureName}]: ${fFile}`);
+                        try {
+                            // Pass featureName to help backend or future logic? 
+                            // Currently backend expects featureId. 
+                            // We will upload without featureId for now, but user can tag later.
+                            // OR: We can implement a lookup.
+                            await uploadFeatureScreenshot(competitorId, path.join(itemPath, fFile));
+                            successCount++;
+                        } catch (err) {
+                            console.error(`   ❌ Failed: ${err}`);
+                            failCount++;
+                        }
                     }
                 }
-            } else if (file.isFile() && isImage(file.name)) {
-                // Handle Feature Screenshot
-                console.log(`   ⬆️  Uploading Feature Screenshot: ${file.name}`);
+            } else if (item.isFile() && isImage(item.name)) {
+                // Handle Root Feature Screenshot
+                console.log(`   ⬆️  Uploading General Screenshot: ${item.name}`);
                 try {
-                    await uploadFeatureScreenshot(competitorId, filePath);
+                    await uploadFeatureScreenshot(competitorId, itemPath);
                     successCount++;
                 } catch (err) {
                     console.error(`   ❌ Failed: ${err}`);
@@ -96,10 +128,11 @@ async function main() {
             }
         }
     }
+}
 
-    console.log('\n🎉 Upload Complete!');
-    console.log(`✅ Success: ${successCount}`);
-    console.log(`❌ Failed: ${failCount}`);
+console.log('\n🎉 Upload Complete!');
+console.log(`✅ Success: ${successCount}`);
+console.log(`❌ Failed: ${failCount}`);
 }
 
 function isImage(filename: string) {
