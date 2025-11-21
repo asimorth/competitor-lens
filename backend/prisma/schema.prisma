@@ -6,10 +6,12 @@ generator client {
 }
 
 // Database connection
-// Both local and production use standard PostgreSQL
+// LOCAL: Standard PostgreSQL (directUrl optional)
+// PRODUCTION: Prisma Accelerate (directUrl required but optional in schema)
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
 }
 
 model Competitor {
