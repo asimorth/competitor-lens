@@ -6,7 +6,16 @@ export const competitorController = {
   // GET /api/competitors
   getAll: async (req: Request, res: Response, next: NextFunction) => {
     try {
+      const { region } = req.query;
+
+      // Build where clause
+      const where: any = {};
+      if (region && typeof region === 'string') {
+        where.region = region;
+      }
+
       const competitors = await prisma.competitor.findMany({
+        where,
         include: {
           features: {
             include: {
@@ -17,6 +26,17 @@ export const competitorController = {
                 }
               }
             }
+          },
+          _count: {
+            select: {
+              screenshots: true,
+              onboardingScreenshots: true,
+              features: {
+                where: {
+                  hasFeature: true
+                }
+              }
+            }
           }
         },
         orderBy: {
@@ -24,10 +44,25 @@ export const competitorController = {
         }
       });
 
+      // Group competitors by region for summary
+      const byRegion = competitors.reduce((acc, c) => {
+        const reg = c.region || 'Unknown';
+        if (!acc[reg]) acc[reg] = [];
+        acc[reg].push(c);
+        return acc;
+      }, {} as Record<string, typeof competitors>);
+
       res.json({
         success: true,
         data: competitors,
-        count: competitors.length
+        count: competitors.length,
+        meta: {
+          byRegion: Object.keys(byRegion).reduce((acc, key) => {
+            acc[key] = byRegion[key].length;
+            return acc;
+          }, {} as Record<string, number>),
+          filter: region ? { region } : null
+        }
       });
     } catch (error) {
       next(error);
@@ -38,7 +73,7 @@ export const competitorController = {
   getById: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      
+
       const competitor = await prisma.competitor.findUnique({
         where: { id },
         include: {
@@ -87,16 +122,16 @@ export const competitorController = {
         orphan: competitor.screenshots.filter(s => s.featureId === null && !s.isOnboarding).length,
         uncategorized: competitor.screenshots.filter(s => s.featureId === null && !s.isOnboarding).length
       };
-      
+
       // Feature'larla screenshot ilişkisini kontrol et
-      const featuresWithScreenshots = competitor.features.filter(f => 
-        f.screenshots.length > 0 || 
+      const featuresWithScreenshots = competitor.features.filter(f =>
+        f.screenshots.length > 0 ||
         competitor.screenshots.some(s => s.featureId === f.featureId)
       ).length;
-      
-      const featuresWithoutScreenshots = competitor.features.filter(f => 
-        f.hasFeature && 
-        f.screenshots.length === 0 && 
+
+      const featuresWithoutScreenshots = competitor.features.filter(f =>
+        f.hasFeature &&
+        f.screenshots.length === 0 &&
         !competitor.screenshots.some(s => s.featureId === f.featureId)
       ).length;
 
@@ -123,7 +158,7 @@ export const competitorController = {
   // POST /api/competitors
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { name, logoUrl, website, description, industry } = req.body;
+      const { name, logoUrl, website, description, industry, region } = req.body;
 
       if (!name) {
         throw createError('Name is required', 400);
@@ -135,7 +170,8 @@ export const competitorController = {
           logoUrl,
           website,
           description,
-          industry
+          industry,
+          region
         }
       });
 
@@ -153,7 +189,7 @@ export const competitorController = {
   update: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const { name, logoUrl, website, description, industry } = req.body;
+      const { name, logoUrl, website, description, industry, region } = req.body;
 
       const competitor = await prisma.competitor.update({
         where: { id },
@@ -162,7 +198,8 @@ export const competitorController = {
           logoUrl,
           website,
           description,
-          industry
+          industry,
+          region
         }
       });
 

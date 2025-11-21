@@ -5,17 +5,20 @@ const API_BASE_URL = getApiUrl();
 export const api = {
   // Competitors
   competitors: {
-    getAll: async () => {
+    getAll: async (region?: string | null) => {
       console.log('API_BASE_URL:', API_BASE_URL);
       try {
-        const res = await fetch(`${API_BASE_URL}/api/competitors`);
+        const url = region
+          ? `${API_BASE_URL}/api/competitors?region=${region}`
+          : `${API_BASE_URL}/api/competitors`;
+        const res = await fetch(url);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         return res.json();
       } catch (error) {
         console.error('Competitors API error:', error);
-        return { success: false, data: [] };
+        return { success: false, data: [], meta: { byRegion: {} } };
       }
     },
     getById: async (id: string) => {
@@ -50,7 +53,7 @@ export const api = {
   features: {
     getAll: async (category?: string) => {
       try {
-        const url = category 
+        const url = category
           ? `${API_BASE_URL}/api/features?category=${category}`
           : `${API_BASE_URL}/api/features`;
         const res = await fetch(url);
@@ -114,7 +117,7 @@ export const api = {
     uploadFile: async (file: File) => {
       const formData = new FormData();
       formData.append('file', file);
-      
+
       const res = await fetch(`${API_BASE_URL}/api/uploads/file`, {
         method: 'POST',
         body: formData
@@ -124,7 +127,7 @@ export const api = {
     uploadExcel: async (file: File) => {
       const formData = new FormData();
       formData.append('excel', file);
-      
+
       const res = await fetch(`${API_BASE_URL}/api/uploads/excel`, {
         method: 'POST',
         body: formData
@@ -175,11 +178,11 @@ export const api = {
         if (filters?.featureId) params.append('featureId', filters.featureId);
         if (filters?.competitorId) params.append('competitorId', filters.competitorId);
         if (filters?.isOnboarding !== undefined) params.append('isOnboarding', String(filters.isOnboarding));
-        
-        const url = params.toString() 
+
+        const url = params.toString()
           ? `${API_BASE_URL}/api/screenshots?${params}`
           : `${API_BASE_URL}/api/screenshots`;
-        
+
         const res = await fetch(url);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
