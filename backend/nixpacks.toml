@@ -11,4 +11,4 @@ cmds = [
 ]
 
 [start]
-cmd = "node start-railway.js"
+cmd = "npx prisma db push --accept-data-loss && node start-railway.js"
