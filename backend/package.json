@@ -67,7 +67,8 @@
     "tesseract.js": "^5.1.1",
     "winston": "^3.18.3",
     "xlsx": "^0.18.5",
-    "zod": "^4.1.11"
+    "zod": "^4.1.11",
+    "prisma": "^6.16.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -82,7 +83,6 @@
     "eslint": "^9.36.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
-    "prisma": "^6.16.3",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.47.0"
