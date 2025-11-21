@@ -11,4 +11,4 @@ cmds = [
 ]
 
 [start]
-cmd = "(npx --yes prisma db push --accept-data-loss || echo 'Migration failed') && node start-railway.js"
+cmd = "node start-railway.js"
