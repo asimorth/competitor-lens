@@ -11,4 +11,4 @@ cmds = [
 ]
 
 [start]
-cmd = "node start-railway.js"
+cmd = "node dist/server.js"
