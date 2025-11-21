@@ -159,7 +159,7 @@ export const competitorController = {
   // POST /api/competitors
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { name, logoUrl, website, description, industry, region } = req.body;
+      const { name, logoUrl, website, description, industry } = req.body;
 
       if (!name) {
         throw createError('Name is required', 400);
@@ -171,8 +171,7 @@ export const competitorController = {
           logoUrl,
           website,
           description,
-          industry,
-          region
+          industry
         }
       });
 
@@ -190,7 +189,7 @@ export const competitorController = {
   update: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const { name, logoUrl, website, description, industry, region } = req.body;
+      const { name, logoUrl, website, description, industry } = req.body;
 
       const competitor = await prisma.competitor.update({
         where: { id },
@@ -199,8 +198,7 @@ export const competitorController = {
           logoUrl,
           website,
           description,
-          industry,
-          region
+          industry
         }
       });
 
