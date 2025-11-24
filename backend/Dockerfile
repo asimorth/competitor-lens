@@ -12,13 +12,17 @@ COPY backend/package*.json ./
 # Install ALL dependencies (including dev for build)
 RUN npm install
 
-# Copy source code
-COPY backend/ ./
+# Copy Prisma schema first (for generation)
+COPY backend/prisma ./prisma/
 
-# 🎯 SCREENSHOTS - Railway Volume alternatifi
-# Volume yoksa bunlar kullanılır, volume varsa override edilir
-# COPY backend/uploads/screenshots ./uploads/screenshots/
-# NOT: Railway Volume mount edilirse yukarıdaki satırı aktif et
+# Copy source code
+COPY backend/src ./src/
+COPY backend/*.js ./
+COPY backend/tsconfig.json ./
+
+# 🎯 SCREENSHOTS - Railway'e dahil et (616MB, 1320 files)
+# Production'da screenshot'lar Docker image içinde olacak
+COPY backend/uploads/screenshots ./uploads/screenshots/
 
 # Generate Prisma Client
 RUN npx prisma generate
