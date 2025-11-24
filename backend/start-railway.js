@@ -43,6 +43,21 @@ dirs.forEach(dir => {
 });
 
 console.log('\n📦 Using pre-generated Prisma Client from node_modules');
+
+// Run schema migration on startup (Temporary for DB restoration)
+console.log('🔄 Running schema migration...');
+try {
+  const { execSync } = require('child_process');
+  execSync('npx prisma db push --schema=prisma/schema.prisma', {
+    cwd: path.join(__dirname),
+    stdio: 'inherit'
+  });
+  console.log('✅ Schema migration successful');
+} catch (error) {
+  console.error('❌ Schema migration failed:', error.message);
+  // Don't exit, try to start anyway
+}
+
 console.log('ℹ️  Skipping runtime generation to avoid migration triggers');
 
 console.log('\n✅ All checks passed! Starting server...\n');
