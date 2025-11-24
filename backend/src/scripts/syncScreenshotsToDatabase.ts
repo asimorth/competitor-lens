@@ -118,8 +118,26 @@ export async function syncScreenshotsToDatabase(dryRun = false): Promise<SyncSta
 
       // Her klasör için
       for (const folder of structure.folders) {
-        // Feature mapping
-        const featureMapping = mapper.mapFolderToFeature(folder.folderName);
+        // Root klasörü için özel handling - dosya isimlerinden feature çıkar
+        let featureMapping = mapper.mapFolderToFeature(folder.folderName);
+        
+        // Eğer root klasörü (_root) ise, ilk screenshot'ın isminden feature belirle
+        if (folder.folderName === '_root' && folder.screenshots.length > 0) {
+          const firstFile = folder.screenshots[0];
+          const lowerFile = firstFile.toLowerCase();
+          
+          // Dosya isminden feature çıkar
+          if (lowerFile.includes('wallet') || lowerFile.includes('dashboard')) {
+            featureMapping = SMART_MAPPINGS.find(m => m.excelFeatureName === 'Dashboard & Wallet') || null;
+          } else if (lowerFile.includes('kyc')) {
+            featureMapping = SMART_MAPPINGS.find(m => m.excelFeatureName === 'KYC & Identity Verification') || null;
+          } else if (lowerFile.includes('onboard')) {
+            featureMapping = SMART_MAPPINGS.find(m => m.excelFeatureName === 'User Onboarding') || null;
+          } else {
+            // Default: Dashboard & Wallet olarak işaretle
+            featureMapping = SMART_MAPPINGS.find(m => m.excelFeatureName === 'Dashboard & Wallet') || null;
+          }
+        }
         
         if (!featureMapping) {
           console.log(`   ⚠️  No mapping for folder: ${folder.folderName}`);
