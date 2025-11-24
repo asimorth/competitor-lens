@@ -36,16 +36,7 @@ const filterSchema = z.object({
  */
 router.get('/competitors', async (req, res) => {
   try {
-    const { region } = req.query;
-
-    // Build where clause
-    const where: any = {};
-    if (region) {
-      where.region = region;
-    }
-
     const competitors = await prisma.competitor.findMany({
-      where,
       select: {
         id: true,
         name: true,
@@ -53,39 +44,24 @@ router.get('/competitors', async (req, res) => {
         website: true,
         description: true,
         industry: true,
-        region: true,
         _count: {
           select: {
-            features: true
+            features: true,
+            screenshots: true
           }
         }
       },
       orderBy: { name: 'asc' }
     });
 
-    // Get screenshot counts via CompetitorFeature -> CompetitorFeatureScreenshot
-    const competitorsWithCounts = await Promise.all(
-      competitors.map(async (competitor) => {
-        const screenshotCount = await prisma.competitorFeatureScreenshot.count({
-          where: {
-            competitorFeature: {
-              competitorId: competitor.id
-            }
-          }
-        });
-
-        return {
-          ...competitor,
-          featureCount: competitor._count.features,
-          screenshotCount,
-          _count: undefined
-        };
-      })
-    );
-
     res.json({
-      count: competitorsWithCounts.length,
-      competitors: competitorsWithCounts
+      count: competitors.length,
+      competitors: competitors.map(c => ({
+        ...c,
+        featureCount: c._count.features,
+        screenshotCount: c._count.screenshots,
+        _count: undefined
+      }))
     });
 
   } catch (error) {
@@ -418,16 +394,19 @@ router.get('/stats', async (req, res) => {
       competitorCount,
       featureCount,
       screenshotCount,
+      analyzedScreenshotCount,
       implementationCount
     ] = await Promise.all([
       prisma.competitor.count(),
       prisma.feature.count(),
-      prisma.competitorFeatureScreenshot.count(),
+      prisma.screenshot.count({ where: { cdnUrl: { not: null } } }),
+      prisma.screenshotAnalysis.count(),
       prisma.competitorFeature.count({ where: { hasFeature: true } })
     ]);
 
-    // Son güncelleme - CompetitorFeature'dan al
-    const lastUpdate = await prisma.competitorFeature.findFirst({
+    // Son güncelleme
+    const lastUpdate = await prisma.screenshot.findFirst({
+      where: { cdnUrl: { not: null } },
       orderBy: { createdAt: 'desc' },
       select: { createdAt: true }
     });
@@ -436,6 +415,7 @@ router.get('/stats', async (req, res) => {
       competitors: competitorCount,
       features: featureCount,
       screenshots: screenshotCount,
+      analyzedScreenshots: analyzedScreenshotCount,
       implementations: implementationCount,
       lastUpdate: lastUpdate?.createdAt || null,
       apiVersion: '2.0.0'
