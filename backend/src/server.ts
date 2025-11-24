@@ -18,6 +18,9 @@ import screenshotRoutes from './routes/screenshots';
 import onboardingRoutes from './routes/onboarding';
 import syncRoutes from './routes/sync';
 import publicRoutes from './routes/public';
+// Phase 0 & 1 Routes
+import dataQualityRoutes from './routes/dataQuality';
+import intelligenceRoutes from './routes/intelligence';
 
 // Middleware
 import { errorHandler } from './middleware/errorHandler';
@@ -121,11 +124,9 @@ app.use('/api/sync', syncRoutes);
 app.use('/api/public', publicRoutes);
 
 // Phase 0: Data Quality Routes
-import dataQualityRoutes from './routes/dataQuality';
 app.use('/api/data-quality', dataQualityRoutes);
 
 // Phase 1: Intelligence Routes
-import intelligenceRoutes from './routes/intelligence';
 app.use('/api/intelligence', intelligenceRoutes);
 
 // Error handling
