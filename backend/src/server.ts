@@ -5,6 +5,11 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import path from 'path';
 
+// BigInt serialization fix
+(BigInt.prototype as any).toJSON = function() {
+  return this.toString();
+};
+
 // Routes
 import competitorRoutes from './routes/competitors';
 import featureRoutes from './routes/features';
