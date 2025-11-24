@@ -48,7 +48,7 @@ console.log('\n📦 Using pre-generated Prisma Client from node_modules');
 console.log('🔄 Running schema migration...');
 try {
   const { execSync } = require('child_process');
-  execSync('npx prisma db push --schema=prisma/schema.prisma', {
+  execSync('npx prisma db push --schema=prisma/schema.prisma --accept-data-loss', {
     cwd: path.join(__dirname),
     stdio: 'inherit'
   });
