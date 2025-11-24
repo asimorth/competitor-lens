@@ -7,9 +7,11 @@ cmds = ["npm install --omit=dev --legacy-peer-deps"]
 [phases.build]
 cmds = [
   "npx prisma generate",
-  "npx tsc",
-  "npx prisma db push --accept-data-loss --skip-generate || echo 'DB push skipped'"
+  "npx tsc"
 ]
+
+[start]
+cmd = "npx prisma db push --skip-generate --accept-data-loss || true && node dist/server.js"
 
 [start]
 cmd = "node dist/server.js"
