@@ -91,18 +91,25 @@ export async function syncScreenshotsToDatabase(dryRun = false): Promise<SyncSta
     for (const structure of structures) {
       console.log(`Processing: ${structure.competitorName}`);
       
-      // Competitor'ı bul
-      const competitor = await prisma.competitor.findFirst({
-        where: { 
-          name: {
-            contains: structure.competitorName,
-            mode: 'insensitive'
-          }
-        }
+      // Competitor'ı bul - Smart matching
+      const normalizedName = structure.competitorName
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/[türk]/gi, 'turk'); // Türk → turk
+      
+      const allCompetitors = await prisma.competitor.findMany();
+      const competitor = allCompetitors.find(c => {
+        const dbName = c.name
+          .toLowerCase()
+          .replace(/\s+/g, '')
+          .replace(/[türk]/gi, 'turk');
+        
+        return dbName.includes(normalizedName) || normalizedName.includes(dbName);
       });
 
       if (!competitor) {
         console.log(`   ⚠️  Competitor not found in database: ${structure.competitorName}`);
+        console.log(`      Tried matching with: ${normalizedName}`);
         stats.errors++;
         continue;
       }
