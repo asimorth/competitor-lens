@@ -30,6 +30,8 @@
     "cleanup:duplicates": "tsx src/scripts/cleanup-duplicates.ts",
     "sync:matrix": "tsx src/scripts/sync-matrix-to-db.ts",
     "sync:screenshots": "tsx src/scripts/sync-screenshots-to-db.ts",
+    "sync:screenshots:new": "tsx src/scripts/syncScreenshotsToDatabase.ts",
+    "sync:screenshots:dry": "tsx src/scripts/syncScreenshotsToDatabase.ts --dry-run",
     "sync:all": "npm run cleanup:duplicates && npm run sync:matrix && npm run sync:screenshots",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"

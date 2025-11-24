@@ -6,6 +6,7 @@ import { PrismaClient } from '@prisma/client';
 import * as XLSX from 'xlsx';
 import * as path from 'path';
 import * as fs from 'fs';
+import { syncScreenshotsToDatabase } from '../scripts/syncScreenshotsToDatabase';
 
 const router = Router();
 const syncService = new SyncService();
@@ -25,6 +26,50 @@ const resolveConflictSchema = z.object({
     keepServerPath: z.boolean().optional(),
     updateHash: z.boolean().optional()
   }).optional()
+});
+
+/**
+ * POST /api/sync/screenshots
+ * Screenshot'ları file system'den database'e senkronize et
+ * Admin only endpoint
+ */
+router.post('/screenshots', async (req, res) => {
+  try {
+    // Admin authentication
+    const adminSecret = req.headers['x-admin-secret'];
+    
+    if (!adminSecret || adminSecret !== process.env.JWT_SECRET) {
+      return res.status(401).json({
+        error: 'Unauthorized',
+        message: 'Invalid or missing admin secret'
+      });
+    }
+
+    // Dry run check
+    const dryRun = req.query.dryRun === 'true';
+
+    console.log('🚀 Starting screenshot sync via API...');
+    console.log(`Mode: ${dryRun ? 'DRY RUN' : 'LIVE'}\n`);
+
+    // Run sync
+    const stats = await syncScreenshotsToDatabase(dryRun);
+
+    res.json({
+      success: true,
+      message: dryRun 
+        ? 'Dry run completed - no changes were made'
+        : 'Screenshot sync completed successfully',
+      stats,
+      dryRun
+    });
+
+  } catch (error) {
+    console.error('Screenshot sync error:', error);
+    res.status(500).json({
+      error: 'Screenshot sync failed',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
 });
 
 /**
