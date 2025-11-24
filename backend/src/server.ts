@@ -131,6 +131,48 @@ app.use((req, res) => {
   });
 });
 
+// Temporary Restore Endpoint
+app.post('/api/admin/restore', async (req, res) => {
+  const secret = req.headers['x-admin-secret'];
+  if (secret !== process.env.JWT_SECRET) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  console.log('🚀 Starting data restoration via API...');
+  try {
+    const { Client } = require('pg');
+    const fs = require('fs');
+    // Using the 'path' imported at the top of the file
+    // const path = require('path'); 
+
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+    });
+
+    await client.connect();
+
+    // Path to data_dump.sql (in root, so ../.. from dist/server.js or src/server.ts)
+    // In Docker/Railway, app is at /app
+    // server is at /app/dist/server.js
+    // dump is at /app/data_dump.sql
+    const dumpPath = path.join(process.cwd(), 'data_dump.sql');
+
+    if (!fs.existsSync(dumpPath)) {
+      throw new Error(`Dump file not found at ${dumpPath}`);
+    }
+
+    const sql = fs.readFileSync(dumpPath, 'utf8');
+    await client.query(sql);
+    await client.end();
+
+    console.log('✅ Data restored successfully via API');
+    res.json({ success: true, message: 'Data restored successfully' });
+  } catch (error) {
+    console.error('❌ Restore failed:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Environment: ${process.env.NODE_ENV}`);
