@@ -138,12 +138,32 @@ app.post('/api/admin/restore', async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  console.log('🚀 Starting data restoration via API...');
+  const mode = req.query.mode || 'data'; // 'schema' or 'data'
+
+  console.log(`🚀 Starting restoration (${mode}) via API...`);
+
   try {
+    if (mode === 'schema') {
+      const { exec } = require('child_process');
+      const util = require('util');
+      const execAsync = util.promisify(exec);
+
+      // Run prisma db push
+      // We use the local node_modules binary to be safe
+      const prismaCmd = './node_modules/.bin/prisma db push --schema=prisma/schema.prisma --accept-data-loss';
+      console.log('Running:', prismaCmd);
+
+      const { stdout, stderr } = await execAsync(prismaCmd, { cwd: process.cwd() });
+      console.log('Schema Push Output:', stdout);
+      if (stderr) console.error('Schema Push Error:', stderr);
+
+      return res.json({ success: true, message: 'Schema pushed successfully', output: stdout });
+    }
+
+    // Data Restore Mode
     const { Client } = require('pg');
     const fs = require('fs');
-    // Using the 'path' imported at the top of the file
-    // const path = require('path'); 
+    // path is already imported
 
     const client = new Client({
       connectionString: process.env.DATABASE_URL,
@@ -151,10 +171,6 @@ app.post('/api/admin/restore', async (req, res) => {
 
     await client.connect();
 
-    // Path to data_dump.sql (in root, so ../.. from dist/server.js or src/server.ts)
-    // In Docker/Railway, app is at /app
-    // server is at /app/dist/server.js
-    // dump is at /app/data_dump.sql
     const dumpPath = path.join(process.cwd(), 'data_dump.sql');
 
     if (!fs.existsSync(dumpPath)) {
@@ -169,7 +185,7 @@ app.post('/api/admin/restore', async (req, res) => {
     res.json({ success: true, message: 'Data restored successfully' });
   } catch (error) {
     console.error('❌ Restore failed:', error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message, stack: error.stack });
   }
 });
 
