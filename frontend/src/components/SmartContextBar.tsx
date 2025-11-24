@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { PersonaToggle } from './PersonaToggle';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -17,6 +18,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
 interface Breadcrumb {
   label: string;
