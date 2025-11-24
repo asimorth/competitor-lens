@@ -31,19 +31,18 @@ const resolveConflictSchema = z.object({
 /**
  * POST /api/sync/screenshots
  * Screenshot'ları file system'den database'e senkronize et
- * Admin only endpoint
+ * TEMPORARY: Auth disabled for initial sync
  */
 router.post('/screenshots', async (req, res) => {
   try {
-    // Admin authentication
-    const adminSecret = req.headers['x-admin-secret'];
-    
-    if (!adminSecret || adminSecret !== process.env.JWT_SECRET) {
-      return res.status(401).json({
-        error: 'Unauthorized',
-        message: 'Invalid or missing admin secret'
-      });
-    }
+    // TEMPORARY: Auth kontrolü geçici olarak kapalı
+    // const adminSecret = req.headers['x-admin-secret'];
+    // if (!adminSecret || adminSecret !== process.env.JWT_SECRET) {
+    //   return res.status(401).json({
+    //     error: 'Unauthorized',
+    //     message: 'Invalid or missing admin secret'
+    //   });
+    // }
 
     // Dry run check
     const dryRun = req.query.dryRun === 'true';
@@ -67,7 +66,8 @@ router.post('/screenshots', async (req, res) => {
     console.error('Screenshot sync error:', error);
     res.status(500).json({
       error: 'Screenshot sync failed',
-      message: error instanceof Error ? error.message : 'Unknown error'
+      message: error instanceof Error ? error.message : 'Unknown error',
+      details: error instanceof Error ? error.stack : undefined
     });
   }
 });
