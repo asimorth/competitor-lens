@@ -1,125 +1,165 @@
-# CompetitorLens v2
+# 🎯 Competitor Lens - Smart Multi-Persona Platform
 
-A comprehensive competitor analysis platform for comparing Stablex with other cryptocurrency exchanges in Turkey and globally.
+Kripto borsa rakip analizi için data-driven, AI-powered platform. 3 farklı kullanıcı tipi için optimize edilmiş UX.
 
-## Features
+## 🚀 Features
 
-- 📊 **Feature Matrix**: Compare features across 21+ exchanges
-- 📸 **Screenshot Gallery**: Visual evidence with 800+ categorized screenshots
-- 🏢 **Exchange Profiles**: Detailed view of each competitor
-- 📱 **Mobile Responsive**: Optimized for all devices
-- 🎯 **TR Market Focus**: Special comparison view for Turkish exchanges
-- 🔍 **Smart Search**: Find features and exchanges quickly
+### Multi-Persona Architecture
+- **Product Managers:** Strategic analysis, opportunity scoring, gap analysis
+- **Product Designers:** Screenshot quality, UI patterns, visual benchmarks  
+- **Executives:** High-level metrics, positioning, strategic insights
 
-## Tech Stack
+### Intelligent Data Foundation
+- AI-powered screenshot assignment
+- Quality validation & scoring
+- Automated feature detection
+- Confidence-based analysis
+
+### Smart UX
+- Persona-aware views (toggle between PM/Designer/Executive)
+- Context-aware breadcrumbs & navigation
+- Data quality indicators
+- Actionable insights & recommendations
+
+---
+
+## 📚 Documentation
+
+### Current (Active)
+- **[Smart Frontend Implementation](docs/current/SMART_FRONTEND_IMPLEMENTATION.md)** - Multi-persona UX details
+- **[Deployment Guide](docs/current/DEPLOYMENT_GUIDE_SMART_FRONTEND.md)** - Production deployment
+- **[Migration Instructions](docs/current/MIGRATION_INSTRUCTIONS.md)** - Database migrations
+- **[Local Test Guide](docs/current/LOCAL_TEST_GUIDE.md)** - Local development
+- **[Railway Connect Guide](docs/current/RAILWAY_CONNECT_GUIDE.md)** - Railway connection
+- **[Screenshot Fix](docs/current/SCREENSHOT_FIX_COMPLETE.md)** - Screenshot serving solution
+- **[Quick Fix UX](docs/current/QUICK_FIX_UX.md)** - UX troubleshooting
+- **[Final Status](docs/current/FINAL_DEPLOYMENT_STATUS.md)** - Current deployment status
+
+### Archive
+Historical documentation in `docs/archive/` (deployment history, old fixes, setup notes)
+
+---
+
+## 🏗️ Tech Stack
 
 ### Backend
-- Node.js + Express.js
-- TypeScript
-- Prisma ORM + PostgreSQL
-- Redis + BullMQ (job queues)
-- OpenAI API (screenshot analysis)
+- **Runtime:** Node.js 20 + TypeScript
+- **Framework:** Express.js
+- **Database:** PostgreSQL (Railway)
+- **ORM:** Prisma with Accelerate
+- **AI:** OpenAI + Tesseract OCR
+- **Deployment:** Railway (Docker)
 
 ### Frontend
-- Next.js 15 (App Router)
-- React 18
-- Tailwind CSS
-- Shadcn/ui Components
-- TypeScript
+- **Framework:** Next.js 15 (React 19)
+- **Styling:** Tailwind CSS + shadcn/ui
+- **State:** React Context (PersonaContext)
+- **Deployment:** Vercel
 
-## Installation
+---
 
-### Prerequisites
-- Node.js 18+
-- PostgreSQL 14+
-- Redis (optional for production)
+## 🚀 Quick Start
 
-### Setup
+### Local Development
 
-1. Clone the repository:
 ```bash
-git clone https://github.com/[your-username]/competitor-lens.git
+# Clone repository
+git clone https://github.com/asimorth/competitor-lens.git
 cd competitor-lens
-```
 
-2. Install dependencies:
-```bash
 # Backend
 cd backend
 npm install
-
-# Frontend
-cd ../frontend
-npm install
-```
-
-3. Set up environment variables:
-
-Backend (.env):
-```env
-DATABASE_URL="postgresql://username@localhost:5432/competitor_lens"
-OPENAI_API_KEY="your-openai-api-key"
-PORT=3001
-NODE_ENV=development
-```
-
-Frontend (.env.local):
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3001
-```
-
-4. Set up database:
-```bash
-cd backend
-npx prisma migrate deploy
-npm run import:excel
-npm run import:screenshots:smart
-```
-
-5. Start development servers:
-```bash
-# Terminal 1 - Backend
-cd backend
 npm run dev
 
-# Terminal 2 - Frontend
+# Frontend (new terminal)
 cd frontend
+npm install
 npm run dev
 ```
 
-Visit http://localhost:3000
+**Frontend:** http://localhost:3000 (or 3001)
+**Backend:** http://localhost:3002
 
-## Deployment
+### Environment Variables
 
-### Using Docker (Recommended)
 ```bash
-docker-compose -f docker-compose.prod.yml up -d
+# Backend (.env)
+DATABASE_URL="your-postgres-url"
+OPENAI_API_KEY="your-key"
+
+# Frontend (.env.local)
+NEXT_PUBLIC_API_URL="http://localhost:3002"
 ```
 
-### Manual Deployment
-See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for detailed instructions.
+---
 
-## Project Structure
+## 📊 Production URLs
 
-```
-competitor-lens/
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   └── scripts/
-│   ├── prisma/
-│   └── uploads/
-├── frontend/
-│   ├── src/
-│   │   ├── app/
-│   │   ├── components/
-│   │   └── lib/
-│   └── public/
-└── docker/
-```
+- **Frontend:** https://competitor-lens-prod.vercel.app
+- **Backend API:** https://competitor-lens-production.up.railway.app
+- **Health Check:** https://competitor-lens-production.up.railway.app/health
 
-## License
+---
 
-Private - All rights reserved# Trigger Railway redeploy
+## 🎯 Multi-Persona Usage
+
+### As Product Manager
+1. Navigate to feature/competitor pages
+2. Select "Product Manager" from persona toggle (top-right)
+3. View: Strategic analysis, opportunity scores, gap analysis
+4. Get: Actionable recommendations, roadmap suggestions
+
+### As Product Designer
+1. Select "Product Designer" persona
+2. View: Screenshot galleries, quality metrics, UI patterns
+3. Get: Visual benchmarks, coverage gaps, design recommendations
+
+### As Executive
+1. Select "Executive" persona
+2. View: High-level metrics, market positioning
+3. Get: One-liner insights, strategic actions, risk assessment
+
+---
+
+## 🔧 Maintenance
+
+### Database Migrations
+See: [Migration Instructions](docs/current/MIGRATION_INSTRUCTIONS.md)
+
+### Deployment
+See: [Deployment Guide](docs/current/DEPLOYMENT_GUIDE_SMART_FRONTEND.md)
+
+### Troubleshooting
+See: [Quick Fix UX](docs/current/QUICK_FIX_UX.md)
+
+---
+
+## 📈 Project Stats
+
+- **Competitors:** 20 exchanges (TR + Global)
+- **Features:** 44 tracked features
+- **Screenshots:** 1,320 (851 in production DB)
+- **Coverage:** ~64% market average
+- **Code:** ~15,000 LOC (Backend + Frontend)
+- **API Endpoints:** 50+ REST endpoints
+
+---
+
+## 🤝 Contributing
+
+1. Create feature branch
+2. Implement changes
+3. Test locally
+4. Submit PR to `main`
+5. Auto-deploy on merge
+
+---
+
+## 📝 Version History
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
+
+---
+
+**Built with ❤️ for competitive intelligence**
