@@ -36,6 +36,11 @@ export default function CompetitorsPage() {
     try {
       const res = await api.competitors.getAll(selectedRegion);
       const competitors = res.data || [];
+      
+      // Region stats güncelle
+      if (res.meta?.byRegion) {
+        setRegionStats(res.meta.byRegion);
+      }
 
       // Her borsa için coverage hesapla
       const enrichedCompetitors = competitors.map((comp: any) => {

@@ -170,6 +170,19 @@
     .safe-area-bottom {
       padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
     }
+    .pt-safe {
+      padding-top: max(env(safe-area-inset-top), 0px);
+    }
+    .pb-safe {
+      padding-bottom: max(env(safe-area-inset-bottom), 0px);
+    }
+  }
+  
+  /* Mobile header height calculation */
+  @supports (height: max(0px)) {
+    .mobile-header-height {
+      height: calc(56px + max(env(safe-area-inset-top), 0px));
+    }
   }
 }
 

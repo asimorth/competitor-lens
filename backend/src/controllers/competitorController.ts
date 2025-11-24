@@ -44,9 +44,10 @@ export const competitorController = {
         }
       });
 
-      // Group competitors by region for summary
+      // Group competitors by name-based region detection (smart fallback)
+      const trNames = ['BTCTurk', 'BinanceTR', 'OKX TR', 'Garanti Kripto', 'Paribu', 'Bitexen', 'GateTR', 'Bilira', 'Kuantist', 'BTC Türk', 'BTC Turk'];
       const byRegion = competitors.reduce((acc, c) => {
-        const reg = c.region || 'Unknown';
+        const reg = trNames.includes(c.name) ? 'TR' : 'Global';
         if (!acc[reg]) acc[reg] = [];
         acc[reg].push(c);
         return acc;
@@ -158,7 +159,7 @@ export const competitorController = {
   // POST /api/competitors
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { name, logoUrl, website, description, industry, region } = req.body;
+      const { name, logoUrl, website, description, industry } = req.body;
 
       if (!name) {
         throw createError('Name is required', 400);
@@ -170,8 +171,7 @@ export const competitorController = {
           logoUrl,
           website,
           description,
-          industry,
-          region
+          industry
         }
       });
 
@@ -189,7 +189,7 @@ export const competitorController = {
   update: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const { name, logoUrl, website, description, industry, region } = req.body;
+      const { name, logoUrl, website, description, industry } = req.body;
 
       const competitor = await prisma.competitor.update({
         where: { id },
@@ -198,8 +198,7 @@ export const competitorController = {
           logoUrl,
           website,
           description,
-          industry,
-          region
+          industry
         }
       });
 

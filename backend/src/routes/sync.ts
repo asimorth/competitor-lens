@@ -424,13 +424,10 @@ router.post('/matrix', async (req, res) => {
     // Sync competitors
     const competitorMap = new Map<string, string>();
     for (const name of competitorNames) {
-      const region = getRegion(name);
       let competitor = await prisma.competitor.findUnique({ where: { name } });
 
       if (!competitor) {
-        competitor = await prisma.competitor.create({ data: { name, region } });
-      } else if (!competitor.region) {
-        await prisma.competitor.update({ where: { id: competitor.id }, data: { region } });
+        competitor = await prisma.competitor.create({ data: { name } });
       }
       competitorMap.set(name, competitor.id);
     }

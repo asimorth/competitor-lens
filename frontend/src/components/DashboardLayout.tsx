@@ -170,7 +170,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="lg:pl-72">
         <main className={cn(
           "min-h-screen pb-20 lg:pb-6", // Extra bottom padding for mobile nav
-          "pt-14 lg:pt-0", // Compact mobile header
+          "pt-[72px] lg:pt-0", // Mobile header + safe area space
           "px-3 py-4 md:px-4 md:py-6 lg:px-8"
         )}>
           <div className="max-w-7xl mx-auto">
