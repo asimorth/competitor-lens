@@ -43,21 +43,6 @@ dirs.forEach(dir => {
 });
 
 console.log('\n📦 Using pre-generated Prisma Client from node_modules');
-console.log('ℹ️  Skipping runtime generation to avoid migration triggers');
-
-// Apply database schema if needed
-console.log('\n🔄 Applying database schema...');
-const { execSync } = require('child_process');
-try {
-  execSync('npx prisma db push --skip-generate --accept-data-loss', { 
-    stdio: 'inherit',
-    cwd: __dirname 
-  });
-  console.log('✅ Database schema applied');
-} catch (error) {
-  console.warn('⚠️  DB push failed or skipped:', error.message);
-  console.log('   Continuing with server startup...');
-}
 
 console.log('\n✅ All checks passed! Starting server...\n');
 console.log('='.repeat(50));
