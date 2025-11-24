@@ -6,7 +6,8 @@ import {
   Palette,
   Image as ImageIcon,
   Eye,
-  CheckCircle
+  CheckCircle,
+  XCircle
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getScreenshotUrl } from '@/lib/screenshot-utils';
