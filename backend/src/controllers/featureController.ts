@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { createError } from '../middleware/errorHandler';
 import { prisma } from '../lib/db';
+import { getFeatureScreenshotMapper } from '../services/featureScreenshotMapper';
 
 export const featureController = {
   // GET /api/features
@@ -210,6 +211,158 @@ export const featureController = {
         count: competitors.length
       });
     } catch (error) {
+      next(error);
+    }
+  },
+
+  // GET /api/features/simple
+  // Basit feature listesi + screenshot stats
+  getSimpleList: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const mapper = getFeatureScreenshotMapper();
+      const screenshotStats = await mapper.getAllFeaturesWithScreenshotStats();
+
+      // Feature'ları database'den getir
+      const features = await prisma.feature.findMany({
+        include: {
+          competitors: {
+            include: {
+              competitor: {
+                select: {
+                  id: true,
+                  name: true,
+                  region: true
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Feature'ları enrich et
+      const enrichedFeatures = features.map(feature => {
+        const screenshotStat = screenshotStats.find(s => s.featureName === feature.name);
+        const trCompetitors = feature.competitors.filter(c => c.competitor.region === 'TR' && c.hasFeature);
+        const globalCompetitors = feature.competitors.filter(c => c.competitor.region === 'Global' && c.hasFeature);
+
+        return {
+          id: feature.id,
+          name: feature.name,
+          category: feature.category,
+          description: feature.description,
+          trCoverage: trCompetitors.length,
+          globalCoverage: globalCompetitors.length,
+          screenshotCount: screenshotStat?.totalScreenshots || 0,
+          hasScreenshots: (screenshotStat?.totalScreenshots || 0) > 0
+        };
+      });
+
+      res.json({
+        success: true,
+        data: enrichedFeatures,
+        count: enrichedFeatures.length
+      });
+    } catch (error) {
+      console.error('Simple list error:', error);
+      next(error);
+    }
+  },
+
+  // GET /api/features/:id/detail
+  // Feature detayı + screenshot'lar + coverage
+  getDetailedById: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { region } = req.query; // Optional: TR, Global
+
+      const feature = await prisma.feature.findUnique({
+        where: { id },
+        include: {
+          competitors: {
+            include: {
+              competitor: {
+                select: {
+                  id: true,
+                  name: true,
+                  region: true,
+                  logoUrl: true
+                }
+              }
+            }
+          }
+        }
+      });
+
+      if (!feature) {
+        throw createError('Feature not found', 404);
+      }
+
+      const mapper = getFeatureScreenshotMapper();
+      const coverage = await mapper.getFeatureCoverage(feature.name);
+
+      // Region filter uygula
+      let competitorsWithScreenshots = coverage.competitors;
+      if (region) {
+        competitorsWithScreenshots = competitorsWithScreenshots.filter(
+          c => c.region === region
+        );
+      }
+
+      // Screenshot URL'lerini thumbnail'lar ile enrich et
+      const enrichedCompetitors = competitorsWithScreenshots.map(comp => ({
+        ...comp,
+        screenshots: comp.screenshots.map(url => ({
+          url,
+          thumbnailUrl: url, // TODO: Generate actual thumbnails
+          path: url
+        }))
+      }));
+
+      // Coverage hesapla
+      const allCompetitors = await prisma.competitor.findMany({
+        select: { id: true, region: true }
+      });
+
+      const trTotal = allCompetitors.filter(c => c.region === 'TR').length;
+      const globalTotal = allCompetitors.filter(c => c.region === 'Global').length;
+
+      const coverageStats = {
+        tr: coverage.coverageByRegion.TR,
+        trTotal,
+        global: coverage.coverageByRegion.Global,
+        globalTotal,
+        total: coverage.competitors.length
+      };
+
+      // Screenshot stats by region
+      const screenshotStats = {
+        total: coverage.totalScreenshots,
+        byRegion: {
+          TR: coverage.competitors
+            .filter(c => c.region === 'TR')
+            .reduce((sum, c) => sum + c.screenshotCount, 0),
+          Global: coverage.competitors
+            .filter(c => c.region === 'Global')
+            .reduce((sum, c) => sum + c.screenshotCount, 0)
+        }
+      };
+
+      res.json({
+        success: true,
+        data: {
+          feature: {
+            id: feature.id,
+            name: feature.name,
+            category: feature.category,
+            description: feature.description
+          },
+          coverage: coverageStats,
+          competitors: enrichedCompetitors,
+          screenshotStats
+        }
+      });
+    } catch (error) {
+      console.error('Detailed feature error:', error);
       next(error);
     }
   }

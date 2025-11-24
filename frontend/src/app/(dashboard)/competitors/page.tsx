@@ -14,8 +14,15 @@ import {
   Grid3X3,
   RefreshCw,
   Image as ImageIcon,
-  Eye
+  Eye,
+  MoreVertical
 } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import { api } from '@/lib/api';
 import RegionFilter from '@/components/RegionFilter';
@@ -103,56 +110,105 @@ export default function CompetitorsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Borsa Monitoring</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
-            {exchanges.length} kripto borsasının detaylı analizi
+    <div className="space-y-4 md:space-y-6">
+      {/* Page Header - Mobile Optimized */}
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <h1 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">
+            Rakipler
+          </h1>
+          <p className="hidden md:block text-gray-600 dark:text-gray-400 text-sm mt-1">
+            {exchanges.length} kripto borsası
           </p>
         </div>
-        <div className="flex items-center space-x-3">
-          <Button variant="outline" size="sm" onClick={loadCompetitors}>
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Yenile
+        
+        {/* Actions - Mobile: Icon only, Desktop: With text */}
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={loadCompetitors}
+            className="touch-target flex-shrink-0"
+            title="Yenile"
+          >
+            <RefreshCw className="h-5 w-5" />
           </Button>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/matrix">
-              <Grid3X3 className="h-4 w-4 mr-2" />
-              Matrix Görünümü
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/onboarding">
-              <Eye className="h-4 w-4 mr-2" />
-              KYC Flows
-            </Link>
-          </Button>
+          
+          {/* More Menu - Combines Matrix + KYC */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="touch-target flex-shrink-0"
+                title="Diğer"
+              >
+                <MoreVertical className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <Link href="/matrix" className="cursor-pointer">
+                  <Grid3X3 className="h-4 w-4 mr-2" />
+                  Matrix Görünümü
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/onboarding" className="cursor-pointer">
+                  <Eye className="h-4 w-4 mr-2" />
+                  KYC Flows
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
-      {/* Region Filter */}
-      <RegionFilter
-        currentRegion={selectedRegion}
-        onChange={setSelectedRegion}
-        regions={regionFilterOptions}
-      />
+      {/* Region Filter - Compact Tabs */}
+      <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+        <Button
+          variant={selectedRegion === null ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setSelectedRegion(null)}
+          className="whitespace-nowrap flex-shrink-0 touch-target"
+        >
+          Tümü {Object.values(regionStats).reduce((a, b) => a + b, 0) > 0 && `(${Object.values(regionStats).reduce((a, b) => a + b, 0)})`}
+        </Button>
+        <Button
+          variant={selectedRegion === 'TR' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setSelectedRegion('TR')}
+          className="whitespace-nowrap flex-shrink-0 touch-target"
+        >
+          🇹🇷 TR {regionStats['TR'] > 0 && `(${regionStats['TR']})`}
+        </Button>
+        <Button
+          variant={selectedRegion === 'Global' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setSelectedRegion('Global')}
+          className="whitespace-nowrap flex-shrink-0 touch-target"
+        >
+          🌍 Global {regionStats['Global'] > 0 && `(${regionStats['Global']})`}
+        </Button>
+      </div>
 
-      {/* Search and Stats */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <Search className="h-4 w-4 text-gray-400" />
-          <Input
-            placeholder="Borsa ara..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-64"
-          />
-        </div>
-        <div className="text-sm text-gray-600 dark:text-gray-400">
-          {filteredExchanges.length} / {exchanges.length} borsa
-        </div>
+      {/* Search - Full Width */}
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+        <Input
+          placeholder="Borsa ara..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="pl-9 w-full touch-target"
+        />
+        {searchTerm && (
+          <button
+            onClick={() => setSearchTerm('')}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500 hover:text-gray-700"
+          >
+            Temizle
+          </button>
+        )}
       </div>
 
       {/* Exchanges Grid */}

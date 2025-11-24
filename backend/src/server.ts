@@ -23,7 +23,7 @@ import screenshotRoutes from './routes/screenshots';
 import onboardingRoutes from './routes/onboarding';
 import syncRoutes from './routes/sync';
 import publicRoutes from './routes/public';
-// Phase 0 Routes
+// Phase 0 & 1 Routes
 import dataQualityRoutes from './routes/dataQuality';
 
 // Middleware

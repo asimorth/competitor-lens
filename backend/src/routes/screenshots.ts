@@ -144,7 +144,8 @@ router.post('/', upload.single('screenshot'), async (req, res) => {
 const querySchema = z.object({
   featureId: z.string().uuid().optional(),
   competitorId: z.string().uuid().optional(),
-  isOnboarding: z.string().optional().transform(val => val === 'true')
+  isOnboarding: z.string().optional().transform(val => val === 'true'),
+  region: z.string().optional() // YENİ: TR, Global filter
 });
 
 /**
@@ -153,7 +154,7 @@ const querySchema = z.object({
  */
 router.get('/', async (req, res) => {
   try {
-    const { featureId, competitorId, isOnboarding } = querySchema.parse(req.query);
+    const { featureId, competitorId, isOnboarding, region } = querySchema.parse(req.query);
 
     const where: any = {};
 
@@ -169,6 +170,13 @@ router.get('/', async (req, res) => {
       where.isOnboarding = isOnboarding;
     }
 
+    // YENİ: Region filter
+    if (region) {
+      where.competitor = {
+        region: region
+      };
+    }
+
     const screenshots = await prisma.screenshot.findMany({
       where,
       include: {
@@ -176,7 +184,8 @@ router.get('/', async (req, res) => {
           select: {
             id: true,
             name: true,
-            logoUrl: true
+            logoUrl: true,
+            region: true // YENİ: Region bilgisi ekle
           }
         },
         feature: {
@@ -308,6 +317,7 @@ router.get('/competitor/:competitorId', async (req, res) => {
 router.get('/feature/:featureId', async (req, res) => {
   try {
     const { featureId } = req.params;
+    const { region } = req.query; // YENİ: Region filter
 
     // Feature var mı kontrol et
     const feature = await prisma.feature.findUnique({
@@ -321,16 +331,24 @@ router.get('/feature/:featureId', async (req, res) => {
     }
 
     // Screenshot'ları getir
+    const where: any = { featureId };
+    
+    // YENİ: Region filter
+    if (region && typeof region === 'string') {
+      where.competitor = {
+        region: region
+      };
+    }
+
     const screenshots = await prisma.screenshot.findMany({
-      where: {
-        featureId
-      },
+      where,
       include: {
         competitor: {
           select: {
             id: true,
             name: true,
-            logoUrl: true
+            logoUrl: true,
+            region: true // YENİ: Region bilgisi ekle
           }
         },
         analyses: {

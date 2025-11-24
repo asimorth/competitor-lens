@@ -13,8 +13,16 @@ import {
   Users,
   Image as ImageIcon,
   Eye,
-  RefreshCw
+  RefreshCw,
+  MoreVertical,
+  Grid3X3
 } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import { api } from '@/lib/api';
 
@@ -100,56 +108,87 @@ export default function FeaturesPage() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Feature Monitoring</h1>
-          <p className="text-gray-600 mt-1">
-            {features.length} feature'ın {features[0]?.totalExchanges || 19} borsa genelindeki durumu
+    <div className="space-y-4 md:space-y-6">
+      {/* Page Header - Mobile Optimized */}
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <h1 className="text-xl md:text-3xl font-bold text-gray-900">
+            Özellikler
+          </h1>
+          <p className="hidden md:block text-gray-600 text-sm mt-1">
+            {features.length} feature analizi
           </p>
         </div>
-        <div className="flex items-center space-x-3">
-          <Button variant="outline" size="sm" onClick={loadFeatures}>
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Yenile
+        
+        {/* Actions - Mobile: Icon only */}
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={loadFeatures}
+            className="touch-target flex-shrink-0"
+            title="Yenile"
+          >
+            <RefreshCw className="h-5 w-5" />
           </Button>
-          <Button asChild size="sm">
-            <Link href="/matrix">
-              <Eye className="h-4 w-4 mr-2" />
-              Matrix'te Görüntüle
-            </Link>
-          </Button>
+          
+          {/* More Menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="touch-target flex-shrink-0"
+                title="Diğer"
+              >
+                <MoreVertical className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <Link href="/matrix" className="cursor-pointer">
+                  <Grid3X3 className="h-4 w-4 mr-2" />
+                  Matrix Görünümü
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <Search className="h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Feature ara..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-64"
-            />
-          </div>
-          <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-            <SelectTrigger className="w-48">
-              <SelectValue placeholder="Kategori seç" />
-            </SelectTrigger>
-            <SelectContent>
-              {categories.map(category => (
-                <SelectItem key={category} value={category}>
-                  {category === 'all' ? 'Tüm Kategoriler' : category}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="text-sm text-gray-600">
-          {filteredFeatures.length} / {features.length} feature
+      {/* Filters - Mobile Optimized */}
+      <div className="space-y-3">
+        {/* Category Filter - Compact */}
+        <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+          <SelectTrigger className="w-full md:w-48">
+            <SelectValue placeholder="Kategori seç" />
+          </SelectTrigger>
+          <SelectContent>
+            {categories.map(category => (
+              <SelectItem key={category} value={category}>
+                {category === 'all' ? 'Tüm Kategoriler' : category}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Search - Full Width */}
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+          <Input
+            placeholder="Feature ara..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-9 w-full touch-target"
+          />
+          {searchTerm && (
+            <button
+              onClick={() => setSearchTerm('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500 hover:text-gray-700"
+            >
+              Temizle
+            </button>
+          )}
         </div>
       </div>
 

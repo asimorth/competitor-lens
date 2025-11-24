@@ -1,0 +1,240 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { 
+  Search,
+  RefreshCw,
+  Sparkles,
+  Filter as FilterIcon
+} from 'lucide-react';
+import { api } from '@/lib/api';
+import { FeatureCard, FeatureCardData } from '@/components/FeatureCard';
+import { cn } from '@/lib/utils';
+
+type RegionFilter = 'all' | 'tr' | 'global';
+
+export default function FeaturesSimplePage() {
+  const [features, setFeatures] = useState<FeatureCardData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [regionFilter, setRegionFilter] = useState<RegionFilter>('tr');
+
+  useEffect(() => {
+    loadFeatures();
+  }, []);
+
+  const loadFeatures = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/features/simple`);
+      const data = await response.json();
+      
+      if (data.success && data.data) {
+        setFeatures(data.data);
+      }
+    } catch (error) {
+      console.error('Failed to load features:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Filter features
+  const filteredFeatures = features.filter(feature => {
+    // Search filter
+    const matchesSearch = 
+      feature.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (feature.category && feature.category.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (feature.description && feature.description.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    if (!matchesSearch) return false;
+
+    // Region filter
+    if (regionFilter === 'tr') {
+      return feature.trCoverage > 0 || feature.hasScreenshots;
+    } else if (regionFilter === 'global') {
+      return feature.globalCoverage > 0;
+    }
+
+    return true; // 'all'
+  });
+
+  // Stats
+  const stats = {
+    total: features.length,
+    withScreenshots: features.filter(f => f.hasScreenshots).length,
+    highTRCoverage: features.filter(f => (f.trCoverage / 15) >= 0.6).length,
+    totalScreenshots: features.reduce((sum, f) => sum + f.screenshotCount, 0)
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <RefreshCw className="h-8 w-8 text-blue-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Feature'lar yükleniyor...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4 md:space-y-6">
+      {/* Header - Ultra Compact Mobile */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-blue-500/90 via-violet-500/90 to-purple-500/90 rounded-xl md:rounded-2xl p-4 md:p-6 text-white shadow-glow-blue">
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(255,255,255,0.15)_1px,_transparent_0)] bg-[size:24px_24px] opacity-20" />
+        
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+              <Sparkles className="h-4 w-4 md:h-5 md:w-5" />
+            </div>
+            <h1 className="text-lg md:text-2xl lg:text-3xl font-bold">
+              Feature Gallery
+            </h1>
+          </div>
+          <p className="text-sm md:text-base text-white/90">
+            Screenshot bazlı feature analizi - TR borsaları odaklı
+          </p>
+        </div>
+      </div>
+
+      {/* Stats Cards - Compact with Glow */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 fade-in">
+        <Card className="border-blue-100 hover:shadow-glow-blue">
+          <CardContent className="p-3 md:p-4">
+            <div className="text-xl md:text-2xl font-bold bg-gradient-to-br from-blue-600 to-blue-500 bg-clip-text text-transparent">
+              {stats.total}
+            </div>
+            <p className="text-xs md:text-sm text-gray-600">Feature</p>
+          </CardContent>
+        </Card>
+        <Card className="border-emerald-100 hover:shadow-glow-emerald">
+          <CardContent className="p-3 md:p-4">
+            <div className="text-xl md:text-2xl font-bold bg-gradient-to-br from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
+              {stats.withScreenshots}
+            </div>
+            <p className="text-xs md:text-sm text-gray-600">Screenshot var</p>
+          </CardContent>
+        </Card>
+        <Card className="border-purple-100 hover:shadow-glow-purple">
+          <CardContent className="p-3 md:p-4">
+            <div className="text-xl md:text-2xl font-bold bg-gradient-to-br from-purple-600 to-purple-500 bg-clip-text text-transparent">
+              {stats.highTRCoverage}
+            </div>
+            <p className="text-xs md:text-sm text-gray-600">Yüksek TR (&gt;60%)</p>
+          </CardContent>
+        </Card>
+        <Card className="border-amber-100">
+          <CardContent className="p-3 md:p-4">
+            <div className="text-xl md:text-2xl font-bold bg-gradient-to-br from-amber-600 to-amber-500 bg-clip-text text-transparent">
+              {stats.totalScreenshots}
+            </div>
+            <p className="text-xs md:text-sm text-gray-600">Toplam Görsel</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Filters - Mobile Optimized */}
+      <div className="space-y-3">
+        {/* Region Filter - Touch Friendly */}
+        <div className="flex gap-2">
+          <Button
+            variant={regionFilter === 'tr' ? 'default' : 'outline'}
+            onClick={() => setRegionFilter('tr')}
+            className="flex-1 touch-target text-sm md:text-base"
+          >
+            🇹🇷 TR Borsalar
+          </Button>
+          <Button
+            variant={regionFilter === 'global' ? 'default' : 'outline'}
+            onClick={() => setRegionFilter('global')}
+            className="flex-1 touch-target text-sm md:text-base"
+          >
+            🌍 Global
+          </Button>
+          <Button
+            variant={regionFilter === 'all' ? 'default' : 'outline'}
+            onClick={() => setRegionFilter('all')}
+            className="flex-1 touch-target text-sm md:text-base"
+          >
+            Tümü
+          </Button>
+        </div>
+
+        {/* Search + Refresh */}
+        <div className="flex gap-2">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
+              placeholder="Feature ara..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-9 touch-target"
+            />
+          </div>
+          <Button
+            variant="outline"
+            onClick={loadFeatures}
+            className="touch-target flex-shrink-0"
+            size="icon"
+          >
+            <RefreshCw className="h-4 w-4" />
+          </Button>
+        </div>
+
+        {/* Filter Info */}
+        <div className="flex items-center justify-between text-xs md:text-sm text-gray-600">
+          <span>
+            {filteredFeatures.length} / {features.length} feature
+          </span>
+          {searchTerm && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSearchTerm('')}
+              className="h-6 text-xs"
+            >
+              Temizle
+            </Button>
+          )}
+        </div>
+      </div>
+
+      {/* Feature Cards Grid - Responsive */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+        {filteredFeatures.map((feature) => (
+          <FeatureCard key={feature.id} feature={feature} />
+        ))}
+      </div>
+
+      {/* Empty State */}
+      {filteredFeatures.length === 0 && !loading && (
+        <Card className="text-center py-12">
+          <CardContent>
+            <FilterIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              Feature bulunamadı
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Arama veya filtre kriterlerinize uygun feature bulunamadı.
+            </p>
+            <Button
+              onClick={() => {
+                setSearchTerm('');
+                setRegionFilter('tr');
+              }}
+            >
+              Filtreleri Sıfırla
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
+

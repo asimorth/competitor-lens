@@ -7,11 +7,11 @@ import {
   LayoutGrid, 
   Building2, 
   Sparkles, 
-  BarChart3, 
   Menu,
   X,
   Home,
-  ChevronRight
+  ChevronRight,
+  Camera
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { StablexLogo } from '@/components/StablexLogo';
@@ -32,6 +32,13 @@ const navigation = [
     highlight: true
   },
   { 
+    name: 'Feature Gallery', 
+    href: '/features-simple', 
+    icon: Camera,
+    description: 'Screenshot bazlı feature analizi',
+    highlight: true
+  },
+  { 
     name: 'Feature Matrix', 
     href: '/matrix', 
     icon: LayoutGrid,
@@ -48,12 +55,6 @@ const navigation = [
     href: '/features', 
     icon: Sparkles,
     description: 'Feature detayları'
-  },
-  { 
-    name: 'Analizler', 
-    href: '/analytics', 
-    icon: BarChart3,
-    description: 'Gap analizi'
   },
 ];
 
@@ -87,19 +88,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Sidebar - Modern Design */}
       <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-72 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-r border-gray-200 dark:border-gray-700 lg:translate-x-0 transition-transform duration-300 shadow-xl",
+        "fixed inset-y-0 left-0 z-50 w-72 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-r border-gray-200 dark:border-gray-700 lg:translate-x-0 transition-all duration-300 shadow-xl-soft",
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="flex flex-col h-full">
           {/* Logo - Modern Gradient Header */}
-          <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+          <div className="relative overflow-hidden px-6 py-5 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-br from-blue-500/90 via-violet-500/90 to-purple-500/90">
+            {/* Subtle pattern */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(255,255,255,0.15)_1px,_transparent_0)] bg-[size:24px_24px] opacity-30" />
+            <Link href="/" className="relative z-10 flex items-center space-x-3 group">
+              <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg">
                 <StablexLogo className="h-8" showText={false} />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white group-hover:text-blue-100 transition-colors">CompetitorLens</h1>
-                <p className="text-xs text-blue-100">Rakip Analiz Platformu</p>
+                <h1 className="text-xl font-bold text-white group-hover:text-blue-50 transition-colors">CompetitorLens</h1>
+                <p className="text-xs text-white/80">Rakip Analiz Platformu</p>
               </div>
             </Link>
           </div>
@@ -141,15 +144,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </nav>
 
           {/* Footer - Compact */}
-          <div className="p-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-            <div className="px-3 py-2 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg">
+          <div className="p-3 border-t border-gray-200 dark:border-gray-700 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+            <div className="px-3 py-2 bg-gradient-to-br from-blue-500/90 to-violet-500/90 rounded-xl shadow-glow-blue">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-bold text-white">v2.0.0</p>
-                  <p className="text-[10px] text-blue-100">© 2025 Stablex</p>
+                  <p className="text-[10px] text-white/80">© 2025 Stablex</p>
                 </div>
                 <div className="flex items-center gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.5)]"></div>
                   <span className="text-[10px] text-white font-medium">Live</span>
                 </div>
               </div>
@@ -169,13 +172,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main Content - Mobile Optimized Spacing */}
       <div className="lg:pl-72">
         <main className={cn(
-          "min-h-screen pb-20 lg:pb-6", // Extra bottom padding for mobile nav
-          "pt-[72px] lg:pt-0", // Mobile header + safe area space
-          "px-3 py-4 md:px-4 md:py-6 lg:px-8"
+          "min-h-screen",
+          // Mobile: Header height (56px) + safe area top + small gap
+          "pt-[calc(56px+env(safe-area-inset-top,0px)+8px)] lg:pt-0",
+          // Bottom padding for mobile
+          "pb-6 lg:pb-6"
         )}>
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto px-3 md:px-4 lg:px-8">
             {/* Breadcrumb for desktop only */}
-            <div className="hidden lg:flex items-center space-x-2 text-sm text-gray-600 mb-6">
+            <div className="hidden lg:flex items-center space-x-2 text-sm text-gray-600 mb-6 mt-6">
               <Link href="/dashboard" className="hover:text-gray-900">
                 Dashboard
               </Link>
