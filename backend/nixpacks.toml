@@ -11,7 +11,4 @@ cmds = [
 ]
 
 [start]
-cmd = "npx prisma db push --skip-generate --accept-data-loss || true && node dist/server.js"
-
-[start]
 cmd = "node dist/server.js"
