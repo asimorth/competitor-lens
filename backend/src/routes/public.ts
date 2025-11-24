@@ -36,7 +36,16 @@ const filterSchema = z.object({
  */
 router.get('/competitors', async (req, res) => {
   try {
+    const { region } = req.query;
+
+    // Build where clause
+    const where: any = {};
+    if (region) {
+      where.region = region;
+    }
+
     const competitors = await prisma.competitor.findMany({
+      where,
       select: {
         id: true,
         name: true,
@@ -44,26 +53,41 @@ router.get('/competitors', async (req, res) => {
         website: true,
         description: true,
         industry: true,
+        region: true,
         _count: {
           select: {
-            features: true,
-            screenshots: true
+            features: true
           }
         }
       },
       orderBy: { name: 'asc' }
     });
-    
+
+    // Get screenshot counts via CompetitorFeature -> CompetitorFeatureScreenshot
+    const competitorsWithCounts = await Promise.all(
+      competitors.map(async (competitor) => {
+        const screenshotCount = await prisma.competitorFeatureScreenshot.count({
+          where: {
+            competitorFeature: {
+              competitorId: competitor.id
+            }
+          }
+        });
+
+        return {
+          ...competitor,
+          featureCount: competitor._count.features,
+          screenshotCount,
+          _count: undefined
+        };
+      })
+    );
+
     res.json({
-      count: competitors.length,
-      competitors: competitors.map(c => ({
-        ...c,
-        featureCount: c._count.features,
-        screenshotCount: c._count.screenshots,
-        _count: undefined
-      }))
+      count: competitorsWithCounts.length,
+      competitors: competitorsWithCounts
     });
-    
+
   } catch (error) {
     console.error('Public competitors error:', error);
     res.status(500).json({
@@ -80,25 +104,25 @@ router.get('/features', async (req, res) => {
   try {
     const { category, priority, search } = filterSchema.parse(req.query);
     const { page, limit } = paginationSchema.parse(req.query);
-    
+
     // Where koşulları
     const where: any = {};
-    
+
     if (category) {
       where.category = category;
     }
-    
+
     if (priority) {
       where.priority = priority;
     }
-    
+
     if (search) {
       where.OR = [
         { name: { contains: search, mode: 'insensitive' } },
         { description: { contains: search, mode: 'insensitive' } }
       ];
     }
-    
+
     const [total, features] = await Promise.all([
       prisma.feature.count({ where }),
       prisma.feature.findMany({
@@ -125,14 +149,14 @@ router.get('/features', async (req, res) => {
         take: limit
       })
     ]);
-    
+
     // Kategorileri al
     const categories = await prisma.feature.findMany({
       distinct: ['category'],
       select: { category: true },
       where: { category: { not: null } }
     });
-    
+
     res.json({
       total,
       page,
@@ -148,7 +172,7 @@ router.get('/features', async (req, res) => {
         .filter(Boolean)
         .sort()
     });
-    
+
   } catch (error) {
     console.error('Public features error:', error);
     res.status(500).json({
@@ -172,7 +196,7 @@ router.get('/matrix', async (req, res) => {
       },
       orderBy: { name: 'asc' }
     });
-    
+
     // Tüm feature'ları al
     const features = await prisma.feature.findMany({
       select: {
@@ -187,7 +211,7 @@ router.get('/matrix', async (req, res) => {
         { name: 'asc' }
       ]
     });
-    
+
     // CompetitorFeature ilişkilerini al
     const competitorFeatures = await prisma.competitorFeature.findMany({
       where: { hasFeature: true },
@@ -197,10 +221,10 @@ router.get('/matrix', async (req, res) => {
         implementationQuality: true
       }
     });
-    
+
     // Matrix yapısını oluştur
     const matrix: Record<string, Record<string, any>> = {};
-    
+
     competitors.forEach(competitor => {
       matrix[competitor.id] = {};
       features.forEach(feature => {
@@ -216,17 +240,17 @@ router.get('/matrix', async (req, res) => {
         };
       });
     });
-    
+
     // Özet istatistikler
     const stats = {
       totalCompetitors: competitors.length,
       totalFeatures: features.length,
       totalImplementations: competitorFeatures.length,
-      averageImplementationRate: features.length > 0 
+      averageImplementationRate: features.length > 0
         ? ((competitorFeatures.length / (competitors.length * features.length)) * 100).toFixed(2) + '%'
         : '0%'
     };
-    
+
     res.json({
       competitors,
       features,
@@ -234,7 +258,7 @@ router.get('/matrix', async (req, res) => {
       stats,
       generatedAt: new Date()
     });
-    
+
   } catch (error) {
     console.error('Public matrix error:', error);
     res.status(500).json({
@@ -268,7 +292,7 @@ router.get('/matrix/summary', async (req, res) => {
         }
       }
     });
-    
+
     // Feature başına competitor sayısı
     const featureStats = await prisma.feature.findMany({
       select: {
@@ -290,7 +314,7 @@ router.get('/matrix/summary', async (req, res) => {
       },
       take: 20 // Top 20 features
     });
-    
+
     // Kategori bazlı istatistikler
     const categoryStats = await prisma.feature.groupBy({
       by: ['category'],
@@ -301,7 +325,7 @@ router.get('/matrix/summary', async (req, res) => {
         }
       }
     });
-    
+
     res.json({
       competitorRankings: competitorStats.map(c => ({
         id: c.id,
@@ -319,7 +343,7 @@ router.get('/matrix/summary', async (req, res) => {
         count: c._count
       }))
     });
-    
+
   } catch (error) {
     console.error('Public matrix summary error:', error);
     res.status(500).json({
@@ -335,7 +359,7 @@ router.get('/matrix/summary', async (req, res) => {
 router.get('/screenshots/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     const screenshot = await prisma.screenshot.findUnique({
       where: { id },
       select: {
@@ -362,20 +386,20 @@ router.get('/screenshots/:id', async (req, res) => {
         createdAt: true
       }
     });
-    
+
     if (!screenshot) {
       return res.status(404).json({ error: 'Screenshot not found' });
     }
-    
+
     // CDN URL yoksa 404
     if (!screenshot.cdnUrl) {
-      return res.status(404).json({ 
-        error: 'Screenshot not available for public access' 
+      return res.status(404).json({
+        error: 'Screenshot not available for public access'
       });
     }
-    
+
     res.json(screenshot);
-    
+
   } catch (error) {
     console.error('Public screenshot error:', error);
     res.status(500).json({
@@ -394,33 +418,29 @@ router.get('/stats', async (req, res) => {
       competitorCount,
       featureCount,
       screenshotCount,
-      analyzedScreenshotCount,
       implementationCount
     ] = await Promise.all([
       prisma.competitor.count(),
       prisma.feature.count(),
-      prisma.screenshot.count({ where: { cdnUrl: { not: null } } }),
-      prisma.screenshotAnalysis.count(),
+      prisma.competitorFeatureScreenshot.count(),
       prisma.competitorFeature.count({ where: { hasFeature: true } })
     ]);
-    
-    // Son güncelleme
-    const lastUpdate = await prisma.screenshot.findFirst({
-      where: { cdnUrl: { not: null } },
+
+    // Son güncelleme - CompetitorFeature'dan al
+    const lastUpdate = await prisma.competitorFeature.findFirst({
       orderBy: { createdAt: 'desc' },
       select: { createdAt: true }
     });
-    
+
     res.json({
       competitors: competitorCount,
       features: featureCount,
       screenshots: screenshotCount,
-      analyzedScreenshots: analyzedScreenshotCount,
       implementations: implementationCount,
       lastUpdate: lastUpdate?.createdAt || null,
       apiVersion: '2.0.0'
     });
-    
+
   } catch (error) {
     console.error('Public stats error:', error);
     res.status(500).json({
@@ -437,13 +457,13 @@ router.get('/health', async (req, res) => {
   try {
     // Database bağlantısını kontrol et
     await prisma.$queryRaw`SELECT 1`;
-    
+
     res.json({
       status: 'healthy',
       timestamp: new Date(),
       version: '2.0.0'
     });
-    
+
   } catch (error) {
     res.status(503).json({
       status: 'unhealthy',
