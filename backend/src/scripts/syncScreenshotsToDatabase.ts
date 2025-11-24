@@ -89,7 +89,7 @@ export async function syncScreenshotsToDatabase(dryRun = false): Promise<SyncSta
     console.log('🔗 Mapping screenshots to features...\n');
 
     for (const structure of structures) {
-      console.log(`Processing: ${structure.competitorName}`);
+      console.log(`\nProcessing: ${structure.competitorName} (${structure.totalScreenshots} screenshots)`);
       
       // Competitor'ı bul - Smart matching
       const normalizedName = structure.competitorName
@@ -98,13 +98,21 @@ export async function syncScreenshotsToDatabase(dryRun = false): Promise<SyncSta
         .replace(/[türk]/gi, 'turk'); // Türk → turk
       
       const allCompetitors = await prisma.competitor.findMany();
+      
+      console.log(`   🔍 Looking for: "${structure.competitorName}" (normalized: "${normalizedName}")`);
+      console.log(`   📋 Available competitors: ${allCompetitors.map(c => c.name).join(', ')}`);
+      
       const competitor = allCompetitors.find(c => {
         const dbName = c.name
           .toLowerCase()
           .replace(/\s+/g, '')
           .replace(/[türk]/gi, 'turk');
         
-        return dbName.includes(normalizedName) || normalizedName.includes(dbName);
+        const matches = dbName.includes(normalizedName) || normalizedName.includes(dbName);
+        if (matches) {
+          console.log(`   ✅ Matched with: "${c.name}" (normalized: "${dbName}")`);
+        }
+        return matches;
       });
 
       if (!competitor) {
