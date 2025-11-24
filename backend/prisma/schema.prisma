@@ -6,12 +6,11 @@ generator client {
 }
 
 // Database connection
-// LOCAL: Standard PostgreSQL (directUrl optional)
-// PRODUCTION: Prisma Accelerate (directUrl required but optional in schema)
+// Works with both local PostgreSQL and Railway PostgreSQL
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // Railway doesn't need directUrl - keeping it simple
 }
 
 model Competitor {
