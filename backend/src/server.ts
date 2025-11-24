@@ -43,8 +43,12 @@ app.use(helmet({
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
-  // Vercel veya localhost ise izin ver
-  if (origin && (origin.includes('.vercel.app') || origin.includes('localhost'))) {
+  // Vercel, Railway veya localhost ise izin ver
+  if (origin && (
+    origin.includes('.vercel.app') || 
+    origin.includes('.railway.app') || 
+    origin.includes('localhost')
+  )) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');

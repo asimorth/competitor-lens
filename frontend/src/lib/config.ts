@@ -5,10 +5,11 @@ export const getApiUrl = (): string => {
     return process.env.NEXT_PUBLIC_API_URL;
   }
   
-  // 2. Production detection (Vercel ya da production domain)
+  // 2. Production detection (Vercel, Railway ya da production domain)
   if (typeof window !== 'undefined') {
     // Client-side: hostname kontrolü
     if (window.location.hostname.includes('vercel.app') || 
+        window.location.hostname.includes('railway.app') ||
         window.location.hostname === 'competitor-lens-prod.vercel.app') {
       return 'https://competitor-lens-production.up.railway.app';
     }
