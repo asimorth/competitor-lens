@@ -15,6 +15,11 @@ RUN npm install
 # Copy source code
 COPY backend/ ./
 
+# 🎯 SCREENSHOTS - Railway Volume alternatifi
+# Volume yoksa bunlar kullanılır, volume varsa override edilir
+# COPY backend/uploads/screenshots ./uploads/screenshots/
+# NOT: Railway Volume mount edilirse yukarıdaki satırı aktif et
+
 # Generate Prisma Client
 RUN npx prisma generate
 
