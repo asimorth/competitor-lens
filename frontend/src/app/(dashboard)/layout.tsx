@@ -1,9 +1,14 @@
 import DashboardLayout from '@/components/DashboardLayout';
+import { PersonaProvider } from '@/contexts/PersonaContext';
 
 export default function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return (
+    <PersonaProvider>
+      <DashboardLayout>{children}</DashboardLayout>
+    </PersonaProvider>
+  );
 }

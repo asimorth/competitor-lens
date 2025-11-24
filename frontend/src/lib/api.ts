@@ -259,5 +259,148 @@ export const api = {
         return { success: false, message: 'Failed to delete screenshot' };
       }
     }
+  },
+
+  // Intelligence (Phase 1)
+  intelligence: {
+    // Feature Intelligence
+    feature: {
+      getPMInsights: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/feature/${id}/pm`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Feature PM insights error:', error);
+          return { success: false, data: null };
+        }
+      },
+      getDesignerInsights: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/feature/${id}/designer`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Feature designer insights error:', error);
+          return { success: false, data: null };
+        }
+      },
+      getExecutiveInsights: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/feature/${id}/executive`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Feature executive insights error:', error);
+          return { success: false, data: null };
+        }
+      },
+      analyze: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/feature/${id}/analyze`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Feature analyze error:', error);
+          return { success: false, data: null };
+        }
+      },
+      getPositioning: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/feature/${id}/positioning`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Feature positioning error:', error);
+          return { success: false, data: null };
+        }
+      },
+      getOpportunity: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/feature/${id}/opportunity`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Feature opportunity error:', error);
+          return { success: false, data: null };
+        }
+      }
+    },
+
+    // Competitor Intelligence
+    competitor: {
+      getPMInsights: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/competitor/${id}/pm`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Competitor PM insights error:', error);
+          return { success: false, data: null };
+        }
+      },
+      getDesignerInsights: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/competitor/${id}/designer`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Competitor designer insights error:', error);
+          return { success: false, data: null };
+        }
+      },
+      getExecutiveInsights: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/competitor/${id}/executive`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Competitor executive insights error:', error);
+          return { success: false, data: null };
+        }
+      },
+      analyze: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/competitor/${id}/analyze`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Competitor analyze error:', error);
+          return { success: false, data: null };
+        }
+      },
+      getBenchmark: async (id: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/intelligence/competitor/${id}/benchmark`);
+          return res.ok ? res.json() : { success: false, data: null };
+        } catch (error) {
+          console.error('Competitor benchmark error:', error);
+          return { success: false, data: null };
+        }
+      }
+    },
+
+    // Comparison
+    compare: async (id1: string, id2: string) => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/intelligence/compare/${id1}/${id2}`);
+        return res.ok ? res.json() : { success: false, data: null };
+      } catch (error) {
+        console.error('Compare error:', error);
+        return { success: false, data: null };
+      }
+    }
+  },
+
+  // Data Quality (Phase 0)
+  dataQuality: {
+    getOverview: async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/data-quality/overview`);
+        return res.ok ? res.json() : { success: false, data: null };
+      } catch (error) {
+        console.error('Data quality overview error:', error);
+        return { success: false, data: null };
+      }
+    },
+    getScore: async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/data-quality/score`);
+        return res.ok ? res.json() : { success: false, data: null };
+      } catch (error) {
+        console.error('Data quality score error:', error);
+        return { success: false, data: null };
+      }
+    }
   }
 };

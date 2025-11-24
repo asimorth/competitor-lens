@@ -120,6 +120,14 @@ app.use('/api/competitors', onboardingRoutes); // Nested under competitors
 app.use('/api/sync', syncRoutes);
 app.use('/api/public', publicRoutes);
 
+// Phase 0: Data Quality Routes
+import dataQualityRoutes from './routes/dataQuality';
+app.use('/api/data-quality', dataQualityRoutes);
+
+// Phase 1: Intelligence Routes
+import intelligenceRoutes from './routes/intelligence';
+app.use('/api/intelligence', intelligenceRoutes);
+
 // Error handling
 app.use(errorHandler);
 

@@ -14,18 +14,18 @@ datasource db {
 }
 
 model Competitor {
-  id                    String                    @id @default(uuid())
-  name                  String                    @unique
-  logoUrl               String?                   @map("logo_url")
+  id                    String                 @id @default(uuid())
+  name                  String                 @unique
+  logoUrl               String?                @map("logo_url")
   website               String?
   description           String?
   industry              String?
-  region                String?                   // TR, Global, EU, US, etc.
+  region                String? // TR, Global, EU, US, etc.
   features              CompetitorFeature[]
   onboardingScreenshots OnboardingScreenshot[]
   screenshots           Screenshot[]
-  createdAt             DateTime                  @default(now()) @map("created_at")
-  updatedAt             DateTime                  @updatedAt @map("updated_at")
+  createdAt             DateTime               @default(now()) @map("created_at")
+  updatedAt             DateTime               @updatedAt @map("updated_at")
 
   @@map("competitors")
 }
@@ -35,7 +35,7 @@ model Feature {
   name        String              @unique
   category    String?
   description String?
-  priority    String?             // high, medium, low
+  priority    String? // high, medium, low
   competitors CompetitorFeature[]
   screenshots Screenshot[]
   createdAt   DateTime            @default(now()) @map("created_at")
@@ -45,17 +45,17 @@ model Feature {
 }
 
 model CompetitorFeature {
-  id                    String                         @id @default(uuid())
-  competitorId          String                         @map("competitor_id")
-  featureId             String                         @map("feature_id")
-  hasFeature            Boolean                        @default(false) @map("has_feature")
-  implementationQuality String?                        @map("implementation_quality") // excellent, good, basic, none
+  id                    String                        @id @default(uuid())
+  competitorId          String                        @map("competitor_id")
+  featureId             String                        @map("feature_id")
+  hasFeature            Boolean                       @default(false) @map("has_feature")
+  implementationQuality String?                       @map("implementation_quality") // excellent, good, basic, none
   notes                 String?
   screenshots           CompetitorFeatureScreenshot[]
-  competitor            Competitor                     @relation(fields: [competitorId], references: [id], onDelete: Cascade)
-  feature               Feature                        @relation(fields: [featureId], references: [id], onDelete: Cascade)
-  createdAt             DateTime                       @default(now()) @map("created_at")
-  updatedAt             DateTime                       @updatedAt @map("updated_at")
+  competitor            Competitor                    @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  feature               Feature                       @relation(fields: [featureId], references: [id], onDelete: Cascade)
+  createdAt             DateTime                      @default(now()) @map("created_at")
+  updatedAt             DateTime                      @updatedAt @map("updated_at")
 
   @@unique([competitorId, featureId])
   @@map("competitor_features")
@@ -76,42 +76,72 @@ model CompetitorFeatureScreenshot {
 // V2 Additions
 
 model Screenshot {
-  id             String               @id @default(uuid())
-  competitorId   String               @map("competitor_id")
-  featureId      String?              @map("feature_id")
-  filePath       String               @map("file_path")
-  fileName       String               @map("file_name")
-  fileSize       BigInt               @map("file_size")
-  mimeType       String               @map("mime_type")
-  width          Int?
-  height         Int?
-  thumbnailPath  String?              @map("thumbnail_path")
-  cdnUrl         String?              @map("cdn_url")
-  isOnboarding   Boolean              @default(false) @map("is_onboarding")
-  uploadSource   String               @default("manual") @map("upload_source") // manual, auto-scan, api
-  competitor     Competitor           @relation(fields: [competitorId], references: [id], onDelete: Cascade)
-  feature        Feature?             @relation(fields: [featureId], references: [id])
-  analyses       ScreenshotAnalysis[]
-  syncStatus     SyncStatus?
-  createdAt      DateTime             @default(now()) @map("created_at")
-  updatedAt      DateTime             @updatedAt @map("updated_at")
+  id            String  @id @default(uuid())
+  competitorId  String  @map("competitor_id")
+  featureId     String? @map("feature_id")
+  filePath      String  @map("file_path")
+  fileName      String  @map("file_name")
+  fileSize      BigInt  @map("file_size")
+  mimeType      String  @map("mime_type")
+  width         Int?
+  height        Int?
+  thumbnailPath String? @map("thumbnail_path")
+  cdnUrl        String? @map("cdn_url")
+  isOnboarding  Boolean @default(false) @map("is_onboarding")
+  uploadSource  String  @default("manual") @map("upload_source") // manual, auto-scan, api
+
+  // Quality & Context (NEW - Phase 0)
+  quality          String? @default("unknown") @map("quality") // excellent, good, acceptable, poor, needs-update, unknown
+  context          String? @map("context") // login, dashboard, feature-detail, settings, onboarding
+  visualComplexity String? @map("visual_complexity") // simple, moderate, complex
+
+  // UI/UX Analysis (NEW - for Product Designers)
+  hasText     Boolean @default(false) @map("has_text")
+  hasUI       Boolean @default(false) @map("has_ui")
+  hasData     Boolean @default(false) @map("has_data")
+  uiPattern   String? @map("ui_pattern") // modal, fullscreen, widget, list, form, chart
+  colorScheme String? @map("color_scheme") // light, dark, colorful
+
+  // Assignment Quality (NEW)
+  assignmentConfidence Float?    @default(0) @map("assignment_confidence") // 0.0-1.0
+  assignmentMethod     String?   @default("manual") @map("assignment_method") // manual, ai, path-based, pattern
+  needsReview          Boolean   @default(false) @map("needs_review")
+  reviewedBy           String?   @map("reviewed_by")
+  reviewedAt           DateTime? @map("reviewed_at")
+
+  // Usage Tracking (NEW)
+  viewCount    Int       @default(0) @map("view_count")
+  lastViewedAt DateTime? @map("last_viewed_at")
+
+  // Presentation Hints (NEW)
+  isShowcase   Boolean @default(false) @map("is_showcase") // Best quality, use in galleries
+  displayOrder Int?    @map("display_order") // Manual ordering for galleries
+
+  competitor Competitor           @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  feature    Feature?             @relation(fields: [featureId], references: [id])
+  analyses   ScreenshotAnalysis[]
+  syncStatus SyncStatus?
+  createdAt  DateTime             @default(now()) @map("created_at")
+  updatedAt  DateTime             @updatedAt @map("updated_at")
 
   @@index([competitorId, featureId])
+  @@index([needsReview])
+  @@index([quality])
   @@map("screenshots")
 }
 
 model ScreenshotAnalysis {
-  id                String    @id @default(uuid())
-  screenshotId      String    @map("screenshot_id")
-  analyzedAt        DateTime  @default(now()) @map("analyzed_at")
-  featurePrediction String?   @map("feature_prediction")
-  confidenceScore   Float?    @map("confidence_score") // 0.00 to 1.00
-  extractedText     String?   @db.Text @map("extracted_text")
-  detectedElements  Json?     @map("detected_elements")
-  aiProvider        String?   @map("ai_provider") // openai, tesseract, etc
-  manualOverride    Boolean   @default(false) @map("manual_override")
+  id                String     @id @default(uuid())
+  screenshotId      String     @map("screenshot_id")
+  analyzedAt        DateTime   @default(now()) @map("analyzed_at")
+  featurePrediction String?    @map("feature_prediction")
+  confidenceScore   Float?     @map("confidence_score") // 0.00 to 1.00
+  extractedText     String?    @map("extracted_text") @db.Text
+  detectedElements  Json?      @map("detected_elements")
+  aiProvider        String?    @map("ai_provider") // openai, tesseract, etc
+  manualOverride    Boolean    @default(false) @map("manual_override")
   screenshot        Screenshot @relation(fields: [screenshotId], references: [id], onDelete: Cascade)
-  createdAt         DateTime  @default(now()) @map("created_at")
+  createdAt         DateTime   @default(now()) @map("created_at")
 
   @@index([featurePrediction])
   @@map("screenshot_analysis")
@@ -122,7 +152,7 @@ model OnboardingScreenshot {
   competitorId    String     @map("competitor_id")
   screenshotPath  String     @map("screenshot_path")
   stepNumber      Int?       @map("step_number")
-  stepDescription String?    @db.Text @map("step_description")
+  stepDescription String?    @map("step_description") @db.Text
   displayOrder    Int        @default(0) @map("display_order")
   cdnUrl          String?    @map("cdn_url")
   competitor      Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
@@ -170,7 +200,7 @@ model Report {
   title       String
   description String?
   reportType  String   @map("report_type") // heatmap, gap_analysis, feature_matrix
-  config      Json?    // Rapor konfigürasyonu
+  config      Json? // Rapor konfigürasyonu
   createdBy   String?  @map("created_by")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
@@ -194,7 +224,7 @@ model BenchmarkArchive {
   id               String   @id @default(uuid())
   title            String
   snapshotDate     DateTime @map("snapshot_date")
-  data             Json     // Anlık veri snapshot'u
+  data             Json // Anlık veri snapshot'u
   competitorsCount Int?     @map("competitors_count")
   featuresCount    Int?     @map("features_count")
   createdBy        String?  @map("created_by")
