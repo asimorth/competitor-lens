@@ -26,9 +26,24 @@ export default function ScreenshotGallery({ screenshots, columns = 3 }: Screensh
 
     const getImageUrl = (screenshot: Screenshot) => {
         if (screenshot.cdnUrl) return screenshot.cdnUrl;
+
         // Fallback to local path
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-        return `${apiUrl}/${screenshot.filePath}`;
+
+        // Normalize path: Ensure it's relative and starts with 'uploads/'
+        let relativePath = screenshot.filePath;
+
+        // Handle absolute paths (e.g. /app/uploads/... or /Users/.../uploads/...)
+        if (relativePath.includes('uploads/')) {
+            relativePath = 'uploads/' + relativePath.split('uploads/')[1];
+        }
+
+        // Remove leading slash if present
+        if (relativePath.startsWith('/')) {
+            relativePath = relativePath.substring(1);
+        }
+
+        return `${apiUrl}/${relativePath}`;
     };
 
     const handlePrevious = () => {

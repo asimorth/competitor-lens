@@ -30,7 +30,21 @@ export default function OnboardingCarousel({ screenshots, competitorName }: Onbo
     const getImageUrl = (screenshot: OnboardingScreenshot) => {
         if (screenshot.cdnUrl) return screenshot.cdnUrl;
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-        return `${apiUrl}/${screenshot.screenshotPath}`;
+
+        // Normalize path: Ensure it's relative and starts with 'uploads/'
+        let relativePath = screenshot.screenshotPath;
+
+        // Handle absolute paths (e.g. /app/uploads/... or /Users/.../uploads/...)
+        if (relativePath.includes('uploads/')) {
+            relativePath = 'uploads/' + relativePath.split('uploads/')[1];
+        }
+
+        // Remove leading slash if present
+        if (relativePath.startsWith('/')) {
+            relativePath = relativePath.substring(1);
+        }
+
+        return `${apiUrl}/${relativePath}`;
     };
 
     const goToPrevious = () => {
