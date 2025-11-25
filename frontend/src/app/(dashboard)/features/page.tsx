@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { 
-  FileText, 
+import {
+  FileText,
   Search,
   TrendingUp,
   Users,
@@ -43,18 +43,25 @@ export default function FeaturesPage() {
         api.features.getAll(),
         api.competitors.getAll()
       ]);
-      
+
       const allFeatures = featuresRes.data || [];
       const totalExchanges = competitorsRes.count || competitorsRes.data?.length || 0;
-      
+
       // Her feature için istatistikleri hesapla
       const enrichedFeatures = allFeatures.map((feature: any) => {
         const implementedBy = feature.competitors?.filter((c: any) => c.hasFeature).length || 0;
         const coverage = totalExchanges > 0 ? Math.round((implementedBy / totalExchanges) * 100) : 0;
-        const screenshotCount = feature.competitors?.reduce((sum: number, c: any) => {
-          return sum + (c.screenshots ? (Array.isArray(c.screenshots) ? c.screenshots.length : 0) : 0);
-        }, 0) || 0;
-        
+
+        // ✅ SMART FALLBACK: Use new table, fallback to old if empty
+        let screenshotCount = feature._count?.screenshots || 0;
+
+        // If new table is empty (migration not done yet), use old table
+        if (screenshotCount === 0 && feature.competitors) {
+          screenshotCount = feature.competitors.reduce((sum: number, c: any) => {
+            return sum + (c.screenshots ? (Array.isArray(c.screenshots) ? c.screenshots.length : 0) : 0);
+          }, 0) || 0;
+        }
+
         return {
           ...feature,
           implementedBy,
@@ -63,7 +70,7 @@ export default function FeaturesPage() {
           screenshotCount
         };
       });
-      
+
       setFeatures(enrichedFeatures);
     } catch (error) {
       console.error('Feature\'lar yüklenemedi:', error);
@@ -76,7 +83,7 @@ export default function FeaturesPage() {
 
   const filteredFeatures = features.filter(feature => {
     const matchesSearch = feature.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         (feature.description && feature.description.toLowerCase().includes(searchTerm.toLowerCase()));
+      (feature.description && feature.description.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesCategory = categoryFilter === 'all' || feature.category === categoryFilter;
     return matchesSearch && matchesCategory;
   });
@@ -217,7 +224,7 @@ export default function FeaturesPage() {
               <p className="text-sm text-gray-600 line-clamp-2">
                 {feature.description || 'Açıklama yok'}
               </p>
-              
+
               {/* Coverage Stats */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
@@ -227,11 +234,10 @@ export default function FeaturesPage() {
                   </span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
-                    className={`h-2 rounded-full ${
-                      feature.coverage >= 80 ? 'bg-green-500' :
+                  <div
+                    className={`h-2 rounded-full ${feature.coverage >= 80 ? 'bg-green-500' :
                       feature.coverage >= 60 ? 'bg-yellow-500' : 'bg-red-500'
-                    }`}
+                      }`}
                     style={{ width: `${feature.coverage}%` }}
                   ></div>
                 </div>

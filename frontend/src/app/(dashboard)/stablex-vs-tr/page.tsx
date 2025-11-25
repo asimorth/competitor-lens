@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
+import {
   Trophy,
   TrendingUp,
   Eye,
@@ -23,11 +23,13 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { API_URL } from '@/lib/config';
 
 export default function StablexVsTRPage() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [selectedCompetitor, setSelectedCompetitor] = useState<string | null>(null);
+  const [stablexAnalysis, setStablexAnalysis] = useState<any[]>([]);
 
   useEffect(() => {
     fetchComparisonData();
@@ -35,31 +37,31 @@ export default function StablexVsTRPage() {
 
   const fetchComparisonData = async () => {
     try {
-      const [competitorsRes, featuresRes, matrixRes] = await Promise.all([
+      const [competitorsRes, featuresRes, stablexRes] = await Promise.all([
         api.competitors.getAll(),
         api.features.getAll(),
-        api.matrix.get()
+        fetch(`${API_URL}/api/analytics/stablex`).then(r => r.json()).catch(() => ({ data: [] }))
       ]);
 
       // TR borsalarını filtrele (name-based detection)
       const trNames = ['BTCTurk', 'BinanceTR', 'OKX TR', 'Garanti Kripto', 'Paribu', 'Bitexen', 'GateTR', 'Bilira', 'Kuantist', 'BTC Türk', 'BTC Turk'];
-      const trCompetitors = competitorsRes.data?.filter((c: any) => 
+      const trCompetitors = competitorsRes.data?.filter((c: any) =>
         trNames.includes(c.name)
       ) || [];
 
-      // Stablex'i mock olarak ekle (şimdilik)
-      const stablex = {
-        id: 'stablex',
-        name: 'Stablex',
-        description: 'Yeni nesil kripto borsası',
-        features: [] // Boş feature seti ile başla
-      };
+      // ✅ Get Stablex smart analysis from backend
+      const stablexData = stablexRes.data || [];
+      setStablexAnalysis(stablexData);
 
       setData({
-        stablex,
+        stablex: {
+          id: 'stablex',
+          name: 'Stablex',
+          description: 'Yeni nesil kripto borsası',
+          features: stablexData // Smart analysis data
+        },
         trCompetitors,
         features: featuresRes.data || [],
-        matrix: matrixRes.data || {}
       });
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -92,9 +94,9 @@ export default function StablexVsTRPage() {
   }, {});
 
   // En kritik eksik özellikleri bul
-  const criticalMissingFeatures = features.filter((f: any) => 
-    f.priority === 'critical' && 
-    trCompetitors.some((c: any) => 
+  const criticalMissingFeatures = features.filter((f: any) =>
+    f.priority === 'critical' &&
+    trCompetitors.some((c: any) =>
       c.features?.some((cf: any) => cf.featureId === f.id && cf.hasFeature)
     )
   );
@@ -162,8 +164,8 @@ export default function StablexVsTRPage() {
           </CardHeader>
           <CardContent className="pt-0">
             <p className="text-2xl md:text-3xl font-bold text-green-600">
-              {trCompetitors.reduce((sum: number, c: any) => 
-                sum + (c.features?.reduce((s: number, f: any) => 
+              {trCompetitors.reduce((sum: number, c: any) =>
+                sum + (c.features?.reduce((s: number, f: any) =>
                   s + (f.screenshots?.length || 0), 0) || 0), 0
               )}
             </p>
@@ -213,7 +215,7 @@ export default function StablexVsTRPage() {
                   .map((competitor: any) => {
                     const implementedCount = competitor.features?.filter((f: any) => f.hasFeature).length || 0;
                     const percentage = features.length > 0 ? Math.round((implementedCount / features.length) * 100) : 0;
-                    
+
                     return (
                       <div key={competitor.id} className="space-y-2">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -259,14 +261,14 @@ export default function StablexVsTRPage() {
               <div className="grid gap-4 md:grid-cols-2">
                 {Object.entries(categorizedFeatures).map(([category, categoryFeatures]: [string, any]) => {
                   const avgCoverage = trCompetitors.reduce((sum: number, competitor: any) => {
-                    const covered = categoryFeatures.filter((f: any) => 
-                      competitor.features?.some((cf: any) => 
+                    const covered = categoryFeatures.filter((f: any) =>
+                      competitor.features?.some((cf: any) =>
                         cf.featureId === f.id && cf.hasFeature
                       )
                     ).length;
                     return sum + (covered / categoryFeatures.length) * 100;
                   }, 0) / trCompetitors.length;
-                  
+
                   return (
                     <div key={category} className="p-4 border rounded-lg">
                       <div className="flex items-center justify-between mb-2">
@@ -323,14 +325,14 @@ export default function StablexVsTRPage() {
                               <div className={cn(
                                 "w-2 h-2 rounded-full",
                                 feature.priority === 'critical' ? 'bg-red-500' :
-                                feature.priority === 'high' ? 'bg-orange-500' :
-                                'bg-yellow-500'
+                                  feature.priority === 'high' ? 'bg-orange-500' :
+                                    'bg-yellow-500'
                               )} />
                               <span className="font-medium">{feature.name}</span>
                             </div>
                           </td>
                           {trCompetitors.map((competitor: any) => {
-                            const hasFeature = competitor.features?.some((cf: any) => 
+                            const hasFeature = competitor.features?.some((cf: any) =>
                               cf.featureId === feature.id && cf.hasFeature
                             );
                             return (
@@ -344,7 +346,43 @@ export default function StablexVsTRPage() {
                             );
                           })}
                           <td className="text-center p-4 bg-blue-50">
-                            <div className="w-5 h-5 border-2 border-blue-300 rounded-full mx-auto" />
+                            {(() => {
+                              const featureAnalysis = stablexAnalysis.find((a: any) => a.name === feature.name);
+                              if (!featureAnalysis) return <div className="w-5 h-5 border-2 border-gray-300 rounded-full mx-auto" />;
+
+                              // HAS (green check) - from Excel
+                              if (featureAnalysis.status === 'HAS') {
+                                return (
+                                  <div title={featureAnalysis.reason}>
+                                    <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
+                                  </div>
+                                );
+                              }
+
+                              // EVIDENCE (blue badge) - from screenshots
+                              if (featureAnalysis.status === 'EVIDENCE') {
+                                return (
+                                  <div className="flex items-center justify-center" title={featureAnalysis.reason}>
+                                    <Badge variant="outline" className="text-xs bg-blue-50 text-blue-600 border-blue-300">
+                                      <Camera className="h-3 w-3 mr-1" />
+                                      {featureAnalysis.screenshotCount}
+                                    </Badge>
+                                  </div>
+                                );
+                              }
+
+                              // ASSUMED (gray) - universal feature
+                              if (featureAnalysis.status === 'ASSUMED') {
+                                return (
+                                  <div className="flex items-center justify-center" title={featureAnalysis.reason}>
+                                    <Badge variant="secondary" className="text-xs">Beklenen</Badge>
+                                  </div>
+                                );
+                              }
+
+                              // NO (empty)
+                              return <XCircle className="h-5 w-5 text-gray-300 mx-auto" />;
+                            })()}
                           </td>
                         </tr>
                       ))}
@@ -359,10 +397,10 @@ export default function StablexVsTRPage() {
         <TabsContent value="screenshots" className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
             {trCompetitors.map((competitor: any) => {
-              const screenshotCount = competitor.features?.reduce((sum: number, f: any) => 
+              const screenshotCount = competitor.features?.reduce((sum: number, f: any) =>
                 sum + (f.screenshots?.length || 0), 0
               ) || 0;
-              
+
               return (
                 <Card key={competitor.id} className="overflow-hidden">
                   <CardHeader>
@@ -376,7 +414,7 @@ export default function StablexVsTRPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-3 gap-2">
-                      {competitor.features?.slice(0, 6).map((cf: any, idx: number) => 
+                      {competitor.features?.slice(0, 6).map((cf: any, idx: number) =>
                         cf.screenshots?.slice(0, 1).map((screenshot: any) => (
                           <div key={idx} className="aspect-video bg-gray-100 rounded overflow-hidden">
                             <img
@@ -416,10 +454,10 @@ export default function StablexVsTRPage() {
             <CardContent>
               <div className="space-y-4">
                 {criticalMissingFeatures.slice(0, 10).map((feature: any) => {
-                  const competitorsWithFeature = trCompetitors.filter((c: any) => 
+                  const competitorsWithFeature = trCompetitors.filter((c: any) =>
                     c.features?.some((cf: any) => cf.featureId === feature.id && cf.hasFeature)
                   );
-                  
+
                   return (
                     <div key={feature.id} className="p-4 border rounded-lg hover:border-orange-300 transition-colors">
                       <div className="flex items-start justify-between">

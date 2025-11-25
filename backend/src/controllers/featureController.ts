@@ -8,7 +8,7 @@ export const featureController = {
   getAll: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { category } = req.query;
-      
+
       const features = await prisma.feature.findMany({
         where: category ? { category: category as string } : undefined,
         include: {
@@ -20,6 +20,11 @@ export const featureController = {
                   displayOrder: 'asc'
                 }
               }
+            }
+          },
+          _count: {
+            select: {
+              screenshots: true  // Count from Screenshot table (not CompetitorFeature.screenshots)
             }
           }
         },
@@ -42,7 +47,7 @@ export const featureController = {
   getById: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      
+
       const feature = await prisma.feature.findUnique({
         where: { id },
         include: {
@@ -92,7 +97,7 @@ export const featureController = {
         total: feature.competitors.length,
         implemented: implementingCompetitors.length,
         notImplemented: feature.competitors.length - implementingCompetitors.length,
-        coverage: feature.competitors.length > 0 
+        coverage: feature.competitors.length > 0
           ? Math.round((implementingCompetitors.length / feature.competitors.length) * 100)
           : 0
       };
@@ -194,9 +199,9 @@ export const featureController = {
   getCompetitors: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      
+
       const competitors = await prisma.competitorFeature.findMany({
-        where: { 
+        where: {
           featureId: id,
           hasFeature: true
         },

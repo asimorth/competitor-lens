@@ -12,6 +12,9 @@ router.get('/gap-analysis', analyticsController.getGapAnalysis);
 // GET /api/analytics/trends - Trend verileri
 router.get('/trends', analyticsController.getTrends);
 
+// GET /api/analytics/stablex - Stablex smart feature analysis
+router.get('/stablex', analyticsController.getStablexAnalysis);
+
 // POST /api/analytics/custom-report - Özel rapor oluştur
 router.post('/custom-report', analyticsController.createCustomReport);
 
