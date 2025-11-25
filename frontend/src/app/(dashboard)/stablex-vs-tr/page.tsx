@@ -316,7 +316,10 @@ export default function StablexVsTRPage() {
                   </thead>
                   <tbody>
                     {features
-                      .filter((f: any) => f.priority === 'critical' || f.priority === 'high')
+                      .filter((f: any) =>
+                        (f.priority === 'critical' || f.priority === 'high') &&
+                        !['Dashboard & Wallet', 'User Onboarding', 'KYC & Identity Verification'].includes(f.name)
+                      )
                       .slice(0, 15)
                       .map((feature: any) => (
                         <tr key={feature.id} className="border-b hover:bg-gray-50">
