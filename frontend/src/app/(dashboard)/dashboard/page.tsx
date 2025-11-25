@@ -28,9 +28,10 @@ export default function DashboardPage() {
 
   const fetchDashboardData = async () => {
     try {
-      const [competitorsRes, featuresRes, coverageRes] = await Promise.all([
+      const [competitorsRes, featuresRes, screenshotsRes, coverageRes] = await Promise.all([
         api.competitors.getAll().catch(() => ({ data: [] })),
         api.features.getAll().catch(() => ({ data: [] })),
+        api.screenshots.getAll().catch(() => ({ data: [] })),
         api.analytics.getCoverage().catch(() => ({ data: { competitors: [] } }))
       ]);
 
@@ -38,25 +39,48 @@ export default function DashboardPage() {
       const totalCompetitors = competitorsRes.data?.length || 0;
       const totalFeatures = featuresRes.data?.length || 0;
       
-      // Get top competitors by coverage
-      const topCompetitors = coverageRes.data?.competitors
-        ?.sort((a: any, b: any) => b.coverage - a.coverage)
-        .slice(0, 5) || [];
+      // Screenshot count - Direkt Screenshot API'den
+      const totalScreenshots = screenshotsRes.data?.length || 0;
+      
+      // Calculate coverage from competitors
+      const competitorsWithFeatures = competitorsRes.data || [];
+      let totalCoverage = 0;
+      let competitorCount = 0;
 
-      // Count screenshots
-      let totalScreenshots = 0;
-      competitorsRes.data?.forEach((competitor: any) => {
-        competitor.features?.forEach((cf: any) => {
-          totalScreenshots += cf.screenshots?.length || 0;
-        });
+      competitorsWithFeatures.forEach((comp: any) => {
+        if (comp.features && comp.features.length > 0) {
+          const implemented = comp.features.filter((f: any) => f.hasFeature).length;
+          const coverage = (implemented / comp.features.length) * 100;
+          totalCoverage += coverage;
+          competitorCount++;
+        }
       });
+
+      const averageCoverage = competitorCount > 0 ? totalCoverage / competitorCount : 0;
+
+      // Get top competitors by coverage
+      const topCompetitors = competitorsWithFeatures
+        .map((comp: any) => {
+          const totalFeats = comp.features?.length || 0;
+          const implementedFeats = comp.features?.filter((f: any) => f.hasFeature).length || 0;
+          const coverage = totalFeats > 0 ? (implementedFeats / totalFeats) * 100 : 0;
+          
+          return {
+            ...comp,
+            totalFeatures: totalFeats,
+            implementedFeatures: implementedFeats,
+            coverage
+          };
+        })
+        .sort((a: any, b: any) => b.coverage - a.coverage)
+        .slice(0, 5);
 
       setStats({
         totalCompetitors,
         totalFeatures,
         totalScreenshots,
         topCompetitors,
-        averageCoverage: coverageRes.data?.averageCoverage || 0,
+        averageCoverage,
         categoryCoverage: coverageRes.data?.byCategory || []
       });
     } catch (error) {
@@ -160,7 +184,7 @@ export default function DashboardPage() {
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-          <Link href="/analytics">
+          <Link href="/matrix">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <BarChart3 className="h-8 w-8 text-orange-600" />
@@ -254,12 +278,12 @@ export default function DashboardPage() {
               ))}
             </div>
             <div className="mt-6 pt-4 border-t">
-              <Link href="/analytics">
-                <Button variant="outline" className="w-full group">
-                  Detaylı Analiz
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+            <Link href="/matrix">
+              <Button variant="outline" className="w-full group">
+                Detaylı Analiz
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
             </div>
           </CardContent>
         </Card>
@@ -282,10 +306,10 @@ export default function DashboardPage() {
                 <ArrowRight className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Button>
             </Link>
-            <Link href="/analytics">
+            <Link href="/features-simple">
               <Button variant="outline" className="w-full justify-start group">
-                <BarChart3 className="mr-2 h-4 w-4 text-purple-600" />
-                Gap Analizi Yap
+                <Camera className="mr-2 h-4 w-4 text-purple-600" />
+                Screenshot Gallery
                 <ArrowRight className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Button>
             </Link>
