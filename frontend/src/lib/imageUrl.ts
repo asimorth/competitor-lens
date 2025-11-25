@@ -15,8 +15,12 @@ export function getImageUrl(path: string | undefined | null): string {
     cleanPath = 'uploads/' + cleanPath.split('uploads/')[1];
   }
 
+  // Encode path components to handle spaces and special characters
+  // We split by '/' to avoid encoding the directory separators
+  const encodedPath = cleanPath.split('/').map(part => encodeURIComponent(part)).join('/');
+
   // Ensure path starts with /
-  const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
+  const normalizedPath = encodedPath.startsWith('/') ? encodedPath : `/${encodedPath}`;
 
   // Get API URL
   const apiUrl = getApiUrl();
