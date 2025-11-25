@@ -25,68 +25,90 @@ export const SMART_MAPPINGS: FeatureScreenshotMapping[] = [
   // Authentication & Identity
   {
     excelFeatureName: "KYC & Identity Verification",
-    screenshotFolders: ["KYC", "kyc", "Identity", "Verification", "identity", "verification"],
+    screenshotFolders: ["KYC", "kyc", "Identity", "Verification", "identity", "verification", "id-verification"],
     category: "Authentication"
   },
   
   // User Experience
   {
     excelFeatureName: "User Onboarding",
-    screenshotFolders: ["Onboarding", "onboarding", "Welcome", "Getting Started", "welcome", "getting-started"],
+    screenshotFolders: ["Onboarding", "onboarding", "Welcome", "Getting Started", "welcome", "getting-started", "signup", "sign-up"],
     category: "User Experience"
   },
   
   // Technology
   {
     excelFeatureName: "AI Sentimentals",
-    screenshotFolders: ["AI tools", "AI Tool", "AI", "Sentiment", "ai-tools", "ai-tool", "ai", "sentiment"],
+    screenshotFolders: ["AI tools", "AI Tool", "AI", "Sentiment", "ai-tools", "ai-tool", "ai", "sentiment", "chatbot", "assistant"],
     category: "Technology"
   },
   
   // Earn
   {
     excelFeatureName: "TRY Nemalandırma",
-    screenshotFolders: ["TRY Nemalandırma", "TRY Earn", "Nemalandırma", "try-nemalandirma", "nemalandirma"],
+    screenshotFolders: ["TRY Nemalandırma", "TRY Earn", "Nemalandırma", "try-nemalandirma", "nemalandirma", "try-earn"],
     category: "Earn"
   },
   {
     excelFeatureName: "Flexible Staking",
-    screenshotFolders: ["Staking", "Flexible Staking", "Earn", "staking", "flexible-staking", "earn"],
+    screenshotFolders: ["Staking", "Flexible Staking", "Earn", "staking", "flexible-staking", "earn", "stake"],
     category: "Earn"
   },
   {
     excelFeatureName: "Locked Staking",
-    screenshotFolders: ["Locked Staking", "Locked Earn", "locked-staking", "locked-earn"],
+    screenshotFolders: ["Locked Staking", "Locked Earn", "locked-staking", "locked-earn", "locked"],
     category: "Earn"
   },
   
-  // Platform
+  // Platform - Dashboard & Wallet AYRI feature'lar olarak
   {
     excelFeatureName: "Dashboard & Wallet",
-    screenshotFolders: ["Dashboard", "Wallet", "Home", "Portfolio", "dashboard", "wallet", "home", "portfolio"],
+    screenshotFolders: ["Dashboard", "dashboard"],
+    category: "Platform"
+  },
+  {
+    excelFeatureName: "Dashboard & Wallet",
+    screenshotFolders: ["Wallet", "wallet", "portfolio", "balance"],
     category: "Platform"
   },
   {
     excelFeatureName: "Web App",
-    screenshotFolders: ["Web", "Web App", "Desktop", "web", "web-app", "desktop"],
+    screenshotFolders: ["Web", "Web App", "Desktop", "web", "web-app", "desktop", "browser"],
     category: "Platform"
   },
   {
     excelFeatureName: "Mobile App",
-    screenshotFolders: ["Mobile", "Mobile App", "App", "mobile", "mobile-app", "app"],
+    screenshotFolders: ["Mobile", "Mobile App", "App", "mobile", "mobile-app", "app", "ios", "android"],
     category: "Platform"
   },
   
   // Trading
   {
     excelFeatureName: "Convert",
-    screenshotFolders: ["Convert", "Conversion", "Swap", "convert", "conversion", "swap"],
+    screenshotFolders: ["Convert", "Conversion", "Swap", "convert", "conversion", "swap", "exchange"],
     category: "Trading"
   },
   {
     excelFeatureName: "Copy Trading",
-    screenshotFolders: ["Copy Trading", "Copy Trade", "Social Trading", "copy-trading", "copy-trade"],
+    screenshotFolders: ["Copy Trading", "Copy Trade", "Social Trading", "copy-trading", "copy-trade", "social-trading"],
     category: "Trading"
+  },
+  
+  // Additional Features
+  {
+    excelFeatureName: "Referral",
+    screenshotFolders: ["Referral", "referral", "refer", "invite"],
+    category: "Business"
+  },
+  {
+    excelFeatureName: "NFT / Marketplace",
+    screenshotFolders: ["NFT", "nft", "Marketplace", "marketplace", "collectibles"],
+    category: "Services"
+  },
+  {
+    excelFeatureName: "Pay (Payments)",
+    screenshotFolders: ["Pay", "Payment", "Payments", "pay", "payment", "payments", "deposit", "withdraw"],
+    category: "Services"
   }
 ];
 
