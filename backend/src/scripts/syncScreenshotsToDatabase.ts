@@ -157,21 +157,29 @@ export async function syncScreenshotsToDatabase(dryRun = false): Promise<SyncSta
 
       // Her klasör için
       for (const folder of structure.folders) {
-        // SKIP "_root" klasörü - Named folders'a odaklan
+        let featureMapping: any = null;
+        let isRootFolder = false;
+        
+        // Root klasörü için özel handling
         if (folder.folderName === '_root') {
-          console.log(`   ⏭️  Skipping _root folder (${folder.count} files) - Will be categorized later`);
-          continue;
+          isRootFolder = true;
+          // Root dosyaları "Mobile App" feature'ına ekle (çoğu mobil screenshot)
+          featureMapping = {
+            excelFeatureName: "Mobile App",
+            category: "Platform"
+          };
+          console.log(`   📱 Processing _root folder (${folder.count} files) → Mobile App`);
+        } else {
+          // Named folder için feature mapping
+          featureMapping = mapper.mapFolderToFeature(folder.folderName);
+          
+          if (!featureMapping) {
+            console.log(`   ⚠️  No mapping for folder: ${folder.folderName}`);
+            continue;
+          }
+          
+          console.log(`   📁 Processing folder: ${folder.folderName} → ${featureMapping.excelFeatureName}`);
         }
-        
-        // Named folder için feature mapping
-        const featureMapping = mapper.mapFolderToFeature(folder.folderName);
-        
-        if (!featureMapping) {
-          console.log(`   ⚠️  No mapping for folder: ${folder.folderName}`);
-          continue;
-        }
-        
-        console.log(`   📁 Processing folder: ${folder.folderName} → ${featureMapping.excelFeatureName}`);
 
         // Feature'ı bul
         const feature = await prisma.feature.findFirst({
@@ -186,13 +194,10 @@ export async function syncScreenshotsToDatabase(dryRun = false): Promise<SyncSta
 
         // Screenshot'ları ekle
         for (const screenshotFile of folder.screenshots) {
-          const filePath = path.join(
-            'uploads',
-            'screenshots',
-            structure.competitorName,
-            folder.folderName,
-            screenshotFile
-          );
+          // Root klasörü için path'i düzelt (_root klasörünü path'e ekleme)
+          const filePath = isRootFolder 
+            ? path.join('uploads', 'screenshots', structure.competitorName, screenshotFile)
+            : path.join('uploads', 'screenshots', structure.competitorName, folder.folderName, screenshotFile);
 
           // Duplicate kontrolü
           if (!dryRun) {
