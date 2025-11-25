@@ -115,13 +115,7 @@ app.get('/debug/files', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-res.json({
-  DIRECT_DATABASE_URL_SET: !!process.env.DIRECT_DATABASE_URL,
-  DATABASE_URL_SET: !!process.env.DATABASE_URL,
-  NODE_ENV: process.env.NODE_ENV,
-  PORT: process.env.PORT
-});
-});
+
 
 // API Routes
 // Static files - serve screenshots and uploads
