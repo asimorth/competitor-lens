@@ -29,6 +29,39 @@ const resolveConflictSchema = z.object({
 });
 
 /**
+ * POST /api/sync/screenshots/simple
+ * Basit import - tüm screenshot'ları hızlıca ekle
+ * TEMPORARY: Auth disabled
+ */
+router.post('/screenshots/simple', async (req, res) => {
+  try {
+    console.log('🚀 Simple import starting...');
+    
+    const { execSync } = require('child_process');
+    const output = execSync('npx tsx src/scripts/simpleImport.ts', {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+      maxBuffer: 10 * 1024 * 1024
+    });
+    
+    console.log(output);
+    
+    res.json({
+      success: true,
+      message: 'Simple import completed',
+      output
+    });
+  } catch (error: any) {
+    console.error('Simple import error:', error);
+    res.status(500).json({
+      error: 'Simple import failed',
+      message: error.message,
+      output: error.stdout || error.stderr
+    });
+  }
+});
+
+/**
  * DELETE /api/sync/screenshots/cleanup
  * Auto-scan ile eklenen screenshot'ları temizle
  * TEMPORARY: Auth disabled
