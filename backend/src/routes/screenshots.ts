@@ -146,7 +146,7 @@ router.post('/', upload.single('screenshot'), async (req, res) => {
  */
 router.post('/restore', upload.single('screenshot'), async (req, res) => {
   try {
-    const { competitorId } = req.body;
+    const { competitorId, fileSize } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
@@ -162,14 +162,38 @@ router.post('/restore', upload.single('screenshot'), async (req, res) => {
       return res.status(404).json({ error: 'Competitor not found' });
     }
 
-    // File is already saved by multer to the correct path based on competitorId
-    // We just need to confirm success.
-    // Multer storage engine uses competitorId from body to determine path.
+    // Find the existing record to update
+    // We use fileSize + competitorId as a heuristic to find the "missing" record
+    // This assumes the file size hasn't changed (which is true for exact re-upload)
+    let screenshot = null;
+    if (fileSize) {
+      screenshot = await prisma.screenshot.findFirst({
+        where: {
+          competitorId: competitorId,
+          fileSize: parseInt(fileSize.toString(), 10)
+        }
+      });
+    }
 
-    // Optional: Update existing record's fileSize/updatedAt if needed
-    // But for pure file restoration, we can skip DB ops or just touch it.
+    if (screenshot) {
+      // Update the existing record with the NEW file path
+      await prisma.screenshot.update({
+        where: { id: screenshot.id },
+        data: {
+          filePath: req.file.path, // Update to the new path
+          fileName: req.file.filename, // Update to the new filename
+          fileSize: req.file.size, // Update size (should be same)
+          updatedAt: new Date()
+        }
+      });
+      console.log(`Restored and updated screenshot: ${screenshot.id}`);
+    } else {
+      console.warn(`No matching record found for restore (Comp: ${competitorId}, Size: ${fileSize}). File saved but orphaned.`);
+      // We could create a new record here, but that might cause duplicates if we guessed wrong.
+      // For now, just keeping the file is better than nothing.
+    }
 
-    res.json({ success: true, message: 'File restored', path: req.file.path });
+    res.json({ success: true, message: 'File restored', path: req.file.path, updatedRecord: !!screenshot });
 
   } catch (error) {
     console.error('Restore error:', error);
