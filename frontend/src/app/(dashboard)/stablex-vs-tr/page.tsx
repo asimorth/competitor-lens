@@ -397,9 +397,8 @@ export default function StablexVsTRPage() {
         <TabsContent value="screenshots" className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
             {trCompetitors.map((competitor: any) => {
-              const screenshotCount = competitor.features?.reduce((sum: number, f: any) =>
-                sum + (f.screenshots?.length || 0), 0
-              ) || 0;
+              // ✅ Use _count from API (Screenshot table)
+              const screenshotCount = competitor._count?.screenshots || 0;
 
               return (
                 <Card key={competitor.id} className="overflow-hidden">
