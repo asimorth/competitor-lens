@@ -46,18 +46,41 @@ async function getFileMetadata(filePath: string) {
 function detectFeatureFromPath(filePath: string, filename: string, competitorFeatures: any[]): string | null {
     const lowercasePath = filePath.toLowerCase();
     const lowercaseFilename = filename.toLowerCase();
+    const parentFolder = path.basename(path.dirname(filePath)).toLowerCase();
+
+    // 1. Check parent folder name against feature names directly
+    // This handles cases like "AI Tool" -> "AI Sentimentals" if mapped, or direct matches
+    for (const cf of competitorFeatures) {
+        const featureName = cf.feature.name.toLowerCase();
+        if (featureName === parentFolder || featureName.includes(parentFolder)) {
+            return cf.feature.id;
+        }
+    }
 
     // Feature keywords mapping
     const featureKeywords: Record<string, string[]> = {
         'onboarding': ['onboarding', 'kayıt', 'register', 'signup', 'sign-up'],
         'kyc': ['kyc', 'identity', 'kimlik', 'doğrulama', 'verification'],
-        'mobile app': ['mobile', 'app', 'mobil'],
-        'web app': ['web', 'desktop', 'browser'],
+        'mobile app': ['mobile', 'app', 'mobil', 'ios', 'android'], // Prioritize Mobile
         'trading': ['trading', 'trade', 'alım', 'satım', 'spot'],
         'convert': ['convert', 'swap', 'exchange', 'çevir'],
         'staking': ['staking', 'earn', 'stake'],
         'wallet': ['wallet', 'cüzdan'],
         'dashboard': ['dashboard', 'ana', 'home', 'main'],
+        'login': ['login', 'giris', 'sign in', 'signin'],
+        '2fa': ['2fa', 'authenticator', 'guvenlik'],
+        'deposit': ['deposit', 'yatirma', 'para yatirma'],
+        'withdraw': ['withdraw', 'cekme', 'para cekme'],
+        'transfer': ['transfer'],
+        'settings': ['settings', 'ayarlar'],
+        'profile': ['profile', 'profil'],
+        'market': ['market', 'piyasa'],
+        'futures': ['futures', 'vadeli'],
+        'nft': ['nft'],
+        'web3': ['web3'],
+        'earn': ['earn', 'kazan'],
+        'copy trading': ['copy', 'kopyala'],
+        'ai': ['ai', 'yapay'],
     };
 
     // Try to match keywords
@@ -94,15 +117,22 @@ async function importScreenshotsToDatabase(competitorPath: string, competitor: a
 
     if (competitorFeatures.length === 0) {
         console.log(`   ⚠️  No features found for ${competitor.name}`);
+        // Even if no features found, we might want to import if we can create a default one? 
+        // For now, let's skip or maybe fetch ALL features to find a match?
+        // Actually, if competitor has no features assigned, we can't map.
         return 0;
     }
 
     console.log(`   📋 Found ${competitorFeatures.length} features`);
 
-    // Default feature (use first available)
+    // Default feature: Prioritize Mobile App
     const defaultFeature = competitorFeatures.find(cf =>
-        cf.feature.name.includes('Mobile App') || cf.feature.name.includes('Web App')
+        cf.feature.name === 'Mobile App'
+    ) || competitorFeatures.find(cf =>
+        cf.feature.name.includes('Mobile')
     ) || competitorFeatures[0];
+
+    console.log(`   📱 Default feature: ${defaultFeature.feature.name}`);
 
     async function scanDirectory(currentPath: string, level: number = 0) {
         const entries = fs.readdirSync(currentPath, { withFileTypes: true });
