@@ -194,17 +194,24 @@ async function main() {
             const competitorPath = path.join(uploadsDir, folderName);
             const competitorName = normalizeCompetitorName(folderName);
 
-            console.log(`\\n🏢 Processing: ${folderName}`);
+            console.log(`\n🏢 Processing: ${folderName}`);
 
             // Find competitor
-            const competitor = await prisma.competitor.findFirst({
-                where: {
-                    OR: [
-                        { name: competitorName },
-                        { name: { contains: folderName.split(' ')[0] } }
-                    ]
-                }
+            // 1. Try exact match with normalized name
+            let competitor = await prisma.competitor.findUnique({
+                where: { name: competitorName }
             });
+
+            // 2. If not found, try fuzzy match (but exclude generic 'Binance' if possible)
+            if (!competitor) {
+                console.log(`   ⚠️  Exact match not found for '${competitorName}', trying fuzzy search...`);
+                competitor = await prisma.competitor.findFirst({
+                    where: {
+                        name: { contains: folderName.split(' ')[0] },
+                        NOT: { name: 'Binance' } // Avoid the empty generic Binance competitor
+                    }
+                });
+            }
 
             if (!competitor) {
                 console.log(`   ❌ Competitor not found in database`);
