@@ -140,6 +140,46 @@ router.post('/', upload.single('screenshot'), async (req, res) => {
   }
 });
 
+/**
+ * POST /api/screenshots/restore
+ * Dosyaları DB kaydı oluşturmadan diske geri yükle (Recovery)
+ */
+router.post('/restore', upload.single('screenshot'), async (req, res) => {
+  try {
+    const { competitorId } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    // Competitor check
+    const competitor = await prisma.competitor.findUnique({
+      where: { id: competitorId }
+    });
+
+    if (!competitor) {
+      await fs.unlink(req.file.path);
+      return res.status(404).json({ error: 'Competitor not found' });
+    }
+
+    // File is already saved by multer to the correct path based on competitorId
+    // We just need to confirm success.
+    // Multer storage engine uses competitorId from body to determine path.
+
+    // Optional: Update existing record's fileSize/updatedAt if needed
+    // But for pure file restoration, we can skip DB ops or just touch it.
+
+    res.json({ success: true, message: 'File restored', path: req.file.path });
+
+  } catch (error) {
+    console.error('Restore error:', error);
+    if (req.file) {
+      try { await fs.unlink(req.file.path); } catch { }
+    }
+    res.status(500).json({ error: 'Failed to restore file' });
+  }
+});
+
 // Validation schemas
 const querySchema = z.object({
   featureId: z.string().uuid().optional(),
@@ -332,7 +372,7 @@ router.get('/feature/:featureId', async (req, res) => {
 
     // Screenshot'ları getir
     const where: any = { featureId };
-    
+
     // YENİ: Region filter
     if (region && typeof region === 'string') {
       where.competitor = {
