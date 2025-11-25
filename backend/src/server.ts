@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 // BigInt serialization fix
-(BigInt.prototype as any).toJSON = function() {
+(BigInt.prototype as any).toJSON = function () {
   return this.toString();
 };
 
@@ -45,8 +45,8 @@ app.use((req, res, next) => {
 
   // Vercel, Railway veya localhost ise izin ver
   if (origin && (
-    origin.includes('.vercel.app') || 
-    origin.includes('.railway.app') || 
+    origin.includes('.vercel.app') ||
+    origin.includes('.railway.app') ||
     origin.includes('localhost')
   )) {
     res.setHeader('Access-Control-Allow-Origin', origin);
@@ -99,11 +99,28 @@ app.get('/health', (req, res) => {
 // Debug endpoint
 app.get('/debug/env', (req, res) => {
   res.json({
-    DIRECT_DATABASE_URL_SET: !!process.env.DIRECT_DATABASE_URL,
-    DATABASE_URL_SET: !!process.env.DATABASE_URL,
-    NODE_ENV: process.env.NODE_ENV,
-    PORT: process.env.PORT
+    env: process.env.NODE_ENV,
+    cwd: process.cwd(),
+    uploadsPath: path.join(process.cwd(), 'uploads')
   });
+});
+
+app.get('/debug/files', async (req, res) => {
+  try {
+    const fs = require('fs/promises');
+    const uploadsPath = path.join(process.cwd(), 'uploads');
+    const files = await fs.readdir(uploadsPath, { recursive: true });
+    res.json({ path: uploadsPath, files: files.slice(0, 50) }); // Limit to 50
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+res.json({
+  DIRECT_DATABASE_URL_SET: !!process.env.DIRECT_DATABASE_URL,
+  DATABASE_URL_SET: !!process.env.DATABASE_URL,
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: process.env.PORT
+});
 });
 
 // API Routes
