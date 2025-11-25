@@ -269,54 +269,77 @@ export const featureController = {
   },
 
   // GET /api/features/:id/detail
-  // Feature detayı + screenshot'lar + coverage
+  // Feature detayı + screenshot'lar + coverage (DATABASE'den)
   getDetailedById: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
       const { region } = req.query; // Optional: TR, Global
 
       const feature = await prisma.feature.findUnique({
-        where: { id },
-        include: {
-          competitors: {
-            include: {
-              competitor: {
-                select: {
-                  id: true,
-                  name: true,
-                  region: true,
-                  logoUrl: true
-                }
-              }
-            }
-          }
-        }
+        where: { id }
       });
 
       if (!feature) {
         throw createError('Feature not found', 404);
       }
 
-      const mapper = getFeatureScreenshotMapper();
-      const coverage = await mapper.getFeatureCoverage(feature.name);
+      // Screenshot'ları DATABASE'den getir
+      const whereClause: any = {
+        featureId: id
+      };
 
-      // Region filter uygula
-      let competitorsWithScreenshots = coverage.competitors;
-      if (region) {
-        competitorsWithScreenshots = competitorsWithScreenshots.filter(
-          c => c.region === region
-        );
+      // Region filter
+      if (region && typeof region === 'string') {
+        whereClause.competitor = {
+          region: region
+        };
       }
 
-      // Screenshot URL'lerini thumbnail'lar ile enrich et
-      const enrichedCompetitors = competitorsWithScreenshots.map(comp => ({
-        ...comp,
-        screenshots: comp.screenshots.map(url => ({
-          url,
-          thumbnailUrl: url, // TODO: Generate actual thumbnails
-          path: url
-        }))
-      }));
+      const screenshots = await prisma.screenshot.findMany({
+        where: whereClause,
+        include: {
+          competitor: {
+            select: {
+              id: true,
+              name: true,
+              region: true,
+              logoUrl: true
+            }
+          }
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      });
+
+      // Competitor bazında grupla
+      const competitorMap = new Map<string, any>();
+
+      for (const screenshot of screenshots) {
+        const compId = screenshot.competitorId;
+        
+        if (!competitorMap.has(compId)) {
+          competitorMap.set(compId, {
+            id: screenshot.competitor.id,
+            name: screenshot.competitor.name,
+            region: screenshot.competitor.region,
+            logoUrl: screenshot.competitor.logoUrl,
+            screenshots: [],
+            screenshotCount: 0
+          });
+        }
+
+        const comp = competitorMap.get(compId);
+        comp.screenshots.push({
+          url: `https://competitor-lens-production.up.railway.app/${screenshot.filePath}`,
+          thumbnailUrl: `https://competitor-lens-production.up.railway.app/${screenshot.filePath}`,
+          path: screenshot.filePath,
+          caption: screenshot.fileName
+        });
+        comp.screenshotCount++;
+      }
+
+      const competitors = Array.from(competitorMap.values());
 
       // Coverage hesapla
       const allCompetitors = await prisma.competitor.findMany({
@@ -326,24 +349,23 @@ export const featureController = {
       const trTotal = allCompetitors.filter(c => c.region === 'TR').length;
       const globalTotal = allCompetitors.filter(c => c.region === 'Global').length;
 
+      const trCompetitors = competitors.filter(c => c.region === 'TR').length;
+      const globalCompetitors = competitors.filter(c => c.region === 'Global').length;
+
       const coverageStats = {
-        tr: coverage.coverageByRegion.TR,
+        tr: trCompetitors,
         trTotal,
-        global: coverage.coverageByRegion.Global,
+        global: globalCompetitors,
         globalTotal,
-        total: coverage.competitors.length
+        total: competitors.length
       };
 
       // Screenshot stats by region
       const screenshotStats = {
-        total: coverage.totalScreenshots,
+        total: screenshots.length,
         byRegion: {
-          TR: coverage.competitors
-            .filter(c => c.region === 'TR')
-            .reduce((sum, c) => sum + c.screenshotCount, 0),
-          Global: coverage.competitors
-            .filter(c => c.region === 'Global')
-            .reduce((sum, c) => sum + c.screenshotCount, 0)
+          TR: screenshots.filter(s => s.competitor.region === 'TR').length,
+          Global: screenshots.filter(s => s.competitor.region === 'Global').length
         }
       };
 
@@ -357,7 +379,7 @@ export const featureController = {
             description: feature.description
           },
           coverage: coverageStats,
-          competitors: enrichedCompetitors,
+          competitors,
           screenshotStats
         }
       });
