@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
+import {
   ArrowLeft,
   RefreshCw,
   Flag,
@@ -68,7 +68,7 @@ export default function FeatureDetailPage() {
         `${process.env.NEXT_PUBLIC_API_URL}/api/features/${featureId}/detail`
       );
       const data = await response.json();
-      
+
       if (data.success && data.data) {
         setFeatureDetail(data.data);
         // Select first competitor by default
@@ -130,12 +130,13 @@ export default function FeatureDetailPage() {
     caption: s.caption
   }));
 
-  const trCoveragePercent = Math.round(
-    (featureDetail.coverage.tr / featureDetail.coverage.trTotal) * 100
-  );
-  const globalCoveragePercent = Math.round(
-    (featureDetail.coverage.global / featureDetail.coverage.globalTotal) * 100
-  );
+  const trCoveragePercent = featureDetail.coverage.trTotal > 0
+    ? Math.round((featureDetail.coverage.tr / featureDetail.coverage.trTotal) * 100)
+    : 0;
+
+  const globalCoveragePercent = featureDetail.coverage.globalTotal > 0
+    ? Math.round((featureDetail.coverage.global / featureDetail.coverage.globalTotal) * 100)
+    : 0;
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -151,7 +152,7 @@ export default function FeatureDetailPage() {
       <Card className="relative overflow-hidden bg-gradient-to-br from-blue-50/80 via-violet-50/80 to-purple-50/80 border-blue-100/50 shadow-glow-blue">
         {/* Subtle pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(59,130,246,0.1)_1px,_transparent_0)] bg-[size:20px_20px]" />
-        
+
         <CardContent className="relative z-10 p-4 md:p-6">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="flex-1">
@@ -220,7 +221,7 @@ export default function FeatureDetailPage() {
                 {featureDetail.screenshotStats.total}
               </div>
               <div className="text-xs text-gray-500">
-                TR: {featureDetail.screenshotStats.byRegion.TR} | 
+                TR: {featureDetail.screenshotStats.byRegion.TR} |
                 Global: {featureDetail.screenshotStats.byRegion.Global}
               </div>
             </div>
@@ -258,7 +259,7 @@ export default function FeatureDetailPage() {
                   )}
                 >
                   {competitor.name}
-                  <Badge 
+                  <Badge
                     variant={selectedCompetitor === competitor.name ? "secondary" : "default"}
                     className="text-xs"
                   >
