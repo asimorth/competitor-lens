@@ -187,6 +187,7 @@ async function main() {
             try {
                 const form = new FormData();
                 form.append('competitorId', file.competitorId);
+                form.append('fileSize', fileSize.toString()); // Send fileSize for matching
                 if (file.featureId) form.append('featureId', file.featureId);
                 form.append('uploadSource', 'sync-script');
                 form.append('screenshot', fs.createReadStream(file.filePath));
