@@ -29,6 +29,38 @@ const resolveConflictSchema = z.object({
 });
 
 /**
+ * DELETE /api/sync/screenshots/cleanup
+ * Auto-scan ile eklenen screenshot'ları temizle
+ * TEMPORARY: Auth disabled
+ */
+router.delete('/screenshots/cleanup', async (req, res) => {
+  try {
+    console.log('🧹 Cleaning up auto-scanned screenshots...');
+
+    const result = await prisma.screenshot.deleteMany({
+      where: {
+        uploadSource: 'auto-scan'
+      }
+    });
+
+    console.log(`✅ Deleted ${result.count} screenshots`);
+
+    res.json({
+      success: true,
+      message: `Cleaned up ${result.count} screenshots`,
+      count: result.count
+    });
+
+  } catch (error) {
+    console.error('Cleanup error:', error);
+    res.status(500).json({
+      error: 'Cleanup failed',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+/**
  * POST /api/sync/screenshots
  * Screenshot'ları file system'den database'e senkronize et
  * TEMPORARY: Auth disabled for initial sync
