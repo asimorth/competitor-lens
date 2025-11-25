@@ -10,7 +10,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { useBreakpoint } from '@/hooks/useMediaQuery';
+import { getImageUrl } from '@/lib/imageUrl';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -43,10 +43,10 @@ interface MobileImageGalleryProps {
   onScreenshotClick?: (screenshot: Screenshot) => void;
 }
 
-export function MobileImageGallery({ 
-  screenshots, 
+export function MobileImageGallery({
+  screenshots,
   className,
-  onScreenshotClick 
+  onScreenshotClick
 }: MobileImageGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -90,7 +90,7 @@ export function MobileImageGallery({
               <SwiperSlide key={screenshot.id}>
                 <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden">
                   <Image
-                    src={screenshot.cdnUrl || screenshot.url}
+                    src={getImageUrl(screenshot.cdnUrl || screenshot.url)}
                     alt={screenshot.caption || 'Screenshot'}
                     fill
                     className="object-contain"
@@ -187,39 +187,39 @@ export function MobileImageGallery({
 }
 
 // Screenshot Card Component
-function ScreenshotCard({ 
-  screenshot, 
-  onClick 
-}: { 
-  screenshot: Screenshot; 
+function ScreenshotCard({
+  screenshot,
+  onClick
+}: {
+  screenshot: Screenshot;
   onClick: () => void;
 }) {
   return (
-    <div 
+    <div
       className="relative group cursor-pointer rounded-lg overflow-hidden bg-gray-100"
       onClick={onClick}
     >
       <div className="relative aspect-video">
         <Image
-          src={screenshot.cdnUrl || screenshot.url}
+          src={getImageUrl(screenshot.cdnUrl || screenshot.url)}
           alt={screenshot.caption || 'Screenshot'}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </div>
-      
+
       {screenshot.isOnboarding && (
         <Badge className="absolute top-2 left-2" variant="secondary">
           Onboarding
         </Badge>
       )}
-      
+
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors">
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <Expand className="text-white" size={24} />
         </div>
       </div>
-      
+
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
         <p className="text-white text-sm font-medium truncate">
           {screenshot.competitor.name}
@@ -263,7 +263,7 @@ function FullscreenViewer({
               <p className="text-sm opacity-80">{currentScreenshot.feature.name}</p>
             )}
           </div>
-          <button 
+          <button
             onClick={() => onDownload(currentScreenshot)}
             className="text-white p-2"
           >
@@ -282,7 +282,7 @@ function FullscreenViewer({
         <TransformComponent>
           <div className="w-screen h-screen flex items-center justify-center">
             <img
-              src={currentScreenshot.cdnUrl || currentScreenshot.url}
+              src={getImageUrl(currentScreenshot.cdnUrl || currentScreenshot.url)}
               alt={currentScreenshot.caption || 'Screenshot'}
               className="max-w-full max-h-full object-contain"
             />
@@ -341,7 +341,7 @@ function LightboxViewer({
             <div className="h-full flex items-center justify-center p-8">
               <div className="relative max-w-full max-h-full">
                 <img
-                  src={screenshot.cdnUrl || screenshot.url}
+                  src={getImageUrl(screenshot.cdnUrl || screenshot.url)}
                   alt={screenshot.caption || 'Screenshot'}
                   className="max-w-full max-h-full object-contain"
                 />
