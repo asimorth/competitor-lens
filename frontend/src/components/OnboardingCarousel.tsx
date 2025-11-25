@@ -44,7 +44,8 @@ export default function OnboardingCarousel({ screenshots, competitorName }: Onbo
             relativePath = relativePath.substring(1);
         }
 
-        return `${apiUrl}/${relativePath}`;
+        // Encode the path to handle spaces (e.g. "Garanti Kripto")
+        return `${apiUrl}/${encodeURI(relativePath)}`;
     };
 
     const goToPrevious = () => {
