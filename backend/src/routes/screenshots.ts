@@ -13,24 +13,36 @@ const prisma = new PrismaClient();
 const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
     try {
-      const competitorId = req.body.competitorId;
+      const competitorId = req.body.competitorId || req.query.competitorId;
       if (!competitorId) {
         return cb(new Error('Competitor ID is required'), '');
       }
 
       const competitor = await prisma.competitor.findUnique({
-        where: { id: competitorId }
+        where: { id: competitorId as string }
       });
 
       if (!competitor) {
         return cb(new Error('Competitor not found'), '');
       }
 
+      let folderName = 'features';
+      const featureId = req.body.featureId || req.query.featureId;
+
+      if (featureId) {
+        const feature = await prisma.feature.findUnique({
+          where: { id: featureId as string }
+        });
+        if (feature) {
+          folderName = feature.name;
+        }
+      }
+
       const uploadPath = path.join(
         process.cwd(),
         'uploads/screenshots',
         competitor.name,
-        'features'
+        folderName
       );
 
       await fs.mkdir(uploadPath, { recursive: true });
@@ -70,14 +82,18 @@ const upload = multer({
  */
 router.post('/', upload.single('screenshot'), async (req, res) => {
   try {
-    const { competitorId, featureId } = req.body;
+    const competitorId = req.body.competitorId || req.query.competitorId;
+    const featureId = req.body.featureId || req.query.featureId;
 
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
 
     if (!competitorId) {
-      await fs.unlink(req.file.path);
+      // File was saved by multer, delete it if validation fails
+      if (req.file.path) {
+        await fs.unlink(req.file.path).catch(() => { });
+      }
       return res.status(400).json({ error: 'Competitor ID is required' });
     }
 
