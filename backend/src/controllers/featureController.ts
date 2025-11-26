@@ -322,7 +322,7 @@ export const featureController = {
 
       for (const screenshot of screenshots) {
         const compId = screenshot.competitorId;
-        
+
         if (!competitorMap.has(compId)) {
           competitorMap.set(compId, {
             id: screenshot.competitor.id,
@@ -335,9 +335,20 @@ export const featureController = {
         }
 
         const comp = competitorMap.get(compId);
+
+        // Normalize path: strip /app/ prefix if present
+        let cleanPath = screenshot.filePath;
+        if (cleanPath.startsWith('/app/')) {
+          cleanPath = cleanPath.substring(5); // Remove '/app/'
+        }
+        // Ensure no leading slash
+        if (cleanPath.startsWith('/')) {
+          cleanPath = cleanPath.substring(1);
+        }
+
         comp.screenshots.push({
-          url: `https://competitor-lens-production.up.railway.app/${screenshot.filePath}`,
-          thumbnailUrl: `https://competitor-lens-production.up.railway.app/${screenshot.filePath}`,
+          url: `https://competitor-lens-production.up.railway.app/${cleanPath}`,
+          thumbnailUrl: `https://competitor-lens-production.up.railway.app/${cleanPath}`,
           path: screenshot.filePath,
           caption: screenshot.fileName
         });
