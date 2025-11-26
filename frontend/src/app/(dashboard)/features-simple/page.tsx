@@ -132,8 +132,8 @@ export default function FeaturesSimplePage() {
 
     // Region filter
     if (regionFilter === 'tr') {
-      // User request: Show only features with screenshots (AI Sentimentals, User Onboarding, TRY Nemalandırma)
-      return feature.hasScreenshots;
+      // Show features that exist in TR AND have screenshots
+      return feature.trCoverage > 0 && feature.hasScreenshots;
     } else if (regionFilter === 'global') {
       return feature.globalCoverage > 0;
     }
