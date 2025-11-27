@@ -35,10 +35,13 @@ RUN addgroup -g 1001 -S nodejs && \
 WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+# Copy package files
+COPY frontend/package*.json ./
 
 # Install production dependencies only
-RUN npm ci --production && \
+# Remove lockfile to force fresh install
+RUN rm -f package-lock.json
+RUN npm install --production && \
   npm cache clean --force
 
 # Copy built application from builder
@@ -54,6 +57,8 @@ RUN chown -R nodejs:nodejs /app
 USER nodejs
 
 # Expose port
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 EXPOSE 3000
 
 # Health check
