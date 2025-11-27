@@ -13,3 +13,8 @@ yarn-error.log
 coverage
 .vscode
 .idea
+backend/uploads
+backend/logs
+sample-data
+docs
+scripts
