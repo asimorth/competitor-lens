@@ -17,13 +17,9 @@ RUN npm install
 COPY backend/prisma ./prisma/
 
 # Copy source code
-COPY backend/src ./src/
-COPY backend/*.js ./
-COPY backend/tsconfig.json ./
-
-# 🎯 SCREENSHOTS - Railway'e dahil et (616MB, 1320 files)
-# Production'da screenshot'lar Docker image içinde olacak
-COPY backend/uploads/screenshots ./uploads/screenshots/
+COPY src ./src/
+COPY *.js ./
+COPY tsconfig.json ./
 
 # Generate Prisma Client
 RUN npx prisma generate
