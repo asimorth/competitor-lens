@@ -1,4 +1,5 @@
 # Simple Production Dockerfile for Railway
+# Cache bust: 2025-11-27-11:38
 FROM node:20-alpine
 
 WORKDIR /app

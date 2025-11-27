@@ -1,4 +1,5 @@
 # Build stage
+# Cache bust: 2025-11-27-11:38
 FROM node:20-alpine AS builder
 
 WORKDIR /app
@@ -27,7 +28,7 @@ RUN apk add --no-cache dumb-init
 
 # Create app user
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
+  adduser -S nodejs -u 1001
 
 WORKDIR /app
 
@@ -36,7 +37,7 @@ COPY package*.json ./
 
 # Install production dependencies only
 RUN npm ci --production && \
-    npm cache clean --force
+  npm cache clean --force
 
 # Copy built application from builder
 COPY --from=builder /app/.next/standalone ./
