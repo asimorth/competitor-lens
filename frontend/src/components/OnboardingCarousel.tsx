@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getImageUrl } from '@/lib/imageUrl';
 
 interface OnboardingScreenshot {
     id: string;
@@ -26,27 +27,6 @@ export default function OnboardingCarousel({ screenshots, competitorName }: Onbo
         if (a.stepNumber && b.stepNumber) return a.stepNumber - b.stepNumber;
         return 0;
     });
-
-    const getImageUrl = (screenshot: OnboardingScreenshot) => {
-        if (screenshot.cdnUrl) return screenshot.cdnUrl;
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-
-        // Normalize path: Ensure it's relative and starts with 'uploads/'
-        let relativePath = screenshot.screenshotPath;
-
-        // Handle absolute paths (e.g. /app/uploads/... or /Users/.../uploads/...)
-        if (relativePath.includes('uploads/')) {
-            relativePath = 'uploads/' + relativePath.split('uploads/')[1];
-        }
-
-        // Remove leading slash if present
-        if (relativePath.startsWith('/')) {
-            relativePath = relativePath.substring(1);
-        }
-
-        // Encode the path to handle spaces (e.g. "Garanti Kripto")
-        return `${apiUrl}/${encodeURI(relativePath)}`;
-    };
 
     const goToPrevious = () => {
         setCurrentStep((prev) => (prev > 0 ? prev - 1 : sortedScreenshots.length - 1));
@@ -82,7 +62,7 @@ export default function OnboardingCarousel({ screenshots, competitorName }: Onbo
             <div className="relative bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
                 <div className="relative aspect-[9/16] md:aspect-video">
                     <Image
-                        src={getImageUrl(current)}
+                        src={getImageUrl(current.cdnUrl || current.screenshotPath)}
                         alt={`Step ${currentStep + 1}`}
                         fill
                         className="object-contain"
@@ -166,7 +146,7 @@ export default function OnboardingCarousel({ screenshots, competitorName }: Onbo
                 `}
                             >
                                 <Image
-                                    src={getImageUrl(screenshot)}
+                                    src={getImageUrl(screenshot.cdnUrl || screenshot.screenshotPath)}
                                     alt={`Thumbnail ${index + 1}`}
                                     fill
                                     className="object-cover"

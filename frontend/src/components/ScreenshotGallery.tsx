@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getImageUrl } from '@/lib/imageUrl';
 
 interface Screenshot {
     id: string;
@@ -23,29 +24,6 @@ interface ScreenshotGalleryProps {
 
 export default function ScreenshotGallery({ screenshots, columns = 3 }: ScreenshotGalleryProps) {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-
-    const getImageUrl = (screenshot: Screenshot) => {
-        if (screenshot.cdnUrl) return screenshot.cdnUrl;
-
-        // Fallback to local path
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-
-        // Normalize path: Ensure it's relative and starts with 'uploads/'
-        let relativePath = screenshot.filePath;
-
-        // Handle absolute paths (e.g. /app/uploads/... or /Users/.../uploads/...)
-        if (relativePath.includes('uploads/')) {
-            relativePath = 'uploads/' + relativePath.split('uploads/')[1];
-        }
-
-        // Remove leading slash if present
-        if (relativePath.startsWith('/')) {
-            relativePath = relativePath.substring(1);
-        }
-
-        // Encode the path to handle spaces (e.g. "Garanti Kripto")
-        return `${apiUrl}/${encodeURI(relativePath)}`;
-    };
 
     const handlePrevious = () => {
         if (selectedIndex === null) return;
@@ -84,7 +62,7 @@ export default function ScreenshotGallery({ screenshots, columns = 3 }: Screensh
                         onClick={() => setSelectedIndex(index)}
                     >
                         <Image
-                            src={getImageUrl(screenshot)}
+                            src={getImageUrl(screenshot.cdnUrl || screenshot.filePath)}
                             alt={screenshot.fileName}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform"
@@ -144,7 +122,7 @@ export default function ScreenshotGallery({ screenshots, columns = 3 }: Screensh
 
                     <div className="relative max-w-6xl max-h-[90vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
                         <Image
-                            src={getImageUrl(screenshots[selectedIndex])}
+                            src={getImageUrl(screenshots[selectedIndex].cdnUrl || screenshots[selectedIndex].filePath)}
                             alt={screenshots[selectedIndex].fileName}
                             fill
                             className="object-contain"
