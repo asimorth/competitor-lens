@@ -7,18 +7,47 @@ import fs from 'fs/promises';
 import { prisma } from '../lib/db';
 
 // Redis connection (optional)
+// Redis connection (optional)
 let connection: Redis | null = null;
-try {
-  connection = new Redis({
-    host: process.env.REDIS_HOST || 'localhost',
-    port: parseInt(process.env.REDIS_PORT || '6379'),
-    maxRetriesPerRequest: null,
-    lazyConnect: true,
-    retryStrategy: () => null // Don't retry if connection fails
-  });
-} catch (error) {
-  console.warn('Redis connection failed, queue features will be disabled');
-  connection = null;
+
+const redisUrl = process.env.REDIS_URL;
+const redisHost = process.env.REDIS_HOST;
+const redisPort = process.env.REDIS_PORT;
+
+// Only attempt connection if configuration is present
+if (redisUrl || redisHost) {
+  try {
+    const options: any = {
+      maxRetriesPerRequest: null,
+      lazyConnect: true,
+      retryStrategy: (times: number) => {
+        if (times > 3) return null; // Stop retrying after 3 attempts
+        return Math.min(times * 50, 2000);
+      }
+    };
+
+    if (redisUrl) {
+      connection = new Redis(redisUrl, options);
+    } else {
+      connection = new Redis({
+        host: redisHost || 'localhost',
+        port: parseInt(redisPort || '6379'),
+        ...options
+      });
+    }
+
+    // Handle connection errors without crashing
+    connection.on('error', (err) => {
+      console.warn('Redis connection error:', err.message);
+      // Don't crash, just warn. QueueService handles null connection.
+    });
+
+  } catch (error) {
+    console.warn('Redis initialization failed, queue features will be disabled');
+    connection = null;
+  }
+} else {
+  console.log('ℹ️ No Redis configuration found (REDIS_URL or REDIS_HOST). Queue features disabled.');
 }
 
 // Queue names
@@ -57,7 +86,7 @@ export class QueueService {
     this.workers = new Map();
     this.analysisService = new ScreenshotAnalysisService();
     this.syncService = new SyncService();
-    
+
     // Only initialize if Redis is available
     if (connection) {
       this.initializeQueues();
@@ -72,7 +101,7 @@ export class QueueService {
    */
   private initializeQueues() {
     if (!connection) return;
-    
+
     // Screenshot Analysis Queue
     this.queues.set(
       QUEUES.SCREENSHOT_ANALYSIS,
@@ -97,7 +126,7 @@ export class QueueService {
    */
   private initializeWorkers() {
     if (!connection) return;
-    
+
     // Screenshot Analysis Worker
     const analysisWorker = new Worker<ScreenshotAnalysisJob>(
       QUEUES.SCREENSHOT_ANALYSIS,
@@ -228,11 +257,11 @@ export class QueueService {
         case 'full':
           result = await this.syncService.syncToServer();
           break;
-        
+
         case 'retry':
           result = await this.syncService.retryFailedSyncs();
           break;
-        
+
         case 'partial':
           if (!screenshotIds || screenshotIds.length === 0) {
             throw new Error('No screenshot IDs provided for partial sync');
@@ -241,7 +270,7 @@ export class QueueService {
           // TODO: Implement partial sync for specific screenshots
           result = { success: true, synced: 0, failed: 0, errors: [] };
           break;
-        
+
         default:
           throw new Error(`Unknown sync type: ${type}`);
       }
@@ -262,7 +291,7 @@ export class QueueService {
 
     try {
       console.log(`Starting batch scan: ${directoryPath}`);
-      
+
       // Dizin var mı kontrol et
       await fs.access(directoryPath);
 
@@ -272,7 +301,7 @@ export class QueueService {
         competitor = await prisma.competitor.findUnique({
           where: { name: competitorName }
         });
-        
+
         if (!competitor) {
           competitor = await prisma.competitor.create({
             data: { name: competitorName }
@@ -293,10 +322,10 @@ export class QueueService {
           // Dosya boyutunu kontrol et
           const stats = await fs.stat(imagePath);
           const fileName = path.basename(imagePath);
-          
+
           // Onboarding kontrolü
           const isOnboarding = imagePath.toLowerCase().includes('onboarding');
-          
+
           // Screenshot kaydı oluştur
           const screenshot = await prisma.screenshot.create({
             data: {
@@ -460,12 +489,12 @@ export class QueueService {
    */
   async getAllQueueStatus() {
     const statuses = [];
-    
+
     for (const queueName of this.queues.keys()) {
       const status = await this.getQueueStatus(queueName);
       statuses.push(status);
     }
-    
+
     return statuses;
   }
 
