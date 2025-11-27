@@ -5,13 +5,15 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+COPY frontend/package*.json ./
 
 # Install dependencies
-RUN npm ci
+# Remove lockfile to force fresh install
+RUN rm -f package-lock.json
+RUN npm install
 
 # Copy source code
-COPY . .
+COPY frontend/ .
 
 # Build arguments
 ARG NEXT_PUBLIC_API_URL

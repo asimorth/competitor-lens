@@ -11,6 +11,8 @@ RUN apk add --no-cache python3 make g++
 COPY backend/package*.json ./
 
 # Install ALL dependencies (including dev for build)
+# Remove lockfile to force fresh install
+RUN rm -f package-lock.json
 RUN npm install
 
 # Copy Prisma schema first (for generation)
