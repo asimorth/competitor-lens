@@ -25,6 +25,7 @@ import syncRoutes from './routes/sync';
 import publicRoutes from './routes/public';
 // Phase 0 & 1 Routes
 import dataQualityRoutes from './routes/dataQuality';
+import bulkUploadRoutes from './routes/bulkUpload';
 
 // Middleware
 import { errorHandler } from './middleware/errorHandler';
@@ -134,15 +135,18 @@ app.get('/debug/files', async (req, res) => {
 
 
 // API Routes
-app.use('/api/competitors', competitorRoutes);
-app.use('/api/features', featureRoutes);
-app.use('/api/matrix', matrixRoutes);
+app.use('/api/screenshots', screenshotRoutes);
+app.use('/api/onboarding', onboardingRoutes);
+app.use('/api/sync', syncRoutes);
+app.use('/api/bulk-upload', bulkUploadRoutes);
 app.use('/api/uploads', uploadRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/reports', reportRoutes);
 
 // V2 API Routes
-app.use('/api/screenshots', screenshotRoutes); // Main screenshot CRUD
+app.use('/api/competitors', competitorRoutes);
+app.use('/api/features', featureRoutes);
+app.use('/api/matrix', matrixRoutes);
 app.use('/api/screenshots', screenshotAnalysisRoutes); // Analysis endpoints
 app.use('/api/competitors', onboardingRoutes); // Nested under competitors
 app.use('/api/sync', syncRoutes);
