@@ -46,15 +46,56 @@ console.log(`   S3_BUCKET: ${process.env.S3_BUCKET ? '✅ Set' : '⚠️  Not se
 console.log(`   CDN_URL: ${process.env.CDN_URL ? '✅ Set' : '⚠️  Not set (S3 URLs will be direct)'}`);
 console.log(`   ALLOWED_ORIGINS: ${process.env.ALLOWED_ORIGINS ? '✅ Set' : '⚠️  Not set (CORS may not work properly)'}`);
 
-// Create necessary directories
-const dirs = ['uploads', 'uploads/screenshots', 'logs'];
-dirs.forEach(dir => {
-  const dirPath = path.join(__dirname, dir);
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-    console.log(`📁 Created directory: ${dir}`);
+// Setup persistent storage with Railway Volume
+const volumePath = '/app/data/uploads';
+const uploadsPath = path.join(__dirname, 'uploads');
+
+// Check if Railway Volume is mounted
+if (fs.existsSync(volumePath)) {
+  console.log('📦 Railway Volume detected:', volumePath);
+
+  // Remove old uploads directory if it exists
+  if (fs.existsSync(uploadsPath)) {
+    if (fs.lstatSync(uploadsPath).isSymbolicLink()) {
+      fs.unlinkSync(uploadsPath);
+      console.log('   🔗 Removed old symlink');
+    } else {
+      fs.rmSync(uploadsPath, { recursive: true, force: true });
+      console.log('   🗑️  Removed ephemeral uploads directory');
+    }
   }
-});
+
+  // Create symlink from volume to uploads
+  fs.symlinkSync(volumePath, uploadsPath);
+  console.log(`   ✅ Volume mounted: ${volumePath} → ${uploadsPath}`);
+
+  // Ensure screenshots subdirectory exists in volume
+  const screenshotsDir = path.join(volumePath, 'screenshots');
+  if (!fs.existsSync(screenshotsDir)) {
+    fs.mkdirSync(screenshotsDir, { recursive: true });
+    console.log('   📁 Created screenshots directory in volume');
+  }
+} else {
+  console.warn('   ⚠️  Railway Volume not found, using ephemeral storage');
+  console.warn('   ⚠️  Screenshots will be lost on each deployment!');
+
+  // Fallback: create ephemeral directories
+  const dirs = ['uploads', 'uploads/screenshots'];
+  dirs.forEach(dir => {
+    const dirPath = path.join(__dirname, dir);
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+      console.log(`   📁 Created ephemeral directory: ${dir}`);
+    }
+  });
+}
+
+// Always create logs directory
+const logsDir = path.join(__dirname, 'logs');
+if (!fs.existsSync(logsDir)) {
+  fs.mkdirSync(logsDir, { recursive: true });
+  console.log('📁 Created directory: logs');
+}
 
 console.log('\n📦 Using pre-generated Prisma Client from node_modules');
 
