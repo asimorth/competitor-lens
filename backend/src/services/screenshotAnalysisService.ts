@@ -1,6 +1,6 @@
 import Tesseract from 'tesseract.js';
 import OpenAI from 'openai';
-import sharp from 'sharp';
+// Sharp is lazy-loaded only when needed to avoid startup crashes
 import path from 'path';
 import fs from 'fs/promises';
 import crypto from 'crypto';
@@ -51,19 +51,19 @@ export class ScreenshotAnalysisService {
     try {
       // 1. Görsel metadata'sını al
       const metadata = await this.getImageMetadata(imagePath);
-      
+
       // 2. OCR ile metin çıkarımı
       const textContent = await this.extractText(imagePath);
-      
+
       // 3. OpenAI Vision API ile analiz (opsiyonel)
       let aiAnalysis = null;
       if (openai) {
         aiAnalysis = await this.analyzeWithAI(imagePath);
       }
-      
+
       // 4. Feature tahmini
       const featurePrediction = await this.predictFeature(textContent, aiAnalysis);
-      
+
       return {
         featureName: featurePrediction.name,
         confidence: featurePrediction.confidence,
@@ -101,7 +101,7 @@ export class ScreenshotAnalysisService {
    */
   private async analyzeWithAI(imagePath: string): Promise<any> {
     if (!openai) return null;
-    
+
     try {
       // Görseli base64'e çevir
       const imageBuffer = await fs.readFile(imagePath);
@@ -148,7 +148,7 @@ export class ScreenshotAnalysisService {
    * Feature tahmini algoritması
    */
   private async predictFeature(
-    extractedText: string, 
+    extractedText: string,
     aiAnalysis: any
   ): Promise<{ name: string | null, confidence: number }> {
     // Basit keyword matching + AI sonuçları
@@ -186,10 +186,10 @@ export class ScreenshotAnalysisService {
 
     // Keyword matching
     for (const [feature, featureKeywords] of Object.entries(keywords)) {
-      const matchCount = featureKeywords.filter(keyword => 
+      const matchCount = featureKeywords.filter(keyword =>
         lowerText.includes(keyword)
       ).length;
-      
+
       if (matchCount > 0) {
         const confidence = Math.min(matchCount * 0.3, 0.8);
         if (confidence > bestMatch.confidence) {
@@ -218,24 +218,24 @@ export class ScreenshotAnalysisService {
    */
   async batchAnalyze(directoryPath: string): Promise<BatchAnalysisResult[]> {
     const results: BatchAnalysisResult[] = [];
-    
+
     try {
       // Dizin yapısını tara
       const competitors = await fs.readdir(directoryPath);
-      
+
       for (const competitorName of competitors) {
         const competitorPath = path.join(directoryPath, competitorName);
         const stat = await fs.stat(competitorPath);
-        
+
         if (!stat.isDirectory()) continue;
-        
+
         // Competitor dizinindeki dosyaları tara
         const files = await this.scanCompetitorDirectory(competitorPath);
-        
+
         for (const file of files) {
-          const isOnboarding = file.includes('/onboarding/') || 
-                             file.toLowerCase().includes('onboarding');
-          
+          const isOnboarding = file.includes('/onboarding/') ||
+            file.toLowerCase().includes('onboarding');
+
           try {
             const analysis = await this.analyzeScreenshot(file);
             results.push({
@@ -259,7 +259,7 @@ export class ScreenshotAnalysisService {
       console.error('Batch analysis error:', error);
       throw error;
     }
-    
+
     return results;
   }
 
@@ -269,14 +269,14 @@ export class ScreenshotAnalysisService {
   private async scanCompetitorDirectory(dirPath: string): Promise<string[]> {
     const imageFiles: string[] = [];
     const supportedFormats = ['.png', '.jpg', '.jpeg', '.webp'];
-    
+
     async function scan(currentPath: string) {
       const items = await fs.readdir(currentPath);
-      
+
       for (const item of items) {
         const fullPath = path.join(currentPath, item);
         const stat = await fs.stat(fullPath);
-        
+
         if (stat.isDirectory()) {
           await scan(fullPath);
         } else if (supportedFormats.includes(path.extname(item).toLowerCase())) {
@@ -284,23 +284,26 @@ export class ScreenshotAnalysisService {
         }
       }
     }
-    
+
     await scan(dirPath);
     return imageFiles;
   }
 
   /**
-   * Görsel metadata'sını al
+   * Görsel metadata'sını al (Sharp lazy loaded)
    */
   private async getImageMetadata(imagePath: string): Promise<{ width: number, height: number }> {
     try {
+      // Lazy load sharp only when needed
+      const sharp = (await import('sharp')).default;
       const metadata = await sharp(imagePath).metadata();
       return {
         width: metadata.width || 0,
         height: metadata.height || 0
       };
     } catch (error) {
-      console.error('Image metadata error:', error);
+      console.warn('Sharp not available or image metadata error:', error);
+      // Fallback: return default dimensions if sharp fails
       return { width: 0, height: 0 };
     }
   }
@@ -309,7 +312,7 @@ export class ScreenshotAnalysisService {
    * Analiz sonucunu veritabanına kaydet
    */
   async saveAnalysisResult(
-    screenshotId: string, 
+    screenshotId: string,
     analysis: AnalysisResult,
     aiProvider: string = 'tesseract'
   ) {
