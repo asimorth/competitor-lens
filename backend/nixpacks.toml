@@ -1,4 +1,5 @@
 [phases.setup]
+# Cache bust: 2025-12-04-17:35 - Include bulkUpload endpoint
 nixPkgs = ["nodejs_20"]
 
 [phases.install]
