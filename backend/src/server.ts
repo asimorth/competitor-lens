@@ -86,14 +86,30 @@ app.use('/uploads', express.static(path.join(process.cwd(), 'uploads'), {
   }
 }));
 
-// Health check
-app.get('/health', (req, res) => {
-  res.json({
+// Health check with database test
+app.get('/health', async (req, res) => {
+  const healthCheck = {
     status: 'ok',
     timestamp: new Date().toISOString(),
     message: 'CompetitorLens Backend API is running!',
-    environment: process.env.NODE_ENV
-  });
+    environment: process.env.NODE_ENV,
+    database: 'unknown' as string
+  };
+
+  // Test database connection
+  try {
+    const { PrismaClient } = require('@prisma/client');
+    const prisma = new PrismaClient();
+    await prisma.$queryRaw`SELECT 1`;
+    await prisma.$disconnect();
+    healthCheck.database = 'connected';
+  } catch (error) {
+    healthCheck.database = 'disconnected';
+    healthCheck.status = 'degraded';
+  }
+
+  const statusCode = healthCheck.status === 'ok' ? 200 : 503;
+  res.status(statusCode).json(healthCheck);
 });
 
 // Debug endpoint
@@ -118,16 +134,6 @@ app.get('/debug/files', async (req, res) => {
 
 
 // API Routes
-// Static files - serve screenshots and uploads
-app.use('/uploads', express.static(path.join(process.cwd(), 'uploads'), {
-  maxAge: '1d',
-  setHeaders: (res, path) => {
-    if (path.endsWith('.png') || path.endsWith('.jpg') || path.endsWith('.jpeg')) {
-      res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 day cache
-    }
-  }
-}));
-
 app.use('/api/competitors', competitorRoutes);
 app.use('/api/features', featureRoutes);
 app.use('/api/matrix', matrixRoutes);

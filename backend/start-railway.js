@@ -28,9 +28,23 @@ console.log('\n📊 Environment Info:');
 console.log(`   NODE_ENV: ${process.env.NODE_ENV || 'not set'}`);
 console.log(`   PORT: ${process.env.PORT || '3001'}`);
 console.log(`   DATABASE_URL: ${process.env.DATABASE_URL ? '✅ Set' : '❌ Not set'}`);
+
+// Validate DATABASE_URL format
+if (process.env.DATABASE_URL) {
+  const dbUrl = process.env.DATABASE_URL;
+  if (dbUrl.startsWith('prisma+postgres://')) {
+    console.log(`   └─ Using Prisma Accelerate ✨`);
+  } else if (dbUrl.startsWith('postgresql://') || dbUrl.startsWith('postgres://')) {
+    console.log(`   └─ Using Direct PostgreSQL connection`);
+  } else {
+    console.warn(`   └─ ⚠️  Unexpected DATABASE_URL format`);
+  }
+}
+
 console.log(`   DIRECT_DATABASE_URL: ${process.env.DIRECT_DATABASE_URL ? '✅ Set' : '⚠️  Not set (optional)'}`);
 console.log(`   S3_BUCKET: ${process.env.S3_BUCKET ? '✅ Set' : '⚠️  Not set (Files will be stored locally)'}`);
 console.log(`   CDN_URL: ${process.env.CDN_URL ? '✅ Set' : '⚠️  Not set (S3 URLs will be direct)'}`);
+console.log(`   ALLOWED_ORIGINS: ${process.env.ALLOWED_ORIGINS ? '✅ Set' : '⚠️  Not set (CORS may not work properly)'}`);
 
 // Create necessary directories
 const dirs = ['uploads', 'uploads/screenshots', 'logs'];
