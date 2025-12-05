@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -9,77 +10,111 @@ const AWS_REGION = process.env.AWS_REGION || 'eu-central-1';
 const CDN_URL = `https://${S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com`;
 
 /**
- * POST /api/screenshots/sync-s3-urls
- * Updates all screenshot records with S3 CDN URLs
+ * POST /api/screenshots/fix-s3-urls
+ * Scans S3 bucket and updates database with ACTUAL file paths
  */
-router.post('/sync-s3-urls', async (req, res) => {
+router.post('/fix-s3-urls', async (req, res) => {
     try {
-        console.log('🔄 Starting S3 URL sync...');
+        console.log('🔍 Scanning S3 bucket for actual files...');
 
-        let updated = 0;
-        let alreadySet = 0;
-        let skipped = 0;
-
-        // Get all screenshots
-        const allScreenshots = await prisma.screenshot.findMany({
-            select: { id: true, fileName: true, filePath: true, cdnUrl: true }
+        // Initialize S3 client
+        const s3Client = new S3Client({
+            region: AWS_REGION,
+            credentials: {
+                accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!
+            }
         });
 
-        // Filter screenshots with filePath
-        const screenshots = allScreenshots.filter(s => s.filePath);
-        console.log(`Found ${screenshots.length} screenshots`);
+        // List ALL files in S3 bucket
+        const fileMap = new Map<string, string>(); // fileName -> s3Key
+        let continuationToken: string | undefined;
 
+        do {
+            const command = new ListObjectsV2Command({
+                Bucket: S3_BUCKET,
+                Prefix: 'screenshots/',
+                ContinuationToken: continuationToken
+            });
+
+            const response = await s3Client.send(command);
+
+            if (response.Contents) {
+                for (const obj of response.Contents) {
+                    if (obj.Key && !obj.Key.endsWith('/')) {
+                        const fileName = obj.Key.split('/').pop();
+                        if (fileName && /\.(png|jpg|jpeg|webp)$/i.test(fileName)) {
+                            fileMap.set(fileName, obj.Key);
+                        }
+                    }
+                }
+            }
+
+            continuationToken = response.IsTruncated ? response.NextContinuationToken : undefined;
+        } while (continuationToken);
+
+        console.log(`✅ Found ${fileMap.size} files in S3`);
+
+        // Get all database screenshots
+        const screenshots = await prisma.screenshot.findMany({
+            select: { id: true, fileName: true, cdnUrl: true }
+        });
+
+        console.log(`📊 Found ${screenshots.length} database records`);
+
+        let updated = 0;
+        let notFound = 0;
+        let alreadyCorrect = 0;
+
+        // Match and update
         for (const screenshot of screenshots) {
-            try {
-                // Skip if already has S3 URL
-                if (screenshot.cdnUrl && screenshot.cdnUrl.includes('s3.amazonaws.com')) {
-                    alreadySet++;
-                    continue;
-                }
+            if (!screenshot.fileName) {
+                notFound++;
+                continue;
+            }
 
-                // Extract S3 key from filePath
-                // Example: /app/uploads/screenshots/Coinbase/file.png -> screenshots/Coinbase/file.png
-                let s3Key = null;
+            const s3Key = fileMap.get(screenshot.fileName);
 
-                if (screenshot.filePath.includes('screenshots/')) {
-                    const pathPart = screenshot.filePath.split('screenshots/')[1];
-                    s3Key = `screenshots/${pathPart}`;
-                }
+            if (s3Key) {
+                const correctCdnUrl = `${CDN_URL}/${s3Key}`;
 
-                if (s3Key) {
-                    const cdnUrl = `${CDN_URL}/${s3Key}`;
-
+                if (screenshot.cdnUrl !== correctCdnUrl) {
                     await prisma.screenshot.update({
                         where: { id: screenshot.id },
-                        data: { cdnUrl }
+                        data: { cdnUrl: correctCdnUrl }
                     });
-
                     updated++;
+
+                    if (updated % 100 === 0) {
+                        console.log(`✅ Updated ${updated}...`);
+                    }
                 } else {
-                    skipped++;
+                    alreadyCorrect++;
                 }
-            } catch (error) {
-                console.error(`Error updating ${screenshot.fileName}:`, error);
-                skipped++;
+            } else {
+                notFound++;
             }
         }
 
-        console.log(`✅ Sync complete: ${updated} updated, ${alreadySet} already set, ${skipped} skipped`);
-
-        res.json({
+        const result = {
             success: true,
-            totalScreenshots: screenshots.length,
+            s3Files: fileMap.size,
+            databaseRecords: screenshots.length,
             updated,
-            alreadySet,
-            skipped,
+            alreadyCorrect,
+            notFound,
             cdnUrl: CDN_URL
-        });
+        };
+
+        console.log('🎉 Fix complete:', result);
+
+        res.json(result);
 
     } catch (error) {
-        console.error('Sync error:', error);
+        console.error('Fix error:', error);
         res.status(500).json({
             success: false,
-            error: 'Sync failed',
+            error: 'Fix failed',
             message: error instanceof Error ? error.message : 'Unknown error'
         });
     }
