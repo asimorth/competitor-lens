@@ -23,7 +23,6 @@ router.post('/sync-s3-urls', async (req, res) => {
         // Get all screenshots with filePath
         const screenshots = await prisma.screenshot.findMany({
             where: {
-                fileName: { not: null },
                 filePath: { not: null }
             },
             select: { id: true, fileName: true, filePath: true, cdnUrl: true }
