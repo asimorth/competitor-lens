@@ -9,54 +9,8 @@ import { getS3Service } from '../services/s3Service';
 const router = Router();
 const prisma = new PrismaClient();
 
-// Multer configuration
-const storage = multer.diskStorage({
-  destination: async (req, file, cb) => {
-    try {
-      const competitorId = req.body.competitorId || req.query.competitorId;
-      if (!competitorId) {
-        return cb(new Error('Competitor ID is required'), '');
-      }
-
-      const competitor = await prisma.competitor.findUnique({
-        where: { id: competitorId as string }
-      });
-
-      if (!competitor) {
-        return cb(new Error('Competitor not found'), '');
-      }
-
-      let folderName = 'features';
-      const featureId = req.body.featureId || req.query.featureId;
-
-      if (featureId) {
-        const feature = await prisma.feature.findUnique({
-          where: { id: featureId as string }
-        });
-        if (feature) {
-          folderName = feature.name;
-        }
-      }
-
-      const uploadPath = path.join(
-        process.cwd(),
-        'uploads/screenshots',
-        competitor.name,
-        folderName
-      );
-
-      await fs.mkdir(uploadPath, { recursive: true });
-      cb(null, uploadPath);
-    } catch (error) {
-      cb(error as Error, '');
-    }
-  },
-  filename: (req, file, cb) => {
-    const timestamp = Date.now();
-    const ext = path.extname(file.originalname);
-    cb(null, `feature_${timestamp}${ext}`);
-  }
-});
+// Multer configuration - use memory storage for S3 uploads
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,
@@ -90,43 +44,41 @@ router.post('/', upload.single('screenshot'), async (req, res) => {
     }
 
     if (!competitorId) {
-      // File was saved by multer, delete it if validation fails
-      if (req.file.path) {
-        await fs.unlink(req.file.path).catch(() => { });
-      }
       return res.status(400).json({ error: 'Competitor ID is required' });
     }
 
-    // Competitor var mı kontrol et
+    // Competitor check
     const competitor = await prisma.competitor.findUnique({
       where: { id: competitorId }
     });
 
     if (!competitor) {
-      await fs.unlink(req.file.path);
       return res.status(404).json({ error: 'Competitor not found' });
     }
 
-    // S3 Upload logic
-    let cdnUrl: string | null = null;
-    const s3Service = getS3Service();
-
-    if (process.env.S3_BUCKET) {
-      try {
-        const s3Key = s3Service.generateS3Key(competitor.name, 'features', req.file.originalname);
-        cdnUrl = await s3Service.uploadFile(req.file.path, s3Key, req.file.mimetype);
-      } catch (error) {
-        console.error('S3 upload failed:', error);
+    // Get feature name if provided
+    let featureName = 'general';
+    if (featureId) {
+      const feature = await prisma.feature.findUnique({
+        where: { id: featureId }
+      });
+      if (feature) {
+        featureName = feature.name;
       }
     }
 
-    // Screenshot kaydı oluştur
+    // Upload to S3
+    const s3Service = getS3Service();
+    const s3Key = s3Service.generateS3Key(competitor.name, featureName, req.file.originalname);
+    const cdnUrl = await s3Service.uploadBuffer(req.file.buffer, s3Key, req.file.mimetype);
+
+    // Create screenshot record
     const screenshot = await prisma.screenshot.create({
       data: {
         competitorId,
         featureId: featureId || null,
-        filePath: req.file.path,
-        fileName: req.file.filename,
+        filePath: s3Key, // Store S3 key as filePath
+        fileName: req.file.originalname,
         fileSize: req.file.size,
         mimeType: req.file.mimetype,
         isOnboarding: false,
@@ -146,9 +98,6 @@ router.post('/', upload.single('screenshot'), async (req, res) => {
 
   } catch (error) {
     console.error('Upload screenshot error:', error);
-    if (req.file) {
-      try { await fs.unlink(req.file.path); } catch { }
-    }
     res.status(500).json({
       error: 'Failed to upload screenshot',
       message: error instanceof Error ? error.message : 'Unknown error'
