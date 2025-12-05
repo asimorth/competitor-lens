@@ -23,6 +23,7 @@ import screenshotAnalysisRoutes from './routes/screenshotAnalysis';
 import screenshotRoutes from './routes/screenshots';
 import screenshotFixRoutes from './routes/screenshotFix';
 import s3SyncRoutes from './routes/s3Sync';
+import s3RebuildRoutes from './routes/s3Rebuild';
 import onboardingRoutes from './routes/onboarding';
 import syncRoutes from './routes/sync';
 import publicRoutes from './routes/public';
@@ -180,6 +181,7 @@ app.get('/debug/files', async (req, res) => {
 app.use('/api/screenshots', screenshotRoutes);
 app.use('/api/screenshots', screenshotFixRoutes);
 app.use('/api/screenshots', s3SyncRoutes);
+app.use('/api/screenshots', s3RebuildRoutes);
 app.use('/api/onboarding', onboardingRoutes);
 app.use('/api/sync', syncRoutes);
 app.use('/api/bulk-upload', bulkUploadRoutes);
