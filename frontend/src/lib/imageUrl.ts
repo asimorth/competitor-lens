@@ -4,9 +4,18 @@ import { getApiUrl } from './config';
 export function getImageUrl(path: string | undefined | null): string {
   if (!path) return '/placeholder-image.png';
 
-  // If it's already a full URL, return as is
+  // If it's already a full S3 URL, encode the path components
   if (path.startsWith('http://') || path.startsWith('https://')) {
-    return path;
+    try {
+      const url = new URL(path);
+      // Encode each path segment to handle spaces (OKX TR → OKX%20TR)
+      const encodedPath = url.pathname.split('/').map(segment =>
+        segment ? encodeURIComponent(decodeURIComponent(segment)) : segment
+      ).join('/');
+      return `${url.protocol}//${url.host}${encodedPath}`;
+    } catch {
+      return path; // Fallback if URL parsing fails
+    }
   }
 
   // Normalize absolute paths from backend (e.g. /app/uploads/...)
