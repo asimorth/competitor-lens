@@ -44,9 +44,14 @@ router.post('/screenshot', upload.single('file'), async (req, res) => {
         let savePath;
 
         if (originalPath) {
-            // Extract relative path from original (e.g., "Binance Global/AI Tool/file.png")
-            const relativePath = originalPath.replace(/.*uploads\/screenshots\//, '');
-            savePath = path.join(process.cwd(), 'uploads', 'screenshots', relativePath);
+            // originalPath is already relative (e.g., "Kuantist/User Onboarding/file.png")
+            // Just prepend uploads/screenshots/
+            savePath = path.join(
+                process.cwd(),
+                'uploads',
+                'screenshots',
+                originalPath
+            );
         } else {
             // Fallback: save in competitor root
             savePath = path.join(
