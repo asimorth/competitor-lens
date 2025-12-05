@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 
 // BigInt serialization fix
 (BigInt.prototype as any).toJSON = function () {
@@ -77,14 +78,53 @@ app.use('/api/', limiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Static files - serve screenshots and uploads
-app.use('/uploads', express.static(path.join(process.cwd(), 'uploads'), {
-  maxAge: '1d',
-  setHeaders: (res, path) => {
-    if (path.endsWith('.png') || path.endsWith('.jpg') || path.endsWith('.jpeg')) {
-      res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 day cache
+// Smart screenshot serving - fallback to fileName search if path doesn't exist
+app.use('/uploads/screenshots', async (req, res, next) => {
+  const requestedPath = path.join(process.cwd(), 'uploads', 'screenshots', req.path);
+
+  try {
+    // Try exact path first
+    await fs.promises.access(requestedPath);
+    next(); // File exists, let express.static handle it
+  } catch {
+    // File not found at exact path - search by fileName
+    const fileName = path.basename(req.path);
+
+    // Search recursively in screenshots directory
+    async function findFile(dir: string): Promise<string | null> {
+      const items = await fs.promises.readdir(dir, { withFileTypes: true });
+      for (const item of items) {
+        const fullPath = path.join(dir, item.name);
+        if (item.isDirectory()) {
+          const found = await findFile(fullPath);
+          if (found) return found;
+        } else if (item.name === fileName) {
+          return fullPath;
+        }
+      }
+      return null;
+    }
+
+    try {
+      const screenshotsDir = path.join(process.cwd(), 'uploads', 'screenshots');
+      const foundPath = await findFile(screenshotsDir);
+
+      if (foundPath) {
+        // File found! Serve it
+        res.sendFile(foundPath);
+      } else {
+        next(); // Not found, continue to 404
+      }
+    } catch (error) {
+      next(error);
     }
   }
+});
+
+// Static file serving
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads'), {
+  maxAge: '1d',
+  etag: true
 }));
 
 // Health check with database test
