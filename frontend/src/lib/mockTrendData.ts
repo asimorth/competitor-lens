@@ -54,59 +54,6 @@ export const mockTrendData = {
             missingCritical: ['Launchpad', 'NFT Marketplace', 'Social Feed'],
             screenshotCount: 68
         }
-    ],
-
-    // ROI estimates for common features
-    roiData: {
-        'Web App': {
-            devWeeks: 6,
-            cost: 500000,
-            userAcquisition: 2500,
-            revenueImpact: 150000,
-            paybackMonths: 3.3,
-            roi12Months: 300,
-            confidence: 'high',
-            basis: '11 TR competitors with web app'
-        },
-        'TRY Nemalandırma': {
-            devWeeks: 8,
-            cost: 650000,
-            userAcquisition: 3500,
-            revenueImpact: 200000,
-            paybackMonths: 3.25,
-            roi12Months: 350,
-            confidence: 'high',
-            basis: 'OKX TR data + bank partnership leverage'
-        },
-        'Public API': {
-            devWeeks: 4,
-            cost: 350000,
-            userAcquisition: 500,
-            revenueImpact: 80000,
-            paybackMonths: 4.4,
-            roi12Months: 250,
-            confidence: 'medium',
-            basis: '7 TR competitors with public API'
-        },
-        'Sign in with Gmail': {
-            devWeeks: 1,
-            cost: 50000,
-            userAcquisition: 2000,
-            revenueImpact: 60000,
-            paybackMonths: 0.8,
-            roi12Months: 1400,
-            confidence: 'high',
-            basis: 'Industry standard, low friction onboarding'
-        },
-        'Launchpad': {
-            devWeeks: 12,
-            cost: 900000,
-            userAcquisition: 5000,
-            revenueImpact: 250000,
-            paybackMonths: 3.6,
-            roi12Months: 320,
-            confidence: 'medium',
-            basis: '5 TR competitors with launchpad'
-        }
-    }
+    ]
 };
+```
