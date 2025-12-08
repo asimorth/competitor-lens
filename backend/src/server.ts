@@ -25,6 +25,7 @@ import screenshotFixRoutes from './routes/screenshotFix';
 import s3SyncRoutes from './routes/s3Sync';
 import s3RebuildRoutes from './routes/s3Rebuild';
 import featureAssignmentRoutes from './routes/featureAssignment';
+import stablexIntelligenceRoutes from './routes/stablexIntelligence';
 import onboardingRoutes from './routes/onboarding';
 import syncRoutes from './routes/sync';
 import publicRoutes from './routes/public';
@@ -189,6 +190,7 @@ app.use('/api/sync', syncRoutes);
 app.use('/api/bulk-upload', bulkUploadRoutes);
 app.use('/api/uploads', uploadRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/stablex', stablexIntelligenceRoutes);
 app.use('/api/reports', reportRoutes);
 
 // V2 API Routes
