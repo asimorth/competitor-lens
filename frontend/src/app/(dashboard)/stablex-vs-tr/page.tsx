@@ -30,6 +30,7 @@ export default function StablexVsTRPage() {
   const [loading, setLoading] = useState(true);
   const [selectedCompetitor, setSelectedCompetitor] = useState<string | null>(null);
   const [stablexAnalysis, setStablexAnalysis] = useState<any[]>([]);
+  const [gapsData, setGapsData] = useState<any>(null);
 
   useEffect(() => {
     fetchComparisonData();
@@ -37,10 +38,11 @@ export default function StablexVsTRPage() {
 
   const fetchComparisonData = async () => {
     try {
-      const [competitorsRes, featuresRes, stablexRes] = await Promise.all([
+      const [competitorsRes, featuresRes, stablexRes, gapsRes] = await Promise.all([
         api.competitors.getAll(),
         api.features.getAll(),
-        fetch(`${API_URL}/api/analytics/stablex`).then(r => r.json()).catch(() => ({ data: [] }))
+        fetch(`${API_URL}/api/analytics/stablex`).then(r => r.json()).catch(() => ({ data: [] })),
+        fetch(`${API_URL}/api/stablex/gaps`).then(r => r.json()).catch(() => ({ success: false }))
       ]);
 
       // TR borsalarını filtrele (name-based detection)
@@ -52,6 +54,11 @@ export default function StablexVsTRPage() {
       // ✅ Get Stablex smart analysis from backend
       const stablexData = stablexRes.data || [];
       setStablexAnalysis(stablexData);
+
+      // Get gaps data for roadmap
+      if (gapsRes.success) {
+        setGapsData(gapsRes.data);
+      }
 
       setData({
         stablex: {
@@ -176,7 +183,7 @@ export default function StablexVsTRPage() {
 
       {/* Main Comparison Tabs */}
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto">
+        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-5 h-auto">
           <TabsTrigger value="overview" className="text-xs sm:text-sm py-2.5">
             <span className="hidden sm:inline">Genel Bakış</span>
             <span className="sm:hidden">Genel</span>
@@ -185,13 +192,17 @@ export default function StablexVsTRPage() {
             <span className="hidden sm:inline">Özellik Karşılaştırma</span>
             <span className="sm:hidden">Özellikler</span>
           </TabsTrigger>
-          <TabsTrigger value="screenshots" className="text-xs sm:text-sm py-2.5">
-            <span className="hidden sm:inline">Görsel Kanıtlar</span>
-            <span className="sm:hidden">Görseller</span>
-          </TabsTrigger>
           <TabsTrigger value="gaps" className="text-xs sm:text-sm py-2.5">
             <span className="hidden sm:inline">Boşluk Analizi</span>
             <span className="sm:hidden">Boşluklar</span>
+          </TabsTrigger>
+          <TabsTrigger value="roadmap" className="text-xs sm:text-sm py-2.5">
+            <span className="hidden sm:inline">Roadmap</span>
+            <span className="sm:hidden">Plan</span>
+          </TabsTrigger>
+          <TabsTrigger value="screenshots" className="text-xs sm:text-sm py-2.5">
+            <span className="hidden sm:inline">Görseller</span>
+            <span className="sm:hidden">Foto</span>
           </TabsTrigger>
         </TabsList>
 
@@ -441,63 +452,220 @@ export default function StablexVsTRPage() {
           </div>
         </TabsContent>
 
-        {/* Gaps Tab */}
+        {/* Gaps Tab - Enhanced */}
         <TabsContent value="gaps" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <AlertCircle className="h-5 w-5 text-orange-500" />
-                <span>Stablex İçin Kritik Eksikler</span>
-              </CardTitle>
-              <CardDescription>
-                Rakiplerde olan ancak Stablex'te bulunması gereken özellikler
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {criticalMissingFeatures.slice(0, 10).map((feature: any) => {
-                  const competitorsWithFeature = trCompetitors.filter((c: any) =>
-                    c.features?.some((cf: any) => cf.featureId === feature.id && cf.hasFeature)
-                  );
-
-                  return (
-                    <div key={feature.id} className="p-4 border rounded-lg hover:border-orange-300 transition-colors">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h4 className="font-semibold flex items-center space-x-2">
-                            <span>{feature.name}</span>
-                            <Badge variant="destructive" className="text-xs">Kritik</Badge>
-                          </h4>
-                          {feature.description && (
-                            <p className="text-sm text-gray-600 mt-1">{feature.description}</p>
-                          )}
-                          <div className="flex items-center space-x-4 mt-2">
-                            <span className="text-sm text-gray-500">
-                              Kategori: {feature.category}
-                            </span>
-                            <span className="text-sm text-gray-500">
-                              {competitorsWithFeature.length} borsada mevcut
-                            </span>
+          {gapsData && (
+            <>
+              {/* Critical Gaps */}
+              {gapsData.critical && gapsData.critical.length > 0 && (
+                <Card className="border-red-200 bg-red-50/30">
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2 text-red-700">
+                      <AlertCircle className="h-5 w-5" />
+                      <span>Kritik Boşluklar ({gapsData.critical.length})</span>
+                    </CardTitle>
+                    <CardDescription>
+                      Hem acil hem de yüksek etkili - öncelikli olarak kapatılmalı
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {gapsData.critical.map((gap: any, idx: number) => (
+                        <div key={idx} className="p-4 bg-white border-2 border-red-200 rounded-lg">
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-lg">{gap.name}</h4>
+                              {gap.description && (
+                                <p className="text-sm text-gray-600 mt-1">{gap.description}</p>
+                              )}
+                            </div>
+                            <div className="flex gap-2">
+                              <Badge variant="destructive">{gap.urgency}</Badge>
+                              <Badge className="bg-purple-600">{gap.impact} etki</Badge>
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 text-sm">
+                            <div className="p-2 bg-blue-50 rounded">
+                              <div className="text-xs text-gray-600">TR Penetrasyonu</div>
+                              <div className="font-bold text-blue-700">{gap.trPenetration}%</div>
+                              <div className="text-xs text-gray-500">{gap.competitorsWithFeature} borsa</div>
+                            </div>
+                            <div className="p-2 bg-green-50 rounded">
+                              <div className="text-xs text-gray-600">Geliştirme Süresi</div>
+                              <div className="font-bold text-green-700">{gap.estimatedDevWeeks} hafta</div>
+                            </div>
+                            <div className="p-2 bg-purple-50 rounded">
+                              <div className="text-xs text-gray-600">İş Etkisi</div>
+                              <div className="font-medium text-purple-700 text-xs">{gap.businessImpact}</div>
+                            </div>
+                            <div className="p-2 bg-orange-50 rounded">
+                              <div className="text-xs text-gray-600">Roadmap</div>
+                              <div className="font-bold text-orange-700">{gap.roadmapQuarter}</div>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex -space-x-2">
-                          {competitorsWithFeature.slice(0, 3).map((c: any) => (
-                            <div
-                              key={c.id}
-                              className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-white"
-                              title={c.name}
-                            >
-                              {c.name.charAt(0)}
-                            </div>
-                          ))}
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Quick Wins */}
+              {gapsData.quickWins && gapsData.quickWins.length > 0 && (
+                <Card className="border-green-200 bg-green-50/30">
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2 text-green-700">
+                      <Sparkles className="h-5 w-5" />
+                      <span>Hızlı Kazançlar ({gapsData.quickWins.length})</span>
+                    </CardTitle>
+                    <CardDescription>
+                      2 hafta veya daha kısa sürede eklenebilir
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {gapsData.quickWins.map((win: any, idx: number) => (
+                        <div key={idx} className="p-3 bg-white border border-green-200 rounded-lg">
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">{win.name}</span>
+                            <Badge className="bg-green-600">{win.estimatedDevWeeks}h</Badge>
+                          </div>
+                          <div className="text-xs text-gray-600 mt-1">{win.businessImpact}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </>
+          )}
+
+          {/* Fallback for old data */}
+          {!gapsData && criticalMissingFeatures.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <AlertCircle className="h-5 w-5 text-orange-500" />
+                  <span>Stablex İçin Kritik Eksikler</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {criticalMissingFeatures.slice(0, 10).map((feature: any) => (
+                    <div key={feature.id} className="p-3 border rounded-lg">
+                      <span className="font-medium">{feature.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </TabsContent>
+
+        {/* NEW: Roadmap Tab */}
+        <TabsContent value="roadmap" className="space-y-6">
+          {gapsData?.roadmap && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Q1 */}
+              <Card className="border-2 border-blue-300 bg-blue-50/50">
+                <CardHeader>
+                  <CardTitle className="text-blue-700 flex items-center justify-between">
+                    <span>Q1 2025</span>
+                    <Badge className="bg-blue-600">Acil</Badge>
+                  </CardTitle>
+                  <CardDescription>
+                    Kısa vadeli öncelikler
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {gapsData.roadmap.q1.map((item: any, idx: number) => (
+                      <div key={idx} className="p-3 bg-white rounded-lg border border-blue-200">
+                        <div className="font-medium text-sm">{item.name}</div>
+                        <div className="flex items-center justify-between mt-2 text-xs">
+                          <span className="text-gray-600">{item.estimatedDevWeeks} hafta</span>
+                          <Badge variant="outline" className="text-xs">{item.impact}</Badge>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </CardContent>
-          </Card>
+                    ))}
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-blue-200">
+                    <div className="text-sm font-medium text-blue-700">Hedef Kapsama</div>
+                    <div className="text-2xl font-bold text-blue-700 mt-1">20% 🎯</div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Q2 */}
+              <Card className="border-2 border-purple-300 bg-purple-50/50">
+                <CardHeader>
+                  <CardTitle className="text-purple-700 flex items-center justify-between">
+                    <span>Q2 2025</span>
+                    <Badge className="bg-purple-600">Çekirdek</Badge>
+                  </CardTitle>
+                  <CardDescription>
+                    Orta vadeli büyüme
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {gapsData.roadmap.q2.map((item: any, idx: number) => (
+                      <div key={idx} className="p-3 bg-white rounded-lg border border-purple-200">
+                        <div className="font-medium text-sm">{item.name}</div>
+                        <div className="flex items-center justify-between mt-2 text-xs">
+                          <span className="text-gray-600">{item.estimatedDevWeeks} hafta</span>
+                          <Badge variant="outline" className="text-xs">{item.impact}</Badge>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-purple-200">
+                    <div className="text-sm font-medium text-purple-700">Hedef Kapsama</div>
+                    <div className="text-2xl font-bold text-purple-700 mt-1">30% 🎯</div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Q3 */}
+              <Card className="border-2 border-indigo-300 bg-indigo-50/50">
+                <CardHeader>
+                  <CardTitle className="text-indigo-700 flex items-center justify-between">
+                    <span>Q3 2025</span>
+                    <Badge className="bg-indigo-600">Ekosistem</Badge>
+                  </CardTitle>
+                  <CardDescription>
+                    Uzun vadeli vizyon
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {gapsData.roadmap.q3.map((item: any, idx: number) => (
+                      <div key={idx} className="p-3 bg-white rounded-lg border border-indigo-200">
+                        <div className="font-medium text-sm">{item.name}</div>
+                        <div className="flex items-center justify-between mt-2 text-xs">
+                          <span className="text-gray-600">{item.estimatedDevWeeks} hafta</span>
+                          <Badge variant="outline" className="text-xs">{item.impact}</Badge>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-indigo-200">
+                    <div className="text-sm font-medium text-indigo-700">Hedef Kapsama</div>
+                    <div className="text-2xl font-bold text-indigo-700 mt-1">40% 🎯</div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {!gapsData && (
+            <Card>
+              <CardContent className="py-12 text-center">
+                <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600">Roadmap verisi yükleniyor...</p>
+              </CardContent>
+            </Card>
+          )}
         </TabsContent>
       </Tabs>
     </div>
