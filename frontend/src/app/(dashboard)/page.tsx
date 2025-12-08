@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Users, 
-  FileText, 
-  TrendingUp, 
+import {
+  Users,
+  FileText,
+  TrendingUp,
   Upload,
   Plus,
   Eye,
@@ -92,8 +92,8 @@ export default function DashboardPage() {
                 <p className="text-blue-100 text-xs">{stats.totalCompetitors} borsa</p>
               </div>
             </div>
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               onClick={loadDashboardData}
               className="bg-white/10 text-white border-white/20 h-7 w-7 p-0"
             >
@@ -112,8 +112,8 @@ export default function DashboardPage() {
                 <p className="text-blue-100 mt-1">{stats.totalCompetitors} borsa · {stats.totalFeatures} özellik</p>
               </div>
             </div>
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               onClick={loadDashboardData}
               className="bg-white/10 hover:bg-white/20 text-white border-white/20"
             >
@@ -172,6 +172,16 @@ export default function DashboardPage() {
         <div className="space-y-2">
           <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 px-1">Hızlı Erişim</h2>
           <div className="space-y-1.5">
+            <Link href="/stablex-intelligence" className="flex items-center gap-2.5 p-2.5 rounded-lg border border-blue-200 dark:border-blue-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 active:bg-blue-100 dark:active:bg-blue-900 transition-colors">
+              <div className="w-8 h-8 rounded bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
+                <Trophy className="h-4 w-4 text-white" />
+              </div>
+              <div className="flex-1">
+                <span className="text-sm font-medium text-gray-900 dark:text-white">Stablex İstihbarat</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 block">Rekabet konumu</span>
+              </div>
+              <Badge className="bg-blue-600">Yeni</Badge>
+            </Link>
             <Link href="/matrix" className="flex items-center gap-2.5 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 active:bg-gray-50 dark:active:bg-gray-700 transition-colors">
               <div className="w-8 h-8 rounded bg-emerald-500 flex items-center justify-center flex-shrink-0">
                 <Eye className="h-4 w-4 text-white" />
@@ -184,11 +194,11 @@ export default function DashboardPage() {
               </div>
               <span className="text-sm font-medium text-gray-900 dark:text-white">Özellikler</span>
             </Link>
-            <Link href="/analytics" className="flex items-center gap-2.5 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 active:bg-gray-50 dark:active:bg-gray-700 transition-colors">
+            <Link href="/stablex-vs-tr" className="flex items-center gap-2.5 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 active:bg-gray-50 dark:active:bg-gray-700 transition-colors">
               <div className="w-8 h-8 rounded bg-amber-500 flex items-center justify-center flex-shrink-0">
                 <TrendingUp className="h-4 w-4 text-white" />
               </div>
-              <span className="text-sm font-medium text-gray-900 dark:text-white">Gap Analizi</span>
+              <span className="text-sm font-medium text-gray-900 dark:text-white">Stablex vs TR</span>
             </Link>
             <Link href="/competitors" className="flex items-center gap-2.5 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 active:bg-gray-50 dark:active:bg-gray-700 transition-colors">
               <div className="w-8 h-8 rounded bg-blue-500 flex items-center justify-center flex-shrink-0">
@@ -209,9 +219,9 @@ export default function DashboardPage() {
                   <div className={cn(
                     "w-7 h-7 rounded flex items-center justify-center text-xs font-bold flex-shrink-0",
                     index === 0 ? "bg-gradient-to-br from-yellow-400 to-amber-500 text-white" :
-                    index === 1 ? "bg-gray-300 text-white" :
-                    index === 2 ? "bg-amber-600 text-white" :
-                    "bg-blue-100 text-blue-600"
+                      index === 1 ? "bg-gray-300 text-white" :
+                        index === 2 ? "bg-amber-600 text-white" :
+                          "bg-blue-100 text-blue-600"
                   )}>
                     {index + 1}
                   </div>
