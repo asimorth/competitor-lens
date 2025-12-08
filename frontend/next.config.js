@@ -17,25 +17,6 @@ const nextConfig = {
       },
     },
   },
-  async redirects() {
-    return [
-      {
-        source: '/dashboard',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/features-simple',
-        destination: '/features',
-        permanent: true,
-      },
-      {
-        source: '/features-simple/:id',
-        destination: '/features/:id',
-        permanent: true,
-      },
-    ];
-  },
 }
 
 module.exports = nextConfig
