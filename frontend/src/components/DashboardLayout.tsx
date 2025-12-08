@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  LayoutGrid, 
-  Building2, 
-  Sparkles, 
+import {
+  LayoutGrid,
+  Building2,
+  Sparkles,
   Menu,
   X,
   Home,
@@ -18,41 +18,41 @@ import { StablexLogo } from '@/components/StablexLogo';
 import { cn } from '@/lib/utils';
 
 const navigation = [
-  { 
-    name: 'Dashboard', 
-    href: '/dashboard', 
+  {
+    name: 'Dashboard',
+    href: '/',
     icon: Home,
     description: 'Genel bakış'
   },
-  { 
-    name: 'Stablex vs TR', 
-    href: '/stablex-vs-tr', 
+  {
+    name: 'Stablex vs TR',
+    href: '/stablex-vs-tr',
     icon: Building2,
     description: 'TR borsaları karşılaştırması',
     highlight: true
   },
-  { 
-    name: 'Feature Gallery', 
-    href: '/features-simple', 
+  {
+    name: 'Feature Gallery',
+    href: '/features-simple',
     icon: Camera,
     description: 'Screenshot bazlı feature analizi',
     highlight: true
   },
-  { 
-    name: 'Feature Matrix', 
-    href: '/matrix', 
+  {
+    name: 'Feature Matrix',
+    href: '/matrix',
     icon: LayoutGrid,
     description: 'Özellik karşılaştırma tablosu'
   },
-  { 
-    name: 'Rakipler', 
-    href: '/competitors', 
+  {
+    name: 'Rakipler',
+    href: '/competitors',
     icon: Building2,
     description: 'Tüm borsalar'
   },
-  { 
-    name: 'Özellikler', 
-    href: '/features', 
+  {
+    name: 'Özellikler',
+    href: '/features',
     icon: Sparkles,
     description: 'Feature detayları'
   },
@@ -120,15 +120,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     "flex items-center gap-2.5 px-3 py-2.5 text-sm font-medium rounded-lg transition-all group relative",
                     isActive
                       ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md"
-                      : item.highlight 
+                      : item.highlight
                         ? "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                   )}
                 >
                   <div className={cn(
                     "w-8 h-8 flex-shrink-0 rounded-lg flex items-center justify-center",
-                    isActive 
-                      ? "bg-white/20" 
+                    isActive
+                      ? "bg-white/20"
                       : "bg-gray-100 dark:bg-gray-700"
                   )}>
                     <item.icon className={cn(
@@ -181,17 +181,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="max-w-7xl mx-auto px-3 md:px-4 lg:px-8">
             {/* Breadcrumb for desktop only */}
             <div className="hidden lg:flex items-center space-x-2 text-sm text-gray-600 mb-6 mt-6">
-              <Link href="/dashboard" className="hover:text-gray-900">
+              <Link href="/" className="hover:text-gray-900">
                 Dashboard
               </Link>
-              {pathname !== '/dashboard' && (
+              {pathname !== '/' && (
                 <>
                   <ChevronRight className="h-4 w-4 text-gray-400" />
                   <span className="font-medium text-gray-900">{currentPage}</span>
                 </>
               )}
             </div>
-            
+
             {children}
           </div>
         </main>

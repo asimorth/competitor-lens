@@ -3,11 +3,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  Home, 
-  Grid3X3, 
-  Image, 
-  BarChart3, 
+import {
+  Home,
+  Grid3X3,
+  Image,
+  BarChart3,
   Settings,
   Menu,
   X
@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 const navItems = [
   {
-    href: '/dashboard',
+    href: '/',
     icon: Home,
     label: 'Ana Sayfa'
   },
@@ -51,11 +51,11 @@ export function MobileNav() {
     <>
       {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b z-40 px-4 flex items-center justify-between">
-        <Link href="/dashboard" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2">
           <img src="/stablex-logo.png" alt="Stablex" className="h-8 w-8" />
           <span className="font-semibold text-lg">CompetitorLens</span>
         </Link>
-        
+
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -81,12 +81,12 @@ export function MobileNav() {
               <X size={24} />
             </button>
           </div>
-          
+
           <nav className="p-4">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href;
-              
+
               return (
                 <Link
                   key={item.href}
@@ -94,8 +94,8 @@ export function MobileNav() {
                   onClick={() => setIsMenuOpen(false)}
                   className={cn(
                     "flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors mb-2",
-                    isActive 
-                      ? "bg-blue-50 text-blue-600" 
+                    isActive
+                      ? "bg-blue-50 text-blue-600"
                       : "hover:bg-gray-100 text-gray-700"
                   )}
                 >
@@ -114,7 +114,7 @@ export function MobileNav() {
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
-            
+
             return (
               <Link
                 key={item.href}
