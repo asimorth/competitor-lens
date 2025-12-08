@@ -37,17 +37,57 @@ router.post('/assign-features', async (req, res) => {
             const normalized = f.name.toLowerCase().trim();
             featureMap.set(normalized, f.id);
 
-            // Add common variations
-            if (normalized.includes('kyc')) featureMap.set('kyc', f.id);
-            if (normalized.includes('onboarding')) featureMap.set('onboarding', f.id);
-            if (normalized.includes('user onboarding')) featureMap.set('user onboarding', f.id);
-            if (normalized.includes('ai')) featureMap.set('ai', f.id);
-            if (normalized.includes('ai sentiment')) featureMap.set('ai sentiment', f.id);
-            if (normalized.includes('p2p')) featureMap.set('p2p', f.id);
-            if (normalized.includes('staking')) featureMap.set('staking', f.id);
-            if (normalized.includes('auto-invest') || normalized.includes('auto invest')) {
+            // KYC variations
+            if (normalized.includes('kyc')) {
+                featureMap.set('kyc', f.id);
+            }
+
+            // Onboarding variations
+            if (normalized.includes('onboarding')) {
+                featureMap.set('onboarding', f.id);
+                featureMap.set('user onboarding', f.id);
+            }
+
+            // AI variations (handle both "AI Tool" and "AI tools")
+            if (normalized.includes('ai')) {
+                featureMap.set('ai', f.id);
+                featureMap.set('ai tool', f.id);
+                featureMap.set('ai tools', f.id);
+                featureMap.set('ai sentiment', f.id);
+            }
+
+            // Dashboard & Wallet variations
+            if (normalized.includes('dashboard') || normalized.includes('wallet')) {
+                featureMap.set('dashboard', f.id);
+                featureMap.set('wallet', f.id);
+                featureMap.set('dashboard & wallet', f.id);
+            }
+
+            // P2P variations
+            if (normalized.includes('p2p')) {
+                featureMap.set('p2p', f.id);
+                featureMap.set('p2p trading', f.id);
+            }
+
+            // Staking variations
+            if (normalized.includes('staking') || normalized.includes('stake')) {
+                featureMap.set('staking', f.id);
+                featureMap.set('stake', f.id);
+            }
+
+            // Auto-invest / DCA variations
+            if (normalized.includes('auto-invest') || normalized.includes('auto invest') || normalized.includes('dca')) {
                 featureMap.set('auto-invest', f.id);
+                featureMap.set('auto invest', f.id);
                 featureMap.set('dca', f.id);
+            }
+
+            // TRY Nemalandırma variations
+            if (normalized.includes('nemalandırma') || normalized.includes('nemalandirma') || normalized.includes('yield')) {
+                featureMap.set('try nemalandırma', f.id);
+                featureMap.set('try nemalandirma', f.id);
+                featureMap.set('nemalandırma', f.id);
+                featureMap.set('nemalandirma', f.id);
             }
         });
 
