@@ -4,13 +4,22 @@ const API_BASE_URL = getApiUrl();
 
 /**
  * Screenshot URL'ini döndürür
- * - CDN URL varsa onu kullanır
+ * - CDN URL varsa onu kullanır (encoded)
  * - Yoksa backend'deki static file path'ini kullanır
  */
 export function getScreenshotUrl(screenshot: any): string {
-  // CDN URL varsa onu kullan
+  // CDN URL varsa onu kullan (with encoding for spaces)
   if (screenshot.cdnUrl) {
-    return screenshot.cdnUrl;
+    try {
+      const url = new URL(screenshot.cdnUrl);
+      // Encode each path segment to handle spaces (e.g., "OKX TR" -> "OKX%20TR")
+      url.pathname = url.pathname.split('/').map(segment => encodeURIComponent(segment)).join('/');
+      return url.toString();
+    } catch (error) {
+      // If URL parsing fails, return the original URL as a fallback
+      console.error("Failed to parse or encode CDN URL:", screenshot.cdnUrl, error);
+      return screenshot.cdnUrl;
+    }
   }
 
   // Screenshot path'i varsa
