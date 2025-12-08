@@ -14,7 +14,8 @@ import {
   Download,
   Activity,
   RefreshCw,
-  Building2
+  Building2,
+  Trophy
 } from 'lucide-react';
 import Link from 'next/link';
 import { api } from '@/lib/api';
